@@ -10,21 +10,15 @@ import NewsStore from "../stores/NewsStore.jsx";
 import AuthStore from '../stores/AuthStore.jsx';
 import AuthActions from "../actions/AuthActions.jsx";
 
-// We'll use this function to get a contact
-// list item for each of the contacts in our list
 
 class NewsComponent extends Component {
 
   constructor() {
     super();
-    // For our initial state, we just want
-    // an empty array of contacts
     this.state = {
      authenticated: AuthStore.isAuthenticated(),
       sources: [],
     };
-    // We need to bind this to onChange so we can have
-    // the proper this reference inside the method
     this.onChange = this.onChange.bind(this);
   }
 
@@ -57,7 +51,6 @@ class NewsComponent extends Component {
   }
 
   render() {
-      // Map over the contacts and get an element for each of them
        const newsNode = this.state.sources.map((source) => {
             return (
                   <Link

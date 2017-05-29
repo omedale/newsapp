@@ -1,30 +1,20 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, browserHistory, Link, IndexRoute } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import style from './main.scss';
 import "./main.scss";
 import AlertContainer from 'react-alert'
-// import { Link } from 'react-router';
-import NewsActions from "../actions/NewsActions.jsx";
+import NewsActions from '../actions/NewsActions.jsx';
 import NewsStore from "../stores/NewsStore.jsx";
-
 import AuthStore from '../stores/AuthStore.jsx';
-import AuthActions from "../actions/AuthActions.jsx";
-
-// We'll use this function to get a contact
-// list item for each of the contacts in our list
 
 class Headlines extends Component {
 
   constructor() {
     super();
-    // For our initial state, we just want
-    // an empty array of contacts
     this.state = {
      authenticated: AuthStore.isAuthenticated(),
       headlines: [],
     };
-    // We need to bind this to onChange so we can have
-    // the proper this reference inside the method
     this.onChange = this.onChange.bind(this);
   }
           checkUser(){
@@ -55,7 +45,6 @@ class Headlines extends Component {
   }
 
   render() {
-      // Map over the contacts and get an element for each of them
        const newsNode = this.state.headlines.map((source) => {
             return (
                   <Link

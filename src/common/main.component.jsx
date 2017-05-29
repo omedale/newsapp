@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, browserHistory, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, browserHistory, Link } from 'react-router-dom';
 
 import Home from "./home.component.jsx";
 import About from "./about.component.jsx";
