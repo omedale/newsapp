@@ -1,33 +1,57 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import GoogleLogin from 'react-google-login';
+import FontAwesome from 'react-fontawesome';
 import { BrowserRouter as Router, Route, browserHistory, Link, IndexRoute } from 'react-router-dom';
+
+import AuthActions from "../actions/AuthActions.jsx";
+import AuthStore from "../stores/AuthStore.jsx";
 
 class Login extends React.Component {
      constructor(props, context) {
     super(props, context);
      this.goHome = this.goHome.bind(this);
      this.signOut = this.signOut.bind(this);
+       this.signOuta = this.signOuta.bind(this);
     this.state={
-        token: 2
+        token: 2,
+        auth: {},
     }
   }
 
-            responseGoogle (response) {
+                goToHome(e) {
+                this.props.history.push('/');
+                // dispatch(setRedirectUrl(currentURL))
+                // browserHistory.replace("/login")
+            }
 
-               var auth2 = gapi.auth2.getAuthInstance();
+            responseGoogle (response) {
+                 console.log(this.props);
+                let sigined = '';
+               const auth2 = gapi.auth2.getAuthInstance();
                 if(auth2.isSignedIn.Ab === false){
                     alert("Ooops! ....connection error");
-                     this.props.history.push('/');
-                    return;
+                     sigined = 'loggedin';
                 }
+
+
                 console.log(response);
-                console.log(response.profileObj)
+                console.log(response.profileObj);
+                 console.log("we are in");
+
+
                 //anything else you want to do(save to localStorage)...
             }
 
-                goHome(e) {
-                e.preventDefault();
+                goHome( response) {
+                this.setState({auth2: gapi.auth2.getAuthInstance() });
+                AuthActions.logUserIn(response.profileObj, response.tokenId, this.state.auth2);
+                 this.state.auth2.disconnect().then(function () {
+                    console.log('User signed out.');
+                });
                 this.props.history.push('/');
+            }
+               goLogin( response) {
+                    console.log(response);
             }
 
             handleSuccess (response) {
@@ -38,21 +62,18 @@ class Login extends React.Component {
             }
 
 
+        signOuta(e) {
+            window.location.reload();
+        }
+
+                refreshing(e) {
+            window.location.reload();
+        }
+
+
 
         signOut(e) {
-
-              // gapi.auth2.GoogleAuth.signOut();
-
-            //  gapi.signin2.render("116879242746092089539",{
-            //     scope: 'omedale@gmail.com',
-            //     width: 200,
-            //     height: 50,
-            //     longtitle: true,
-            //     theme: 'dark',
-            //     onsuccess: this.handleSuccess,
-            //     onfailure: this.handleFailure
-            //     });
-
+            this.refreshing();
                 console.log("user signing out")
                 var auth2 = gapi.auth2.getAuthInstance();
                 console.log(auth2);
@@ -60,8 +81,10 @@ class Login extends React.Component {
                 auth2.disconnect().then(function () {
                     console.log('User signed out.');
                      var auth3 = gapi.auth2.getAuthInstance();
+
                   console.log(auth3.isSignedIn.Ab);
                 });
+
 
         }
 
@@ -75,11 +98,15 @@ class Login extends React.Component {
     if(this.state.token===''){
         this.props.history.push('/');
     }
-
   }
 
+   componentDidMount(){
+
+      }
+
     render(){
-        this.redirectHome();
+
+       // this.redirectHome();
         return (
         <div>
         <div className="row">
@@ -98,16 +125,24 @@ class Login extends React.Component {
                         <div className="col-md-12">
                                 <button onClick={this.signOut}> Sign out</button>
                        </div>
+                        <div className="col-md-12">
+                                <button onClick={this.signOuta}> Sign outaaa</button>
+                       </div>
 
                        <div>
+
                                <GoogleLogin
-                                    clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
-                                    onSuccess={this.responseGoogle}
-                                    onFailure={this.responseGoogle}
+                               // remember to add ur heroku url to the google client id authoize url origin
+                               // goto https://developers.google.com/identity/sign-in/web/devconsole-project
+                                    clientId={'119051801386-fm4u444ls4fv0djtbac2u2lrseis815i.apps.googleusercontent.com'}
+                                    onSuccess={this.goHome}
+                                    onFailure={this.goLogin}
                                     offline={false}
                                 >
-
-                                    <span> Login with Google</span>
+                                <FontAwesome
+                                name='google'
+                                />
+                             <span> Login with Google</span>
                                 </GoogleLogin>
                     </div>
 

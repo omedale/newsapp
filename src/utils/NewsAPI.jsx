@@ -1,67 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import style from './main.scss';
-import "./main.scss";
-import AlertContainer from 'react-alert';
-import AuthStore from '../stores/AuthStore.jsx';
-import AuthActions from "../actions/AuthActions.jsx";
-
-
-class Home extends Component {
-    constructor(props) {
-    super(props);
-    this.signOut = this.signOut.bind(this);
-    this.state = {
-      authenticated: AuthStore.isAuthenticated(),
-      posts: [],
-      newsPost : [],
-    };
-}
-
-        checkUser(){
-            if(this.state.authenticated === false){
-              this.props.history.push('/login');
-            }
-        }
-      signOut(e) {
-
-             AuthActions.logUserOut();
-             this.props.history.push('/login');
-        }
-
- alertOptions = {
-    offset: 14,
-    position: 'top right',
-    theme: 'dark',
-    time: 5000,
-    transition: 'scale'
-  }
-
- showAlert = (msg) => {
-    this.msg.show(msg, {
-      time: 5000,
-      type: 'success'
-      //   icon: <img src="path/to/some/img/32x32.png" />
-    })
-  }
-
- componentDidMount() {
-     this.checkUser();
-    axios.get(`https://newsapi.org/v1/sources?language=en&sortBy=latest&apiKey=213327409d384371851777e7c7f78dfe`)
-      .then(res => {
-          console.log(res.data.sources);
-         this.setState({posts: res.data.sources});
-        //    const msg = "greate";
-        //    this.showAlert(msg);
-      })
-      .catch(function(error){
-          alert("Ooops!!... connection error");
-          console.log(error);
-
-      });
-
-
+import axios from "axios";
 
 const data = [
     {"id":"abc-news-au","name":"ABC News (AU)","description":"Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.","url":"http://www.abc.net.au/news","category":"general","language":"en","country":"au","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top"]},
@@ -108,58 +45,47 @@ const data = [
     {"id":"the-sport-bible","name":"The Sport Bible","description":"TheSPORTbible is one of the largest communities for sports fans across the world. Send us your sporting pictures and videos!","url":"http://www.thesportbible.com","category":"sport","language":"en","country":"gb","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]},{"id":"the-telegraph","name":"The Telegraph","description":"Latest news, business, sport, comment, lifestyle and culture from the Daily Telegraph and Sunday Telegraph newspapers and video from Telegraph TV.","url":"http://www.telegraph.co.uk","category":"general","language":"en","country":"gb","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]},{"id":"the-times-of-india","name":"The Times of India","description":"Times of India brings the Latest News and Top Breaking headlines on Politics and Current Affairs in India and around the World, Sports, Business, Bollywood News and Entertainment, Science, Technology, Health and Fitness news, Cricket and opinions from leading columnists.","url":"http://timesofindia.indiatimes.com","category":"general","language":"en","country":"in","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]},{"id":"the-verge","name":"The Verge","description":"The Verge covers the intersection of technology, science, art, and culture.","url":"http://www.theverge.com","category":"technology","language":"en","country":"us","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]},
     {"id":"the-wall-street-journal","name":"The Wall Street Journal","description":"WSJ online coverage of breaking news and current headlines from the US and around the world. Top stories, photos, videos, detailed analysis and in-depth reporting.","url":"http://www.wsj.com","category":"business","language":"en","country":"us","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top"]},{"id":"the-washington-post","name":"The Washington Post","description":"Breaking news and analysis on politics, business, world national news, entertainment more. In-depth DC, Virginia, Maryland news coverage including traffic, weather, crime, education, restaurant reviews and more.","url":"https://www.washingtonpost.com","category":"general","language":"en","country":"us","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top"]},
     {"id":"time","name":"Time","description":"Breaking news and analysis from TIME.com. Politics, world news, photos, video, tech reviews, health, science and entertainment news.","url":"http://time.com","category":"general","language":"en","country":"us","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]},{"id":"usa-today","name":"USA Today","description":"Get the latest national, international, and political news at USATODAY.com.","url":"http://www.usatoday.com/news","category":"general","language":"en","country":"us","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top","latest"]}
-  ]
-     this.setState({newsPost: data});
-}
+];
 
-    render(){
+export default {
+  // We want to get a list of all the contacts
+  // from the API. This list contains reduced info
+  // and will be be used in the sidebar
+  getOffSources: (url) => {
+    return new Promise((resolve, reject) => {
+          resolve(data);
+           console.log("data sent");
+    });
+  },
 
-       //  console.log(this.state.newsPost[1]);
-         //const newsNode = this.state.posts.map((post) =>
-         const newsNode = this.state.newsPost.map((post) => {
-            return (
-                  <Link
-                    to={"/newsdetail/"+post.id}
-                    className="list-group-item"
-                    key={post.id}>
-                    {post.name}
-                </Link>
-            )
-        });
-        return (
-            <div>
-                 <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="#">NewsApp</a>
-                        </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  getSources: (url) => {
+    return new Promise((resolve, reject) => {
+     axios.get(url)
+      .then(res => {
+          resolve((res.data.sources));
+            console.log("data sent");
+      })
+      .catch(function(error){
+          alert("Ooops!!... connection error");
+          console.log(error);
+         if (error) reject(error);
+      });
 
-                            <ul className="nav navbar-nav">
-                                <li><Link to="/" className="active" >Home</Link></li>
-                                 <li><Link to="/about">About</Link></li>
-                                 <li><Link to="/login">Login</Link></li>
-                                <li><Link to="/news">News</Link></li>
+    });
+  },
 
-                            </ul>
-
-                        </div>
-                    </div>
-                </nav>
-                 <div>
-                    <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-                </div>
-                 <div className="col-md-12">
-                                <button onClick={this.signOut}> Sign out</button>
-                       </div>
-                <h1 className={`${style.card} card`}> Cars page</h1>
-                <div className="list-group">
-                    {newsNode}
-                </div>
-            </div>
-        );
-
+  getSource: (url) => {
+    return new Promise((resolve, reject) => {
+      axios.get(url)
+      .then(res => {
+          resolve(res.data.articles);
+                    console.log(res.data.articles);
+      })
+      .catch(function(error){
+          alert("Ooops!!... connection error");
+          console.log(error);
+         if (error) reject(error);
+      });
+    });
   }
 }
-
-export default Home
