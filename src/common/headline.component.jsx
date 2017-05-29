@@ -6,7 +6,6 @@ import AlertContainer from 'react-alert'
 import NewsActions from '../actions/NewsActions.jsx';
 import NewsStore from "../stores/NewsStore.jsx";
 import AuthStore from '../stores/AuthStore.jsx';
-
 class Headlines extends Component {
 
   constructor() {

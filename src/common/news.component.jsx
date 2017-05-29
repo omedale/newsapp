@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Route, browserHistory, Link, IndexRoute } from
 import style from './main.scss';
 import "./main.scss";
 import AlertContainer from 'react-alert'
-// import { Link } from 'react-router';
 import NewsActions from "../actions/NewsActions.jsx";
 import NewsStore from "../stores/NewsStore.jsx";
 
 import AuthStore from '../stores/AuthStore.jsx';
 import AuthActions from "../actions/AuthActions.jsx";
-
 
 class NewsComponent extends Component {
 
