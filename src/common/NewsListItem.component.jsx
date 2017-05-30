@@ -7,11 +7,11 @@ class NewsListItem extends React.Component {
     const { source } = this.props;
     return (
       <ListGroupItem>
-        <Link to={`/source/${source.id}`}>
-          <h4>{source.name}</h4>
-        </Link>
+      <Link to={`/source/${source.id}`}>
+      <h4>{source.name}</h4>
+      </Link>
       </ListGroupItem>
-    );
+      );
   }
 }
 

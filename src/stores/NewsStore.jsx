@@ -1,6 +1,6 @@
-import { EventEmitter } from "events";
-import AppDispatcher from "../AppDispatcher/AppDispatcher.jsx";
-import AppConstants from "../constants/AppConstants.jsx";
+import EventEmitter from 'events';
+import AppDispatcher from '../AppDispatcher/AppDispatcher';
+import AppConstants from '../constants/AppConstants';
 
 
 const CHANGE_EVENT = 'change';
@@ -9,7 +9,7 @@ let _sources = [];
 let _source = {};
 
 function setSources(sources) {
-    console.log(sources);
+  console.log(sources);
   _sources = sources;
 }
 
@@ -32,11 +32,11 @@ class NewsStoreClass extends EventEmitter {
     this.removeListener(CHANGE_EVENT, callback)
   }
 
-  getSources() {
+  getSources = () => {
     return _sources;
   }
 
-  getSource() {
+  getSource = () => {
     return _source;
   }
 
@@ -44,16 +44,10 @@ class NewsStoreClass extends EventEmitter {
 
 const NewsStore = new NewsStoreClass();
 
-// Here we register a callback for the dispatcher
-// and look for our various action types so we can
-// respond appropriately
-NewsStore.dispatchToken = AppDispatcher.register(action => {
-
+NewsStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case AppConstants.RECIEVE_SOURCES:
       setSources(action.sources);
-      // We need to call emitChange so the event listener
-      // knows that a change has been made
       NewsStore.emitChange();
       break;
 
@@ -62,7 +56,7 @@ NewsStore.dispatchToken = AppDispatcher.register(action => {
       NewsStore.emitChange();
       break;
 
-    case AppConstants.RECIEVE_SOURCE_ERROR:
+    case AppConstants.RECIEVE_SOURCES_ERROR:
       alert(action.message);
       NewsStore.emitChange();
       break;

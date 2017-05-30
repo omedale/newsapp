@@ -1,6 +1,6 @@
-import AppDispatcher from '../AppDispatcher/AppDispatcher.jsx';
-import AuthConstants from '../constants/AuthConstants.jsx';
-import { EventEmitter } from 'events';
+import AppDispatcher from '../AppDispatcher/AppDispatcher';
+import AuthConstants from '../constants/AuthConstants';
+import EventEmitter from 'events';
 
 const CHANGE_EVENT = 'change';
 
@@ -31,48 +31,42 @@ class AuthStoreClass extends EventEmitter {
     this.removeListener(CHANGE_EVENT, callback)
   }
 
-  isAuthenticated() {
+  isAuthenticated = () => {
     if (localStorage.getItem('id_token')) {
       return true;
     }
     return false;
   }
 
-  getUser() {
+  getUser = () => {
     return localStorage.getItem('profile');
   }
 
-    getAuth2() {
+  getAuth2 = () => {
     return localStorage.getItem('auth2');
   }
 
-  getJwt() {
+  getJwt = () => {
     return localStorage.getItem('id_token');
   }
 }
 
 const AuthStore = new AuthStoreClass();
 
-// Here we register a callback for the dispatcher
-// and look for our various action types so we can
-// respond appropriately
-AuthStore.dispatchToken = AppDispatcher.register(action => {
-
-  switch(action.actionType) {
-
+AuthStore.dispatchToken = AppDispatcher.register((action) => {
+  switch (action.actionType) {
     case AuthConstants.LOGIN_USER:
       setUser(action.profile, action.token, action.auth2);
       AuthStore.emitChange();
-      break
+      break;
 
     case AuthConstants.LOGOUT_USER:
       removeUser();
       AuthStore.emitChange();
-      break
+      break;
 
     default:
   }
-
 });
 
 export default AuthStore;

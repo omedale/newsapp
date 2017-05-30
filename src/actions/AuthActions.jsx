@@ -1,5 +1,5 @@
-import AppDispatcher from '../AppDispatcher/AppDispatcher.jsx';
-import AuthConstants from '../constants/AuthConstants.jsx';
+import AppDispatcher from '../AppDispatcher/AppDispatcher';
+import AuthConstants from '../constants/AuthConstants';
 
 export default {
 
@@ -16,6 +16,6 @@ export default {
     AppDispatcher.dispatch({
       actionType: AuthConstants.LOGOUT_USER,
     });
-  }
+  },
 
 }

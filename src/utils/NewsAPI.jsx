@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const data = [
     {"id":"abc-news-au","name":"ABC News (AU)","description":"Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.","url":"http://www.abc.net.au/news","category":"general","language":"en","country":"au","urlsToLogos":{"small":"","medium":"","large":""},"sortBysAvailable":["top"]},
@@ -48,9 +48,6 @@ const data = [
 ];
 
 export default {
-  // We want to get a list of all the contacts
-  // from the API. This list contains reduced info
-  // and will be be used in the sidebar
   getOffSources: (url) => {
     return new Promise((resolve, reject) => {
           resolve(data);
@@ -79,7 +76,7 @@ export default {
       axios.get(url)
       .then(res => {
           resolve(res.data.articles);
-                    console.log(res.data.articles);
+           console.log(res.data.articles);
       })
       .catch(function(error){
           alert("Ooops!!... connection error");
