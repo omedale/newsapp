@@ -69,7 +69,8 @@
     "react-google-login-component": "^0.7.0",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-share": "^1.13.3",
     "react-webstorage": "0.0.4",
-     "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5"
   }
 }

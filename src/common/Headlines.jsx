@@ -1,10 +1,21 @@
 import React from 'react';
+import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
 import { Link } from 'react-router-dom';
 import AlertContainer from 'react-alert';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
+import Header from './Header';
+import FilterHead from './FilterHead';
 import style from './main.scss';
+
+const {  FacebookShareButton, GooglePlusShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
+const OKIcon = generateShareIcon('ok');
 
 export default class Headlines extends React.Component {
 
@@ -13,6 +24,7 @@ export default class Headlines extends React.Component {
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       headlines: [],
+      shareUrl: 'https://techcrunch.com/2017/05/24/airbnb-is-running-its-own-internal-university-to-teach-data-science/',
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -44,45 +56,46 @@ export default class Headlines extends React.Component {
   render() {
     const newsNode = this.state.headlines.map((source) => {
       return (
-        <Link
-          to={source.url }
-          className="list-group-item"
-          key={source.url }
-          target="_blank" >
-          {source.title}
-        </Link>
+         <li>
+             <img className="dashboard-avatar" alt="Usman" src={source.urlToImage} />
+              <Link
+              key={source.url}
+              to={ source.url}
+              className=""
+               target="_blank"
+              >
+              <strong className="newshead">{source.title}</strong><br/>
+              <strong>published At:</strong>{source.publishedAt }<br/>
+              <span className="newsdesc">{source.description}</span>
+              </Link>
+              <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button className="pull-left favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+        </li>
       );
   });
 
     return (
 
       <div>
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">NewsApp</a>
-            </div>
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <Header />
+      <div className="container">
+          <div className="box ">
+              <div className="box-inner">
+                  <div className=" ">
+                    <FilterHead />
+                  </div>
+                   <div className="box-content">
+                       <div className="">
+                          <ul className="dashboard-list">
+                            {newsNode}
 
-            <ul className="nav navbar-nav">
-              <li><Link to="/" className="active" >Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/news">News</Link></li>
-
-            </ul>
-
+                          </ul>
+                      </div>
+                   </div>
+              </div>
           </div>
-        </div>
-      </nav>
-      <div>
-        <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+
       </div>
-          <h1 className={`${style.card} card`}>Headline</h1>
-          <div className="list-group">
-          {newsNode}
-          </div>
-      </div>
+    </div>
       );
     }
 }
