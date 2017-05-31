@@ -4,7 +4,9 @@ import axios from 'axios';
 import AlertContainer from 'react-alert';
 import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
-import style from './main.scss';
+import Header from './Header';
+import FilterHead from './FilterHead';
+import './main.scss';
 
 
 
@@ -42,7 +44,6 @@ export default class Home extends React.Component {
   }
 
   componentWillMount() {
-
     if (this.state.authenticated === false){
       this.props.history.push('/login');
     }
@@ -113,49 +114,110 @@ const data = [
 }
 
   render(){
-
        //  console.log(this.state.newsPost[1]);
          //const newsNode = this.state.posts.map((post) =>
            const newsNode = this.state.newsPost.map((post) => {
             return (
+             <div className="col-md-3 col-sm-3 col-xs-6">
               <Link
+              key={post.id}
               to={"/newsdetail/"+post.id}
-              className="list-group-item"
-              key={post.id}>
-              {post.name}
+              className="well top-block"
+              >
+               <i className="glyphicon glyphicon-bell blue"></i>
+               <div>{post.name}</div>
               </Link>
+             </div>
+              )
+          });
+
+          const article = this.state.newsPost.map((post) => {
+            return (
+             <li>
+             <img className="dashboard-avatar" alt="Usman" src="/img/2.jpg"/>
+              <Link
+              key={post.id}
+              to={"/newsdetail/"+post.id}
+              className=""
+              >
+              <strong className="newshead">{post.name}</strong><br/>
+              <strong>Since:</strong> 17/05/2014<br/>
+              <span className="newsdesc">{post.description}</span>
+              </Link>
+              <div className="row"><button className="pull-right favbtn"><i className=" favicon glyphicon glyphicon-share pink"></i> </button><button className="pull-right favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+             </li>
               )
           });
            return (
             <div>
-                <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="#">NewsApp</a>
-                        </div>
-                          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                            <ul className="nav navbar-nav">
-                            <li><Link to="/" className="active" >Home</Link></li>
-                            <li><Link to="/about">About</Link></li>
-                            <li><Link to="/login">Login</Link></li>
-                            <li><Link to="/news">News</Link></li>
-
-                            </ul>
-
-                        </div>
-                    </div>
-                </nav>
+                <Header />
             <div>
             <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
             </div>
             <div className="col-md-12">
+
             <button onClick={this.signOut}> Sign out</button>
             </div>
-            <h1 className={`${style.card} card`}> Cars page</h1>
-            <div className="list-group">
-            {newsNode}
+
+<div className="container">
+    <div className="box ">
+        <div className="box-inner homepage-box">
+            <div className=" ">
+               <FilterHead />
             </div>
+        </div>
+    </div>
+
+</div>
+
+<div className="container">
+    <div className="box ">
+        <div className="box-content">
+                    <ul className="dashboard-list">
+                       {article}
+                        <li>
+                            <a href="#">
+                            <img className="dashboard-avatar" alt="Usman" src="/img/2.jpg"/></a>
+                            <strong>Name:</strong> <a href="#">Usman
+                            </a>
+                            <strong>Since:</strong> 17/05/2014<br/>
+                            <strong>Status:</strong> <span className="label-success label label-default">Approved</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img className="dashboard-avatar" alt="Sheikh Heera"
+                                     src="/img/1.jpg"/></a>
+                            <strong>Name:</strong> <a href="#">Sheikh Heera
+                            </a><br/>
+                            <strong>Since:</strong> 17/05/2014<br/>
+                            <strong>Status:</strong> <span className="label-warning label label-default">Pending</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img className="dashboard-avatar" alt="Abdullah"
+                                     src="/img/3.jpg"/></a>
+                            <strong>Name:</strong> <a href="#">Abdullah
+                            </a><br/>
+                            <strong>Since:</strong> 25/05/2014<br/>
+                            <strong>Status:</strong> <span className="label-default label label-danger">Banned</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img className="dashboard-avatar" alt="Sana Amrin"
+                                     src="/img/4.jpg"/></a>
+                            <strong>Name:</strong> <a href="#">Sana Amrin</a><br/>
+                            <strong>Since:</strong> 17/05/2014<br/>
+                            <strong>Status:</strong> <span className="label label-info">Updates</span>
+                        </li>
+                    </ul>
+                </div>
+    </div>
+
+</div>
+            <h1 className="card"> Cars page</h1>
+                <div className="row">
+                {newsNode}
+                </div>
             </div>
             );
 
