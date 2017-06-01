@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "watch": "webpack -d --watch",
     "build": "webpack",
     "serve": "nodemon index.js  --hot --progress --colors --inline",
