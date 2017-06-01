@@ -1,21 +1,16 @@
 import React from 'react';
-import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+import { ShareButtons, generateShareIcon } from 'react-share';
 import { Link } from 'react-router-dom';
-import AlertContainer from 'react-alert';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
 import FilterHead from './FilterHead';
-import style from './main.scss';
 
-const {  FacebookShareButton, GooglePlusShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } = ShareButtons;
+const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
-const GooglePlusIcon = generateShareIcon('google');
-const LinkedinIcon = generateShareIcon('linkedin');
-const OKIcon = generateShareIcon('ok');
 
 export default class Headlines extends React.Component {
 
@@ -23,13 +18,19 @@ export default class Headlines extends React.Component {
     super();
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
+      myPath: '',
       headlines: [],
+      pathUrl: '',
       shareUrl: 'https://techcrunch.com/2017/05/24/airbnb-is-running-its-own-internal-university-to-teach-data-science/',
     };
     this.onChange = this.onChange.bind(this);
   }
 
   componentWillMount() {
+    this.myPath = window.location.pathname.split('/');
+    this.setState({
+      pathUrl: this.myPath[2],
+    });
 
     if (this.state.authenticated === false){
       this.props.history.push('/login');
@@ -38,8 +39,6 @@ export default class Headlines extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
-    // NewsActions.recieveOffSources();
     NewsActions.getSource(this.props.match.params.id);
   }
 
@@ -54,10 +53,10 @@ export default class Headlines extends React.Component {
   }
 
   render() {
-    const newsNode = this.state.headlines.map((source) => {
+      const newsNode = this.state.headlines.map((source) => {
       return (
          <li>
-             <img className="dashboard-avatar" alt="Usman" src={source.urlToImage} />
+             <img className="dashboard-avatar" alt="Usman" src={source.urlToImage}  />
               <Link
               key={source.url}
               to={ source.url}
@@ -73,29 +72,34 @@ export default class Headlines extends React.Component {
       );
   });
 
+
+
     return (
 
-      <div>
+  <div>
      <Header />
+
       <div className="container">
+
           <div className="box ">
               <div className="box-inner">
                   <div className=" ">
-                    <FilterHead />
+                    <FilterHead filterurl={ this.state.pathUrl } />
                   </div>
-                   <div className="box-content">
-                       <div className="">
-                          <ul className="dashboard-list">
+                  <div  className="tab-content">
+                    <div className="">
+                        <div className="">
+                          <ul className="dashboard-list listpad">
                             {newsNode}
-
                           </ul>
                       </div>
-                   </div>
+                    </div>
+                  </div>
               </div>
           </div>
 
       </div>
-    </div>
+  </div>
       );
     }
 }

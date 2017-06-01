@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AlertContainer from 'react-alert';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
-import style from './main.scss';
-
 
 
 export default class NewsComponent extends React.Component {
@@ -20,9 +17,6 @@ export default class NewsComponent extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
   }
-
-
-
 
   componentWillMount() {
 
@@ -51,14 +45,14 @@ export default class NewsComponent extends React.Component {
     const newsNode = this.state.sources.map((source) => {
       return (
          <li>
-             <img className="dashboard-avatar" alt="Usman" src="/img/2.jpg"/>
+             <img className="dashboard-avatar" alt="Source image" src="/img/2.jpg" />
               <Link
               key={source.id }
               to={ '/headlines/' + source.id }
               className=""
               >
-              <strong className="newshead">{source.name}</strong><br/>
-              <strong>Category:</strong>{source.category}<br/>
+              <strong className="newshead">{source.name}</strong><br />
+              <strong>Category:</strong>{source.category}<br />
               <span className="newsdesc">{source.description}</span>
               </Link>
         </li>
@@ -72,7 +66,7 @@ export default class NewsComponent extends React.Component {
           <div className="box ">
               <div className="box-content">
                       <div className="box-inner">
-                          <ul className="dashboard-list">
+                          <ul className="dashboard-list listpad">
                             {newsNode}
                           </ul>
                       </div>

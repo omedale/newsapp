@@ -7,15 +7,23 @@ const CHANGE_EVENT = 'change';
 
 let _sources = [];
 let _source = {};
+let _latestNews = {};
+let _topNews = {};
 
 function setSources(sources) {
-  console.log(sources);
   _sources = sources;
 }
 
 function setSource(source) {
-  console.log(source);
   _source = source;
+}
+
+function setTopSource(top) {
+  _topNews = top;
+}
+
+function setLatestSource(latest) {
+  _latestNews = latest;
 }
 
 class NewsStoreClass extends EventEmitter {
@@ -40,6 +48,14 @@ class NewsStoreClass extends EventEmitter {
     return _source;
   }
 
+  getTopSource = () => {
+    return _topNews;
+  }
+
+  getLatestSource = () => {
+    return _latestNews;
+  }
+
 }
 
 const NewsStore = new NewsStoreClass();
@@ -56,12 +72,32 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
       NewsStore.emitChange();
       break;
 
+    case AppConstants.RECIEVE_TOP_SOURCE:
+      setTopSource(action.top);
+      NewsStore.emitChange();
+      break;
+
+    case AppConstants.RECIEVE_LATEST_SOURCE:
+      setLatestSource(action.top);
+      NewsStore.emitChange();
+      break;
+
     case AppConstants.RECIEVE_SOURCES_ERROR:
       alert(action.message);
       NewsStore.emitChange();
       break;
 
     case AppConstants.RECIEVE_SOURCE_ERROR:
+      alert(action.message);
+      NewsStore.emitChange();
+      break;
+
+    case AppConstants.RECIEVE_TOP_SOURCE_ERROR:
+      alert(action.message);
+      NewsStore.emitChange();
+      break;
+
+    case AppConstants.RECIEVE_LATEST_SOURCE_ERROR:
       alert(action.message);
       NewsStore.emitChange();
       break;

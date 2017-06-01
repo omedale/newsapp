@@ -1,6 +1,7 @@
+
+import EventEmitter from 'events';
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
 import AuthConstants from '../constants/AuthConstants';
-import EventEmitter from 'events';
 
 const CHANGE_EVENT = 'change';
 
