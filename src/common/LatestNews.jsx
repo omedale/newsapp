@@ -55,7 +55,7 @@ export default class LatestNews extends React.Component {
     const newsNode = this.state.latestheadlines.map((source) => {
       return (
         <li>
-          <img className="dashboard-avatar" alt="Usman" src={source.urlToImage} />
+          <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
             key={source.url}
             to={source.url}
