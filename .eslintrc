@@ -11,11 +11,9 @@
     "rules": {
         "strict" : 0,
         "quotes": ["error", "single"],
+        "eol-last": ["error", "never"],
         "linebreak-style": 0,
-        "eol-last":"error"
-
     },
-
     "env": {
         "browser": true,
         "mocha": true,

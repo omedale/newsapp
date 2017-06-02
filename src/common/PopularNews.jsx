@@ -14,14 +14,14 @@ const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
 
-export default class TopNews extends React.Component {
+export default class PopularNews extends React.Component {
 
   constructor() {
     super();
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       myPath: '',
-      topheadlines: [],
+      popularheadlines: [],
       filterText: '',
     };
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
@@ -47,7 +47,7 @@ export default class TopNews extends React.Component {
   }
 
   componentDidMount() {
-    NewsActions.getTopSource(this.props.match.params.id);
+    NewsActions.getPopularSource(this.props.match.params.id);
   }
 
   componentWillUnmount() {
@@ -56,12 +56,12 @@ export default class TopNews extends React.Component {
 
   onChange() {
     this.setState({
-      topheadlines: NewsStore.getTopSource(),
+      popularheadlines: NewsStore.getPopularSource(),
     });
   }
 
   render() {
-    const newsNode = this.state.topheadlines.map((source) => {
+    const newsNode = this.state.popularheadlines.map((source) => {
       if (source.title.indexOf(this.state.filterText) === -1) {
         return;
       }

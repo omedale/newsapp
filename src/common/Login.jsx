@@ -15,6 +15,9 @@ class Login extends React.Component {
   }
 
   goHome = (response) => {
+    localStorage.removeItem('omedale_profile');
+    localStorage.removeItem('omedale_id_token');
+
     this.setState({auth2: gapi.auth2.getAuthInstance() });
     AuthActions.logUserIn(response.profileObj, response.tokenId, this.state.auth2);
     this.state.auth2.disconnect().then(function () {

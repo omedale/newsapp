@@ -6,6 +6,7 @@ import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
 import FilterHead from './FilterHead';
+import SearchBar from './SearchBar';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
@@ -13,16 +14,22 @@ const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
 export default class LatestNews extends React.Component {
-
   constructor() {
     super();
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       myPath: '',
       latestheadlines: [],
-      shareUrl: 'https://techcrunch.com/2017/05/24/airbnb-is-running-its-own-internal-university-to-teach-data-science/',
+      filterText: '',
     };
+    this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
     this.onChange = this.onChange.bind(this);
+  }
+
+ handleFilterTextInput = (filterText) => {
+    this.setState({
+      filterText: filterText
+    });
   }
 
   componentWillMount() {
@@ -53,11 +60,14 @@ export default class LatestNews extends React.Component {
 
   render() {
     const newsNode = this.state.latestheadlines.map((source) => {
+      if (source.title.indexOf(this.state.filterText) === -1) {
+        return;
+      }
       return (
         <li>
           <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
-            key={source.url}
+            key={source.title}
             to={source.url}
             className=""
             target="_blank"
@@ -79,6 +89,12 @@ export default class LatestNews extends React.Component {
         <Header />
 
         <div className="container">
+          <div className="row">
+          <SearchBar
+            filterText={this.state.filterText}
+            onFilterTextInput={this.handleFilterTextInput}
+          />
+          </div>
           <div className="box ">
             <div className="box-inner">
               <div className=" ">

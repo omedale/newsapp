@@ -4,6 +4,8 @@ import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
+import SearchBar from './SearchBar';
+
 
 
 export default class NewsComponent extends React.Component {
@@ -13,13 +15,19 @@ export default class NewsComponent extends React.Component {
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       sources: [],
-
+      filterText: '',
     };
+    this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
+  handleFilterTextInput = (filterText) => {
+    this.setState({
+      filterText: filterText
+    });
+  }
 
+  componentWillMount() {
     if (this.state.authenticated === false){
       this.props.history.push('/login');
     }
@@ -43,12 +51,16 @@ export default class NewsComponent extends React.Component {
 
   render() {
     const newsNode = this.state.sources.map((source) => {
+      if (source.name.indexOf(this.state.filterText) === -1) {
+        return;
+      }
+
       return (
          <li>
-             <img className="dashboard-avatar" alt="Source image" src="/img/2.jpg" />
+             <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
               <Link
-              key={source.id }
-              to={ '/headlines/' + source.id }
+              key={source.name}
+              to={'/headlines/' + source.id}
               className=""
               >
               <strong className="newshead">{source.name}</strong><br />
@@ -61,8 +73,18 @@ export default class NewsComponent extends React.Component {
 
     return (
       <div>
-        <Header />
+
+           <Header />
+
+
+
         <div className="container">
+          <div className="row">
+          <SearchBar
+            filterText={this.state.filterText}
+            onFilterTextInput={this.handleFilterTextInput}
+          />
+          </div>
           <div className="box ">
               <div className="box-content">
                       <div className="box-inner">

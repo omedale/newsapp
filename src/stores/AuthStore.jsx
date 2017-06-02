@@ -6,16 +6,16 @@ import AuthConstants from '../constants/AuthConstants';
 const CHANGE_EVENT = 'change';
 
 function setUser(profile, token, auth2) {
-  if (!localStorage.getItem('id_token')) {
-    localStorage.setItem('profile', JSON.stringify(profile));
-    localStorage.setItem('id_token', token);
+  if (!localStorage.getItem('omedale_id_token')) {
+    localStorage.setItem('omedale_profile', JSON.stringify(profile));
+    localStorage.setItem('omedale_id_token', token);
     localStorage.setItem('auth2', auth2);
   }
 }
 
 function removeUser() {
-  localStorage.removeItem('profile');
-  localStorage.removeItem('id_token');
+  localStorage.removeItem('omedale_profile');
+  localStorage.removeItem('omedale_id_token');
   localStorage.removeItem('auth2');
 }
 
@@ -25,30 +25,28 @@ class AuthStoreClass extends EventEmitter {
   }
 
   addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback)
+    this.on(CHANGE_EVENT, callback);
   }
 
   removeChangeListener(callback) {
-    this.removeListener(CHANGE_EVENT, callback)
+    this.removeListener(CHANGE_EVENT, callback);
   }
 
   isAuthenticated = () => {
-    if (localStorage.getItem('id_token')) {
+    if (localStorage.getItem('omedale_id_token')) {
       return true;
     }
     return false;
   }
-
   getUser = () => {
-    return localStorage.getItem('profile');
+    return localStorage.getItem('omedale_profile');
   }
-
   getAuth2 = () => {
     return localStorage.getItem('auth2');
   }
 
   getJwt = () => {
-    return localStorage.getItem('id_token');
+    return localStorage.getItem('omedale_id_token');
   }
 }
 

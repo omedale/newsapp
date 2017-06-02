@@ -26,7 +26,7 @@ export default {
            //console.log(res.data.articles);
       })
       .catch(function(error){
-          alert("Ooops!!... connection error");
+          alert("Ooops!!... connection error  or news not available");
           console.log(error);
          if (error) reject(error);
       });
@@ -38,28 +38,44 @@ export default {
       axios.get(url)
       .then(res => {
           resolve(res.data.articles);
-           console.log("top");
       })
       .catch(function(error){
-          alert("Ooops!!... connection error");
+          alert("Ooops!!... connection error  or news not available");
           console.log(error);
          if (error) reject(error);
       });
     });
   },
 
+
    getLatestSource: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
       .then(res => {
           resolve(res.data.articles);
-           console.log("lstest");
       })
       .catch(function(error){
-          alert("Ooops!!... connection error");
+          alert("Ooops!!... connection error or news not available");
           console.log(error);
          if (error) reject(error);
       });
     });
-  }
+  },
+
+  getPopularSource: (url) => {
+    return new Promise((resolve, reject) => {
+      axios.get(url)
+      .then(res => {
+          resolve(res.data.articles);
+           console.log("pop");
+      })
+      .catch(function(error){
+          alert("Ooops!!... connection error  or news not available");
+          console.log(error);
+         if (error) reject(error);
+      });
+    });
+  },
+
+
 }

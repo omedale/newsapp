@@ -6,7 +6,7 @@ export default {
 
   recieveSources: () => {
     NewsAPI
-    .getSources('https://newsapi.org/v1/sources?language=en&sortBy=latest&apiKey=213327409d384371851777e7c7f78dfe')
+    .getSources('https://newsapi.org/v1/sources?language=en')
     .then((sources) => {
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_SOURCES,
@@ -62,6 +62,23 @@ export default {
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_LATEST_SOURCE,
         latest: latest
+      });
+    })
+    .catch((message) => {
+      AppDispatcher.dispatch({
+        actionType: AppConstants.RECIEVE_LATEST_SOURCE_ERROR,
+        message: message
+      });
+    });
+  },
+
+  getPopularSource: (id) => {
+    NewsAPI
+    .getPopularSource('https://newsapi.org/v1/articles?source=' + id + '&sortBy=popular&apiKey=213327409d384371851777e7c7f78dfe')
+    .then((latest) => {
+      AppDispatcher.dispatch({
+        actionType: AppConstants.RECIEVE_LATEST_SOURCE,
+        popular: popular
       });
     })
     .catch((message) => {
