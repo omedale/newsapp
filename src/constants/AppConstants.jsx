@@ -4,6 +4,7 @@ export default keyMirror({
   RECIEVE_SOURCE: null,
   RECIEVE_SOURCES: null,
   RECIEVE_TOP_SOURCE: null,
+  FAV_NEWS: null,
   RECIEVE_LATEST_SOURCE: null,
   RECIEVE_POPULAR_SOURCE: null,
   RECIEVE_SOURCE_ERROR: null,

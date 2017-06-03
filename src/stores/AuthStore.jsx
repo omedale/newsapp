@@ -46,13 +46,15 @@ class AuthStoreClass extends EventEmitter {
     if (localStorage.getItem('omedale_profile_name')) {
       return localStorage.getItem('omedale_profile_name');
     }
-    return localStorage.getItem('omedale_profile_name', ' ');
+    localStorage.setItem('omedale_profile_name', ' ');
+    return localStorage.getItem('omedale_profile_name');
   }
   getUserEmail = () => {
     if (localStorage.getItem('omedale_profile_email')) {
       return localStorage.getItem('omedale_profile_email');
     }
-    return localStorage.getItem('omedale_profile_email', ' ');
+    localStorage.setItem('omedale_profile_email', ' ');
+    return localStorage.getItem('omedale_profile_email');
   }
   getAuth2 = () => {
     return localStorage.getItem('auth2');

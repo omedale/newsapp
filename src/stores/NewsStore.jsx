@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
 import AppConstants from '../constants/AppConstants';
-
+import AuthStore from '../stores/AuthStore';
 
 const CHANGE_EVENT = 'change';
 
@@ -10,6 +10,19 @@ let _source = {};
 let _latestNews = {};
 let _topNews = {};
 let _popularNews = {};
+
+function setFavorite(news) {
+  let favNews = [];
+  if (localStorage.getItem(AuthStore.getUserEmail())) {
+    favNews = JSON.parse(localStorage.getItem(AuthStore.getUserEmail()));
+    favNews.push(news);
+  } else {
+    favNews.push(news);
+  }
+  localStorage.removeItem(AuthStore.getUserEmail());
+  localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(favNews));
+  alert("News Added to Favorite");
+}
 
 function setSources(sources) {
   _sources = sources;
@@ -64,6 +77,14 @@ class NewsStoreClass extends EventEmitter {
     return _popularNews;
   }
 
+  getFavNews = () => {
+    if (localStorage.getItem(AuthStore.getUserEmail())) {
+      return JSON.parse(localStorage.getItem(AuthStore.getUserEmail()));
+    }
+    localStorage.setItem(AuthStore.getUserEmail(), '');
+    return localStorage.getItem(AuthStore.getUserEmail());
+  }
+
 }
 
 const NewsStore = new NewsStoreClass();
@@ -77,6 +98,10 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
 
     case AppConstants.RECIEVE_SOURCE:
       setSource(action.source);
+      NewsStore.emitChange();
+      break;
+    case AppConstants.FAV_NEWS:
+      setFavorite(action.news);
       NewsStore.emitChange();
       break;
 

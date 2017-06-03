@@ -32,6 +32,11 @@ export default class LatestNews extends React.Component {
     });
   }
 
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
+    //console.log(src);
+  }
+
   componentWillMount() {
     this.myPath = window.location.pathname.split('/');
     this.setState({
@@ -76,7 +81,7 @@ export default class LatestNews extends React.Component {
             <strong>published At:</strong>{source.publishedAt }<br />
             <span className="newsdesc">{source.description}</span>
           </Link>
-          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button className="pull-left favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
         </li>
       );
     });

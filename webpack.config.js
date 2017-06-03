@@ -12,7 +12,12 @@ const config = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
+  },
+  node: {
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty',
   },
   module: {
     loaders: [

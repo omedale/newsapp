@@ -4,6 +4,13 @@ import NewsAPI from '../utils/NewsAPI';
 
 export default {
 
+  addFavorite: (news) => {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.FAV_NEWS,
+      news: news,
+    });
+  },
+
   recieveSources: () => {
     NewsAPI
     .getSources('https://newsapi.org/v1/sources?language=en')

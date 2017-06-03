@@ -8,13 +8,14 @@ import Header from './Header';
 import FilterHead from './FilterHead';
 import SearchBar from './SearchBar';
 
+
+
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
 export default class Headlines extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -33,6 +34,11 @@ export default class Headlines extends React.Component {
     this.setState({
       filterText: filterText
     });
+  }
+
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
+    //console.log(src);
   }
 
   componentWillMount() {
@@ -68,7 +74,7 @@ export default class Headlines extends React.Component {
       }
       return (
          <li>
-             <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage}  />
+             <img className="dashboard-avatar" alt="Article Image"src={source.urlToImage} />
               <Link
               key={source.title}
               to={ source.url}
@@ -79,7 +85,7 @@ export default class Headlines extends React.Component {
               <strong>published At:</strong>{source.publishedAt }<br/>
               <span className="newsdesc">{source.description}</span>
               </Link>
-              <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button className="pull-left favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+              <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className="favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
         </li>
       );
   });

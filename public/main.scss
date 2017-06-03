@@ -19,6 +19,7 @@
     background: #e2e1e1;
     height: 4%;
     width: 4%;
+    float: right !important;
 }
 .rowbtn{
         margin-left: 0px !important;
@@ -34,4 +35,10 @@
     width: 40%;
     float: right;
     margin-right: 3%;
+}
+.clearbtn{
+    margin-left: 3%;
+    background: #2fa4e7;
+    border: 1px solid #2fa4e7;
+    color: white;
 }

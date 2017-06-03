@@ -7,6 +7,7 @@ import Headlines from './Headlines';
 import TopNews from './TopNews';
 import LatestNews from './LatestNews';
 import PopularNews from './PopularNews';
+import FavoriteNews from './FavoriteNews';
 
 export default class Main extends React.Component {
   render() {
@@ -18,8 +19,9 @@ export default class Main extends React.Component {
           <Route path="/headlines/:id" component={Headlines} />
           <Route path="/topnews/:id" component={TopNews} />
           <Route path="/latestnews/:id" component={LatestNews} />
-           <Route path="/popularnews/:id" component={PopularNews} />
+          <Route path="/popularnews/:id" component={PopularNews} />
           <Route path="/news" component={NewsComponent} />
+          <Route path="/favorite" component={FavoriteNews} />
 
         </div>
       </Router>);
