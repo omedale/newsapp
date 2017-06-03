@@ -7,7 +7,6 @@ export default {
      axios.get(url)
       .then(res => {
           resolve((res.data.sources));
-            console.log("data sent");
       })
       .catch(function(error){
           alert("Ooops!!... connection error");

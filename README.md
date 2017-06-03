@@ -2,9 +2,11 @@
 
 <a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
 
-<a href='https://coveralls.io/github/omedale/d0-checkpoint1-newsapp_model_warnings?branch=travis-badge-readme'><img src='https://coveralls.io/repos/github/babasbot/active_model_warnings/badge.svg?branch=travis-badge-readme' alt='Coverage Status' /></a>
+<a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg" /></a>
 
-<a href="https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=master" alt="Travis CI"></a>
+<a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/issue_count.svg" /></a>
+
+<img src="https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=master" alt="Travis CI"></img>
 
 An application that enables users view news by selecting source
 
