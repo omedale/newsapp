@@ -9,6 +9,8 @@ function setUser(profile, token, auth2) {
   if (!localStorage.getItem('omedale_id_token')) {
     localStorage.setItem('omedale_profile', JSON.stringify(profile));
     localStorage.setItem('omedale_id_token', token);
+    localStorage.setItem('omedale_profile_name', profile.name);
+    localStorage.setItem('omedale_profile_email', profile.email);
     localStorage.setItem('auth2', auth2);
   }
 }
@@ -31,7 +33,6 @@ class AuthStoreClass extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
-
   isAuthenticated = () => {
     if (localStorage.getItem('omedale_id_token')) {
       return true;
@@ -40,6 +41,18 @@ class AuthStoreClass extends EventEmitter {
   }
   getUser = () => {
     return localStorage.getItem('omedale_profile');
+  }
+  getUserName = () => {
+    if (localStorage.getItem('omedale_profile_name')) {
+      return localStorage.getItem('omedale_profile_name');
+    }
+    return localStorage.getItem('omedale_profile_name', ' ');
+  }
+  getUserEmail = () => {
+    if (localStorage.getItem('omedale_profile_email')) {
+      return localStorage.getItem('omedale_profile_email');
+    }
+    return localStorage.getItem('omedale_profile_email', ' ');
   }
   getAuth2 = () => {
     return localStorage.getItem('auth2');

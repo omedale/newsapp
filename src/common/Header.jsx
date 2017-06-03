@@ -5,6 +5,14 @@ import AuthStore from '../stores/AuthStore';
 
 export default class Header extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      userName: AuthStore.getUserName(),
+      userEmail: AuthStore.getUserEmail(),
+    };
+  }
+
 
   signOut = () => {
     AuthActions.logUserOut();
@@ -12,7 +20,6 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const profile = JSON.parse(AuthStore.getUser());
     return (
       <div>
         <nav className="navbar navbar-default">
@@ -28,7 +35,7 @@ export default class Header extends React.Component {
               <div className="btn-group pull-right">
                 <button className="btn btn-default dropdown-toggle" data-toggle="dropdown">
                   <i className="glyphicon glyphicon-user" />
-                  <span className="hidden-sm hidden-xs">Account</span>
+                  <span className="hidden-sm hidden-xs">{this.state.userName}</span>
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">
