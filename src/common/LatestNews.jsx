@@ -26,7 +26,7 @@ export default class LatestNews extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
- handleFilterTextInput = (filterText) => {
+  handleFilterTextInput = (filterText) => {
     this.setState({
       filterText: filterText
     });
@@ -34,7 +34,6 @@ export default class LatestNews extends React.Component {
 
   addFavorite = (src) => {
     NewsActions.addFavorite(src);
-    //console.log(src);
   }
 
   componentWillMount() {
@@ -43,13 +42,13 @@ export default class LatestNews extends React.Component {
       pathUrl: this.myPath[2],
     });
 
-    if (this.state.authenticated === false){
-      this.props.history.push('/login');
-    }
     NewsStore.addChangeListener(this.onChange);
   }
 
   componentDidMount() {
+    if (this.state.authenticated === false){
+      this.props.history.push('/login');
+    }
     NewsActions.getLatestSource(this.props.match.params.id);
   }
 
@@ -69,7 +68,7 @@ export default class LatestNews extends React.Component {
         return;
       }
       return (
-        <li>
+        <li key={source.title}>
           <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
             key={source.title}
@@ -86,19 +85,16 @@ export default class LatestNews extends React.Component {
       );
     });
 
-
-
     return (
-
       <div>
         <Header />
 
         <div className="container">
           <div className="row">
-          <SearchBar
-            filterText={this.state.filterText}
-            onFilterTextInput={this.handleFilterTextInput}
-          />
+            <SearchBar
+              filterText={this.state.filterText}
+              onFilterTextInput={this.handleFilterTextInput}
+            />
           </div>
           <div className="box ">
             <div className="box-inner">
@@ -107,18 +103,17 @@ export default class LatestNews extends React.Component {
               </div>
               <div className="tab-content">
                 <div className="">
-                <div className="">
+                  <div className="">
                     <ul className="dashboard-list listpad">
-                    {newsNode}
+                      {newsNode}
                     </ul>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-
-        </div>
-    </div>
+      </div>
     );
   }
 }

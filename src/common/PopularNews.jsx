@@ -28,15 +28,14 @@ export default class PopularNews extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-   handleFilterTextInput = (filterText) => {
+  handleFilterTextInput = (filterText) => {
     this.setState({
       filterText: filterText
     });
   }
 
- addFavorite = (src) => {
+  addFavorite = (src) => {
     NewsActions.addFavorite(src);
-    //console.log(src);
   }
 
   componentWillMount() {
@@ -45,13 +44,13 @@ export default class PopularNews extends React.Component {
       pathUrl: this.myPath[2],
     });
 
-    if (this.state.authenticated === false){
-      this.props.history.push('/login');
-    }
     NewsStore.addChangeListener(this.onChange);
   }
 
   componentDidMount() {
+    if (this.state.authenticated === false){
+      this.props.history.push('/login');
+    }
     NewsActions.getPopularSource(this.props.match.params.id);
   }
 
@@ -71,57 +70,54 @@ export default class PopularNews extends React.Component {
         return;
       }
       return (
-         <li>
-             <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
-              <Link
-              key={source.title}
-              to={ source.url}
-              className=""
-               target="_blank"
-              >
-              <strong className="newshead">{source.title}</strong><br />
-              <strong>published At:</strong>{source.publishedAt }<br />
-              <span className="newsdesc">{source.description}</span>
-              </Link>
-              <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+        <li key={source.url}>
+          <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
+          <Link
+            key={source.title}
+            to={ source.url}
+            className=""
+            target="_blank"
+          >
+            <strong className="newshead">{source.title}</strong><br />
+            <strong>published At:</strong>{source.publishedAt }<br />
+            <span className="newsdesc">{source.description}</span>
+          </Link>
+          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
         </li>
       );
-  });
+    });
 
 
 
     return (
-
-  <div>
-     <Header />
-
-      <div className="container">
-        <div className="row">
-          <SearchBar
-            filterText={this.state.filterText}
-            onFilterTextInput={this.handleFilterTextInput}
-          />
+      <div>
+        <Header />
+        <div className="container">
+          <div className="row">
+            <SearchBar
+              filterText={this.state.filterText}
+              onFilterTextInput={this.handleFilterTextInput}
+            />
           </div>
           <div className="box ">
-              <div className="box-inner">
-                  <div className=" ">
-                    <FilterHead filterurl={this.state.pathUrl} />
-                  </div>
-                  <div  className="tab-content">
-                    <div className="">
-                        <div className="">
-                          <ul className="dashboard-list listpad">
-                                {newsNode}
-                          </ul>
-                      </div>
-                    </div>
-                  </div>
+            <div className="box-inner">
+              <div className=" ">
+                <FilterHead filterurl={this.state.pathUrl} />
               </div>
+              <div className="tab-content">
+                <div className="">
+                  <div className="">
+                    <ul className="dashboard-list listpad">
+                    {newsNode}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
+        </div>
       </div>
-  </div>
-      );
-    }
+    );
+  }
 }
 

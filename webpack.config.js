@@ -19,10 +19,16 @@ const config = {
     tls: 'empty',
     dns: 'empty',
   },
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         include: APP_DIR,
         loader: 'babel-loader',
       },

@@ -3,12 +3,12 @@ import AuthConstants from '../constants/AuthConstants';
 
 export default {
 
-  logUserIn: (profile, token, auth2) => {
+  logUserIn: (profil, toke, ath2) => {
     AppDispatcher.dispatch({
       actionType: AuthConstants.LOGIN_USER,
-      profile: profile,
-      token: token,
-      auth2: auth2,
+      profile: profil,
+      token: toke,
+      auth2: ath2,
     });
   },
 

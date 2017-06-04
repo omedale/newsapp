@@ -4,14 +4,13 @@ import axios from 'axios';
 export default {
   getSources: (url) => {
     return new Promise((resolve, reject) => {
-     axios.get(url)
-      .then(res => {
-          resolve((res.data.sources));
+      axios.get(url)
+      .then((res) => {
+        resolve((res.data.sources));
       })
-      .catch(function(error){
-          alert("Ooops!!... connection error");
-          console.log(error);
-         if (error) reject(error);
+      .catch((error) => {
+        alert('Ooops!!... connection error');
+        if (error) reject(error);
       });
 
     });
@@ -20,43 +19,39 @@ export default {
   getSource: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
-      .then(res => {
-          resolve(res.data.articles);
-           //console.log(res.data.articles);
+      .then((res) => {
+        resolve(res.data.articles);;
       })
-      .catch(function(error){
-          alert("Ooops!!... connection error  or news not available");
-          console.log(error);
-         if (error) reject(error);
+      .catch((error) => {
+        alert('Ooops!!... connection error  or news not available');
+        if (error) reject(error);
       });
     });
   },
 
-   getTopSource: (url) => {
+  getTopSource: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
-      .then(res => {
-          resolve(res.data.articles);
+      .then((res) => {
+        resolve(res.data.articles);
       })
-      .catch(function(error){
-          alert("Ooops!!... connection error  or news not available");
-          console.log(error);
-         if (error) reject(error);
+      .catch((error) => {
+        alert('Ooops!!... connection error  or news not available');
+        if (error) reject(error);
       });
     });
   },
 
 
-   getLatestSource: (url) => {
+  getLatestSource: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
-      .then(res => {
-          resolve(res.data.articles);
+      .then((res) => {
+        resolve(res.data.articles);
       })
-      .catch(function(error){
-          alert("Ooops!!... connection error or news not available");
-          console.log(error);
-         if (error) reject(error);
+      .catch((error) => {
+        alert('Ooops!!... connection error or news not available');
+        if (error) reject(error);
       });
     });
   },
@@ -64,14 +59,12 @@ export default {
   getPopularSource: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
-      .then(res => {
-          resolve(res.data.articles);
-           console.log("pop");
+      .then((res) => {
+        resolve(res.data.articles);
       })
-      .catch(function(error){
-          alert("Ooops!!... connection error  or news not available");
-          console.log(error);
-         if (error) reject(error);
+      .catch((error) => {
+        alert('Ooops!!... connection error  or news not available');
+        if (error) reject(error);
       });
     });
   },

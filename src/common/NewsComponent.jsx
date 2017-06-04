@@ -28,14 +28,13 @@ export default class NewsComponent extends React.Component {
   }
 
   componentWillMount() {
-    if (this.state.authenticated === false){
-      this.props.history.push('/login');
-    }
     NewsStore.addChangeListener(this.onChange);
   }
 
   componentDidMount() {
-    // NewsActions.recieveOffSources();
+    if (this.state.authenticated === false) {
+      this.props.history.push('/login');
+    }
     NewsActions.recieveSources();
   }
 
@@ -56,43 +55,39 @@ export default class NewsComponent extends React.Component {
       }
 
       return (
-         <li>
-             <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
-              <Link
-              key={source.name}
-              to={'/headlines/' + source.id}
-              className=""
-              >
-              <strong className="newshead">{source.name}</strong><br />
-              <strong>Category:</strong>{source.category}<br />
-              <span className="newsdesc">{source.description}</span>
-              </Link>
+        <li key={source.id}>
+          <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
+          <Link
+            key={source.id}
+            to={'/headlines/' + source.id}
+            className=""
+          >
+            <strong className="newshead">{source.name}</strong><br />
+            <strong>Category:</strong>{source.category}<br />
+            <span className="newsdesc">{source.description}</span>
+          </Link>
         </li>
       );
-  });
+    });
 
     return (
       <div>
-
-           <Header />
-
-
-
+        <Header />
         <div className="container">
           <div className="row">
-          <SearchBar
-            filterText={this.state.filterText}
-            onFilterTextInput={this.handleFilterTextInput}
-          />
+            <SearchBar
+              filterText={this.state.filterText}
+              onFilterTextInput={this.handleFilterTextInput}
+            />
           </div>
           <div className="box ">
-              <div className="box-content">
-                      <div className="box-inner">
-                          <ul className="dashboard-list listpad">
-                            {newsNode}
-                          </ul>
-                      </div>
-                </div>
+            <div className="box-content">
+              <div className="box-inner">
+                <ul className="dashboard-list listpad">
+                  {newsNode}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
