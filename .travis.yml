@@ -3,8 +3,8 @@ node_js:
   - "7"
  cache:
   directories:
-  - node_modules
+    - node_modules
 install: true
 env:
   global:
-   - secure: g4rrJfZNTLMNXymTj3fFDqFahi6gqTHST
+    - secure: g4rrJfZNTLMNXymTj3fFDqFahi6gqTHST
