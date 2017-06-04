@@ -8,5 +8,3 @@ install: true
 env:
   global:
    - secure: g4rrJfZNTLMNXymTj3fFDqFahi6gqTHST
-  matrix:
-    - TEST_SUITE=installs
