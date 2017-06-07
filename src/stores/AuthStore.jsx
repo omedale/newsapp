@@ -5,20 +5,18 @@ import AuthConstants from '../constants/AuthConstants';
 
 const CHANGE_EVENT = 'change';
 
-function setUser(profile, token, auth2) {
+function setUser(profile, token) {
   if (!localStorage.getItem('omedale_id_token')) {
     localStorage.setItem('omedale_profile', JSON.stringify(profile));
     localStorage.setItem('omedale_id_token', token);
     localStorage.setItem('omedale_profile_name', profile.name);
     localStorage.setItem('omedale_profile_email', profile.email);
-    localStorage.setItem('auth2', auth2);
   }
 }
 
 function removeUser() {
   localStorage.removeItem('omedale_profile');
   localStorage.removeItem('omedale_id_token');
-  localStorage.removeItem('auth2');
 }
 
 class AuthStoreClass extends EventEmitter {
@@ -33,35 +31,29 @@ class AuthStoreClass extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
-  isAuthenticated = () => {
+
+  isAuthenticated() {
     if (localStorage.getItem('omedale_id_token')) {
       return true;
     }
     return false;
   }
-  getUser = () => {
+  getUser() {
     return localStorage.getItem('omedale_profile');
   }
-  getUserName = () => {
+  getUserName() {
     if (localStorage.getItem('omedale_profile_name')) {
       return localStorage.getItem('omedale_profile_name');
     }
     localStorage.setItem('omedale_profile_name', ' ');
     return localStorage.getItem('omedale_profile_name');
   }
-  getUserEmail = () => {
+  getUserEmail() {
     if (localStorage.getItem('omedale_profile_email')) {
       return localStorage.getItem('omedale_profile_email');
     }
     localStorage.setItem('omedale_profile_email', ' ');
     return localStorage.getItem('omedale_profile_email');
-  }
-  getAuth2 = () => {
-    return localStorage.getItem('auth2');
-  }
-
-  getJwt = () => {
-    return localStorage.getItem('omedale_id_token');
   }
 }
 
@@ -70,7 +62,7 @@ const AuthStore = new AuthStoreClass();
 AuthStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case AuthConstants.LOGIN_USER:
-      setUser(action.profile, action.token, action.auth2);
+      setUser(action.profile, action.token);
       AuthStore.emitChange();
       break;
 

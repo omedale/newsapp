@@ -3,7 +3,7 @@ import GoogleLogin from 'react-google-login';
 import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -14,20 +14,20 @@ class Login extends React.Component {
     };
   }
 
-  goHome = (response) => {
+  goHome(response) {
     localStorage.removeItem('omedale_profile');
     localStorage.removeItem('omedale_id_token');
     localStorage.removeItem('omedale_profile_name');
     localStorage.removeItem('omedale_profile_email');
     this.setState({ auth2: gapi.auth2.getAuthInstance() });
-    AuthActions.logUserIn(response.profileObj, response.tokenId, this.state.auth2);
-    this.state.auth2.disconnect().then(function () {
+    AuthActions.logUserIn(response.profileObj, response.tokenId);
+    this.state.auth2.disconnect().then(() => {
 
     });
     this.props.history.push('/');
   }
 
-  goLogin = () => {
+  errorResp = () => {
     alert('Ooops! .... connection error ');
   }
 
@@ -59,7 +59,7 @@ class Login extends React.Component {
               <GoogleLogin
                 clientId={'119051801386-fm4u444ls4fv0djtbac2u2lrseis815i.apps.googleusercontent.com'}
                 onSuccess={this.goHome}
-                onFailure={this.goLogin}
+                onFailure={this.errorResp}
                 offline={false}
               >
                 <span> Login with Google</span>
@@ -75,6 +75,5 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
 
 

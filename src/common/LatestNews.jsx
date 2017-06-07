@@ -25,17 +25,6 @@ export default class LatestNews extends React.Component {
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
     this.onChange = this.onChange.bind(this);
   }
-
-  handleFilterTextInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-
-  addFavorite = (src) => {
-    NewsActions.addFavorite(src);
-  }
-
   componentWillMount() {
     this.myPath = window.location.pathname.split('/');
     this.setState({
@@ -49,7 +38,8 @@ export default class LatestNews extends React.Component {
     if (this.state.authenticated === false){
       this.props.history.push('/login');
     }
-    NewsActions.getLatestSource(this.props.match.params.id);
+    const filter = 'latest';
+    NewsActions.getFilterNewsSource(this.props.match.params.id, filter);
   }
 
   componentWillUnmount() {
@@ -58,9 +48,20 @@ export default class LatestNews extends React.Component {
 
   onChange() {
     this.setState({
-      latestheadlines: NewsStore.getLatestSource(),
+      latestheadlines: NewsStore.getFilterSource(),
     });
   }
+
+  handleFilterTextInput = (filterNews) => {
+    this.setState({
+      filterText: filterNews,
+    });
+  }
+
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
+  }
+
 
   render() {
     const newsNode = this.state.latestheadlines.map((source) => {

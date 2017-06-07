@@ -5,11 +5,8 @@ import AuthStore from '../stores/AuthStore';
 
 const CHANGE_EVENT = 'change';
 
-let _sources = [];
-let _source = {};
-let _latestNews = {};
-let _topNews = {};
-let _popularNews = {};
+let sources = [];
+let filterNews = {};
 
 function setFavorite(news) {
   let favNews = [];
@@ -21,26 +18,15 @@ function setFavorite(news) {
   }
   localStorage.removeItem(AuthStore.getUserEmail());
   localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(favNews));
-  alert("News Added to Favorite");
+  alert('News Added to Favorite');
 }
 
-function setSources(sources) {
-  _sources = sources;
+function setSources(src) {
+  sources = src;
 }
 
-function setSource(source) {
-  _source = source;
-}
-
-function setTopSource(top) {
-  _topNews = top;
-}
-function setPopularSource(popular) {
-  _popularNews = popular;
-}
-
-function setLatestSource(latest) {
-  _latestNews = latest;
+function setFilterSource(articles) {
+  filterNews = articles;
 }
 
 class NewsStoreClass extends EventEmitter {
@@ -50,34 +36,22 @@ class NewsStoreClass extends EventEmitter {
   }
 
   addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback)
+    this.on(CHANGE_EVENT, callback);
   }
 
   removeChangeListener(callback) {
-    this.removeListener(CHANGE_EVENT, callback)
+    this.removeListener(CHANGE_EVENT, callback);
   }
 
-  getSources = () => {
-    return _sources;
+  getSources() {
+    return sources;
   }
 
-  getSource = () => {
-    return _source;
+  getFilterSource() {
+    return filterNews;
   }
 
-  getTopSource = () => {
-    return _topNews;
-  }
-
-  getLatestSource = () => {
-    return _latestNews;
-  }
-
-  getPopularSource = () => {
-    return _popularNews;
-  }
-
-  getFavNews = () => {
+  getFavNews() {
     if (localStorage.getItem(AuthStore.getUserEmail())) {
       return JSON.parse(localStorage.getItem(AuthStore.getUserEmail()));
     }
@@ -95,28 +69,14 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
       setSources(action.sources);
       NewsStore.emitChange();
       break;
-
-    case AppConstants.RECIEVE_SOURCE:
-      setSource(action.source);
-      NewsStore.emitChange();
-      break;
+               
     case AppConstants.FAV_NEWS:
       setFavorite(action.news);
       NewsStore.emitChange();
       break;
 
-    case AppConstants.RECIEVE_TOP_SOURCE:
-      setTopSource(action.top);
-      NewsStore.emitChange();
-      break;
-
-    case AppConstants.RECIEVE_LATEST_SOURCE:
-      setLatestSource(action.latest);
-      NewsStore.emitChange();
-      break;
-
-    case AppConstants.RECIEVE_POPULAR_SOURCE:
-      setPopularSource(action.popular);
+    case AppConstants.RECIEVE_SORT_SOURCE:
+      setFilterSource(action.articles);
       NewsStore.emitChange();
       break;
 
@@ -124,18 +84,7 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
       NewsStore.emitChange();
       break;
 
-    case AppConstants.RECIEVE_SOURCE_ERROR:
-      NewsStore.emitChange();
-      break;
-
-    case AppConstants.RECIEVE_TOP_SOURCE_ERROR:
-      NewsStore.emitChange();
-      break;
-
-    case AppConstants.RECIEVE_LATEST_SOURCE_ERROR:
-      NewsStore.emitChange();
-      break;
-     case AppConstants.RECIEVE_POPULAR_SOURCE_ERROR:
+    case AppConstants.RECIEVE_SORT_SOURCE_ERROR:
       NewsStore.emitChange();
       break;
 

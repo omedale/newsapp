@@ -28,15 +28,6 @@ export default class TopNews extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  handleFilterTextInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-  addFavorite = (src) => {
-    NewsActions.addFavorite(src);
-  }
-
   componentWillMount() {
     this.myPath = window.location.pathname.split('/');
     this.setState({
@@ -47,10 +38,11 @@ export default class TopNews extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.authenticated === false){
+    if (this.state.authenticated === false) {
       this.props.history.push('/login');
     }
-    NewsActions.getTopSource(this.props.match.params.id);
+    const filter = 'top';
+    NewsActions.getFilterNewsSource(this.props.match.params.id, filter);
   }
 
   componentWillUnmount() {
@@ -59,8 +51,17 @@ export default class TopNews extends React.Component {
 
   onChange() {
     this.setState({
-      topheadlines: NewsStore.getTopSource(),
+      topheadlines: NewsStore.getFilterSource(),
     });
+  }
+
+  handleFilterTextInput = (filterNews) => {
+    this.setState({
+      filterText: filterNews,
+    });
+  }
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
   }
 
   render() {
@@ -69,7 +70,7 @@ export default class TopNews extends React.Component {
         return;
       }
       return (
-        <li key={source.url}>
+        <li key={source.title}>
           <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
             key={source.title}
@@ -85,8 +86,6 @@ export default class TopNews extends React.Component {
         </li>
       );
     });
-
-
 
     return (
 

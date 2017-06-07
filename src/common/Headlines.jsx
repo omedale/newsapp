@@ -30,16 +30,6 @@ export default class Headlines extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  handleFilterTextInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-
-  addFavorite = (src) => {
-    NewsActions.addFavorite(src);
-  }
-
   componentWillMount() {
     this.myPath = window.location.pathname.split('/');
     this.setState({
@@ -53,7 +43,8 @@ export default class Headlines extends React.Component {
     if (this.state.authenticated === false){
       this.props.history.push('/login');
     }
-    NewsActions.getSource(this.props.match.params.id);
+    const filter = '';
+    NewsActions.getFilterNewsSource(this.props.match.params.id, filter);
   }
 
   componentWillUnmount() {
@@ -62,9 +53,20 @@ export default class Headlines extends React.Component {
 
   onChange() {
     this.setState({
-      headlines: NewsStore.getSource(),
+      headlines: NewsStore.getFilterSource(),
     });
   }
+
+  handleFilterTextInput = (filterNews) => {
+    this.setState({
+      filterText: filterNews,
+    });
+  }
+
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
+  }
+
 
   render() {
     const newsNode = this.state.headlines.map((source) => {

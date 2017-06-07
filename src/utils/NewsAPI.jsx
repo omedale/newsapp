@@ -12,24 +12,10 @@ export default {
         alert('Ooops!!... connection error');
         if (error) reject(error);
       });
-
     });
   },
 
-  getSource: (url) => {
-    return new Promise((resolve, reject) => {
-      axios.get(url)
-      .then((res) => {
-        resolve(res.data.articles);;
-      })
-      .catch((error) => {
-        alert('Ooops!!... connection error  or news not available');
-        if (error) reject(error);
-      });
-    });
-  },
-
-  getTopSource: (url) => {
+  getFilterNewsSource(url) {
     return new Promise((resolve, reject) => {
       axios.get(url)
       .then((res) => {
@@ -37,37 +23,7 @@ export default {
       })
       .catch((error) => {
         alert('Ooops!!... connection error  or news not available');
-        if (error) reject(error);
       });
     });
   },
-
-
-  getLatestSource: (url) => {
-    return new Promise((resolve, reject) => {
-      axios.get(url)
-      .then((res) => {
-        resolve(res.data.articles);
-      })
-      .catch((error) => {
-        alert('Ooops!!... connection error or news not available');
-        if (error) reject(error);
-      });
-    });
-  },
-
-  getPopularSource: (url) => {
-    return new Promise((resolve, reject) => {
-      axios.get(url)
-      .then((res) => {
-        resolve(res.data.articles);
-      })
-      .catch((error) => {
-        alert('Ooops!!... connection error  or news not available');
-        if (error) reject(error);
-      });
-    });
-  },
-
-
-}
+};

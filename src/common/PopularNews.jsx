@@ -28,16 +28,6 @@ export default class PopularNews extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  handleFilterTextInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-
-  addFavorite = (src) => {
-    NewsActions.addFavorite(src);
-  }
-
   componentWillMount() {
     this.myPath = window.location.pathname.split('/');
     this.setState({
@@ -51,7 +41,8 @@ export default class PopularNews extends React.Component {
     if (this.state.authenticated === false){
       this.props.history.push('/login');
     }
-    NewsActions.getPopularSource(this.props.match.params.id);
+    const filter = 'popular';
+    NewsActions.getFilterNewsSource(this.props.match.params.id, filter);
   }
 
   componentWillUnmount() {
@@ -60,9 +51,20 @@ export default class PopularNews extends React.Component {
 
   onChange() {
     this.setState({
-      popularheadlines: NewsStore.getPopularSource(),
+      popularheadlines: NewsStore.getFilterSource(),
     });
   }
+
+  handleFilterTextInput = (filterNews) => {
+    this.setState({
+      filterText: filterNews,
+    });
+  }
+
+  addFavorite = (src) => {
+    NewsActions.addFavorite(src);
+  }
+
 
   render() {
     const newsNode = this.state.popularheadlines.map((source) => {
@@ -70,7 +72,7 @@ export default class PopularNews extends React.Component {
         return;
       }
       return (
-        <li key={source.url}>
+        <li key={source.title}>
           <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
             key={source.title}

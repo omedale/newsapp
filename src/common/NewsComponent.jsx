@@ -21,7 +21,7 @@ export default class NewsComponent extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  handleFilterTextInput = (filterText) => {
+  handleFilterTextInput(filterText) {
     this.setState({
       filterText: filterText
     });

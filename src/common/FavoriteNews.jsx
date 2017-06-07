@@ -22,17 +22,6 @@ export default class FavoriteNews extends React.Component {
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
   }
 
-  handleFilterTextInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-
-  deleteAll = () => {
-    localStorage.removeItem(AuthStore.getUserEmail());
-    window.location.reload();
-  }
-
   componentWillMount() {
     this.setState({
       favoritenews: NewsStore.getFavNews(),
@@ -45,10 +34,21 @@ export default class FavoriteNews extends React.Component {
     }
   }
 
+  handleFilterTextInput = (filterFav) => {
+    this.setState({
+      filterText: filterFav,
+    });
+  }
+
+  deleteAll = () => {
+    localStorage.removeItem(AuthStore.getUserEmail());
+    window.location.reload();
+  }
+
+
   render() {
     let newsNode = [];
-    if (this.state.favoritenews !== ''){
-
+    if (this.state.favoritenews !== '') {
       newsNode = this.state.favoritenews.map((source) => {
         if (source.title.indexOf(this.state.filterText) === -1) {
             return;
