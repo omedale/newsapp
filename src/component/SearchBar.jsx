@@ -16,7 +16,7 @@ export default class SearchBar extends React.Component {
         <input
           className="form-control"
           type="text"
-          placeholder="Search for content here"
+          placeholder="Search"
           value={this.props.filterText}
           onChange={this.handleFilterTextInputChange}
         />

@@ -15,11 +15,11 @@ const TwitterIcon = generateShareIcon('twitter');
 
 export default class Articles extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
-      myPath: window.location.pathname.split('/'),
+      myPath: props.location.pathname.split('/'),
       topheadlines: [],
       filterText: '',
     };
@@ -27,14 +27,35 @@ export default class Articles extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() { 
-    this.setState({
-      pathUrl: this.state.myPath[2],
+  componentWillReceiveProps(nextProps) {
+    const myPath = nextProps.location.pathname.split('/');
+    console.log("received props", nextProps, this.state);
+      this.setState({
+      pathUrl: myPath[2],
     });
+    if (this.state.authenticated === false) {
+      this.props.history.push('/login');
+    }
+    let sort = '';
+    if (myPath[1] === 'topnews') {
+      sort = 'top';
+    } else if (myPath[1] === 'latestnews'){
+      sort = 'latest';
+    } else if (myPath[1] === 'popularnews'){
+      sort = 'popular';
+    } else {
+      sort = '';
+    }
+    NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
     NewsStore.addChangeListener(this.onChange);
   }
 
   componentDidMount() {
+    this.setState({
+      pathUrl: this.state.myPath[2],
+    });
+    NewsStore.addChangeListener(this.onChange);
+
     if (this.state.authenticated === false) {
       this.props.history.push('/login');
     }
@@ -50,6 +71,11 @@ export default class Articles extends React.Component {
     }
     NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
   }
+
+  // componentShouldUpdate() {
+  //   NewsActions.addChangeListener(this.onChange);
+  // }
+
 
   componentWillUnmount() {
     NewsStore.removeChangeListener(this.onChange);
@@ -112,7 +138,7 @@ export default class Articles extends React.Component {
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad">
-                      {newsNode}
+                      { newsNode.length > 0 ? newsNode : "No news found" }
                     </ul>
                   </div>
                 </div>

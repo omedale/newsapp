@@ -85,6 +85,7 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
       break;
 
     case AppConstants.RECIEVE_SORT_SOURCE_ERROR:
+      setFilterSource([]);
       NewsStore.emitChange();
       break;
 
