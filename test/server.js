@@ -3,11 +3,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 import Login from '../src/component/Login';
-import Header from '../src/component/Header.jsx';
+import Header from '../src/component/Header';
 import SearchBar from '../src/component/SearchBar';
-import FavoriteNews from '../src/component/FavoriteNews.jsx';
-import Sources from '../src/component/Sources.jsx';
-import Articles from '../src/component/Articles.jsx';
+import FavoriteNews from '../src/component/FavoriteNews';
+import Sources from '../src/component/Sources';
+import Articles from '../src/component/Articles';
 
 require('./setup.js');
 

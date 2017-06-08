@@ -23,7 +23,7 @@ export default class Sources extends React.Component {
 
   handleFilterTextInput(filterText) {
     this.setState({
-      filterText: filterText
+      filterText: filterText.toString().toLowerCase(),
     });
   }
 
@@ -50,7 +50,7 @@ export default class Sources extends React.Component {
 
   render() {
     const newsNode = this.state.sources.map((source) => {
-      if (source.name.indexOf(this.state.filterText) === -1) {
+      if (source.name.toString().toLowerCase().indexOf(this.state.filterText) === -1) {
         return;
       }
 

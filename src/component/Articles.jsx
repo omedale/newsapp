@@ -63,7 +63,7 @@ export default class Articles extends React.Component {
 
   handleFilterTextInput = (filterNews) => {
     this.setState({
-      filterText: filterNews,
+      filterText: filterNews.toString().toLowerCase(),
     });
   }
   addFavorite = (src) => {
@@ -71,7 +71,7 @@ export default class Articles extends React.Component {
   }
   render() {
     const newsNode = this.state.topheadlines.map((source) => {
-      if (source.title.indexOf(this.state.filterText) === -1) {
+      if (source.title.toString().toLowerCase().indexOf(this.state.filterText) === -1) {
         return;
       }
       return (

@@ -1,12 +1,12 @@
 # d0-checkpoint1-newsapp
 
-<a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
+[![Code Climate](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/gpa.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 
-<a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg" /></a>
+[![Test Coverage](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/coverage.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/coverage)
 
-<a href="https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/issue_count.svg" /></a>
+[![Issue Count](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/issue_count.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 
-<img src="https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=master" alt="Travis CI"></img>
+[![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=development)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
 
 An application that enables users view news by selecting source
 
