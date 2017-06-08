@@ -8,7 +8,7 @@ import SearchBar from './SearchBar';
 
 
 
-export default class NewsComponent extends React.Component {
+export default class Sources extends React.Component {
 
   constructor() {
     super();
@@ -55,11 +55,11 @@ export default class NewsComponent extends React.Component {
       }
 
       return (
-        <li key={source.id}>
+        <li key={source.name}>
           <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
           <Link
-            key={source.id}
-            to={'/headlines/' + source.id}
+            key={source.name}
+            to={'/topnews/' + source.id}
             className=""
           >
             <strong className="newshead">{source.name}</strong><br />

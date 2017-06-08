@@ -1,7 +1,7 @@
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
 import AuthConstants from '../constants/AuthConstants';
 
-export default {
+const AuthActions = {
 
   logUserIn: (profil, toke, ath2) => {
     AppDispatcher.dispatch({
@@ -18,4 +18,6 @@ export default {
     });
   },
 
-}
+};
+
+export default AuthActions;

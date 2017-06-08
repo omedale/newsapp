@@ -30,7 +30,7 @@ export default class Header extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
-                  <li><Link to="/">News</Link></li>
+                  <li><Link to="/">Sources</Link></li>
                   <li><Link to="/favorite">Favorite</Link></li>
                 </ul>
                 <div className="btn-group pull-right">

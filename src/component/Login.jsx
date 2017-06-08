@@ -37,7 +37,7 @@ export default class Login extends React.Component {
 
   componentWillMount() {
     if (this.state.authenticated === true) {
-      this.props.history.push('/news');
+      this.props.history.push('/');
     }
   }
 

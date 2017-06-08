@@ -8,43 +8,47 @@ import Header from './Header';
 import FilterHead from './FilterHead';
 import SearchBar from './SearchBar';
 
-
-
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
-export default class Headlines extends React.Component {
+export default class Articles extends React.Component {
+
   constructor() {
     super();
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
-      myPath: '',
-      headlines: [],
-      pathUrl: '',
-      shareUrl: 'https://techcrunch.com/2017/05/24/airbnb-is-running-its-own-internal-university-to-teach-data-science/',
+      myPath: window.location.pathname.split('/'),
+      topheadlines: [],
       filterText: '',
     };
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
-    this.myPath = window.location.pathname.split('/');
+  componentWillMount() { 
     this.setState({
-      pathUrl: this.myPath[2],
+      pathUrl: this.state.myPath[2],
     });
-
     NewsStore.addChangeListener(this.onChange);
   }
 
   componentDidMount() {
-    if (this.state.authenticated === false){
+    if (this.state.authenticated === false) {
       this.props.history.push('/login');
     }
-    const filter = '';
-    NewsActions.getFilterNewsSource(this.props.match.params.id, filter);
+    let sort = '';
+    if (this.state.myPath[1] === 'topnews') {
+      sort = 'top';
+    } else if (this.state.myPath[1] === 'latestnews'){
+      sort = 'latest';
+    } else if (this.state.myPath[1] === 'popularnews'){
+      sort = 'popular';
+    } else {
+      sort = '';
+    }
+    NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
   }
 
   componentWillUnmount() {
@@ -53,7 +57,7 @@ export default class Headlines extends React.Component {
 
   onChange() {
     this.setState({
-      headlines: NewsStore.getFilterSource(),
+      topheadlines: NewsStore.getFilterSource(),
     });
   }
 
@@ -62,36 +66,31 @@ export default class Headlines extends React.Component {
       filterText: filterNews,
     });
   }
-
   addFavorite = (src) => {
     NewsActions.addFavorite(src);
   }
-
-
   render() {
-    const newsNode = this.state.headlines.map((source) => {
+    const newsNode = this.state.topheadlines.map((source) => {
       if (source.title.indexOf(this.state.filterText) === -1) {
         return;
       }
       return (
         <li key={source.title}>
-          <img className="dashboard-avatar" alt="Article Image"src={source.urlToImage} />
+          <img className="dashboard-avatar" alt="Article Image" src={source.urlToImage} />
           <Link
             key={source.title}
             to={source.url}
             className=""
             target="_blank"
           >
-            <strong className="newshead">{source.title}</strong><br/>
-            <strong>published At:</strong>{source.publishedAt }<br/>
+            <strong className="newshead">{source.title}</strong><br />
+            <strong>published At:</strong>{source.publishedAt }<br />
             <span className="newsdesc">{source.description}</span>
           </Link>
-          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className="favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
         </li>
       );
     });
-
-
 
     return (
 
@@ -107,7 +106,7 @@ export default class Headlines extends React.Component {
           <div className="box ">
             <div className="box-inner">
               <div className=" ">
-                <FilterHead filterurl={ this.state.pathUrl } />
+                <FilterHead filterurl={this.state.pathUrl} />
               </div>
               <div className="tab-content">
                 <div className="">

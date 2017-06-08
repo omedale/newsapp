@@ -69,7 +69,7 @@ NewsStore.dispatchToken = AppDispatcher.register((action) => {
       setSources(action.sources);
       NewsStore.emitChange();
       break;
-               
+
     case AppConstants.FAV_NEWS:
       setFavorite(action.news);
       NewsStore.emitChange();
