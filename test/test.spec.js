@@ -9,7 +9,7 @@ import FavoriteNews from '../src/component/FavoriteNews';
 import Sources from '../src/component/Sources';
 import Articles from '../src/component/Articles';
 
-require('./setup.js');
+require('./test_helper');
 
 describe('Login Component Test :', () => {
   it('Login page will render Welcome to NewsApp ', () => {

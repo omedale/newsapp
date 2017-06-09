@@ -38,7 +38,6 @@ export default {
       });
     })
     .catch((msg) => {
-      console.log(msg.response);
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_SORT_SOURCE_ERROR,
         message: msg,

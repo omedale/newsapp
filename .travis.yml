@@ -5,3 +5,9 @@ cache:
   directories:
     - node_modules
 install: [ "npm install mocha", "npm install"]
+addons:
+  code_climate:
+    repo_token: 9cb7de5859e7d5f8c3655897e09ff20f32b2e4088263257860e2f3fc9cc3f7ee
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info

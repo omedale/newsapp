@@ -27,28 +27,6 @@ export default class Articles extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const myPath = nextProps.location.pathname.split('/');
-    console.log("received props", nextProps, this.state);
-      this.setState({
-      pathUrl: myPath[2],
-    });
-    if (this.state.authenticated === false) {
-      this.props.history.push('/login');
-    }
-    let sort = '';
-    if (myPath[1] === 'topnews') {
-      sort = 'top';
-    } else if (myPath[1] === 'latestnews'){
-      sort = 'latest';
-    } else if (myPath[1] === 'popularnews'){
-      sort = 'popular';
-    } else {
-      sort = '';
-    }
-    NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
-    NewsStore.addChangeListener(this.onChange);
-  }
 
   componentDidMount() {
     this.setState({
@@ -72,9 +50,29 @@ export default class Articles extends React.Component {
     NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
   }
 
-  // componentShouldUpdate() {
-  //   NewsActions.addChangeListener(this.onChange);
-  // }
+  componentWillReceiveProps(nextProps) {
+    const myPath = nextProps.location.pathname.split('/');
+    console.log("received props", nextProps, this.state);
+      this.setState({
+      pathUrl: myPath[2],
+    });
+    
+    if (this.state.authenticated === false) {
+      this.props.history.push('/login');
+    }
+    let sort = '';
+    if (myPath[1] === 'topnews') {
+      sort = 'top';
+    } else if (myPath[1] === 'latestnews'){
+      sort = 'latest';
+    } else if (myPath[1] === 'popularnews'){
+      sort = 'popular';
+    } else {
+      sort = '';
+    }
+    NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
+    NewsStore.addChangeListener(this.onChange);
+  }
 
 
   componentWillUnmount() {
