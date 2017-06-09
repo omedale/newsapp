@@ -6,7 +6,9 @@
 
 [![Issue Count](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/issue_count.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 
-[![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=development)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
+[![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=chore/coverage)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
+
+[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore/coverage)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=development)
 
 An application that enables users view news by selecting source
 

@@ -1,22 +1,18 @@
-
-import { JSDOM } from 'jsdom';
-
-require('babel-register');
-
-const exposedProperties = ['window', 'navigator', 'document'];
-const dom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
-
-global.document = dom.window.document;
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
-  }
-});
-
-global.navigator = {
-  userAgent: 'node.js',
-};
-
-documentRef = document;
+var localStorageMock = (function() {
+  var store = {};
+  return {
+    getItem: function(key) {
+      return store[key];
+    },
+    setItem: function(key, value) {
+      store[key] = value.toString();
+    },
+    clear: function() {
+      store = {};
+    },
+    removeItem: function(key) {
+      delete store[key];
+    }
+  };
+})();
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });

@@ -2,15 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default class FilterHead extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
+    };
+  }
   render() {
+    let sortNews = [];
+
+    if (this.state.sortType !== '') {
+      sortNews = this.state.sortType.map((sort) => {
+        return (
+          <li><Link key={sort} to={`/sortedNews/${this.props.filterurl}/${sort}`}>{sort.toUpperCase()} NEWS</Link></li>
+        );
+      });
+    }
     return (
       <div>
         <div className=" headerline container-fluid">
           <div >
             <ul className="nav navbar-nav">
-              <li><Link to={`/topnews/${this.props.filterurl}`}>Top News</Link></li>
-              <li><Link to={`/latestnews/${this.props.filterurl}`}>Latest  News</Link></li>
-              <li><Link to={`/popularnews/${this.props.filterurl}`}>Popular News</Link></li>
+              {sortNews}
             </ul>
           </div>
         </div>

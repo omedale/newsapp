@@ -20,7 +20,8 @@ export default class Articles extends React.Component {
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       myPath: props.location.pathname.split('/'),
-      topheadlines: [],
+      sortType: localStorage.getItem('omedale_sort_value'),
+      sortedArticle: [],
       filterText: '',
     };
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
@@ -38,38 +39,19 @@ export default class Articles extends React.Component {
       this.props.history.push('/login');
     }
     let sort = '';
-    if (this.state.myPath[1] === 'topnews') {
-      sort = 'top';
-    } else if (this.state.myPath[1] === 'latestnews'){
-      sort = 'latest';
-    } else if (this.state.myPath[1] === 'popularnews'){
-      sort = 'popular';
-    } else {
-      sort = '';
-    }
     NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
   }
 
   componentWillReceiveProps(nextProps) {
     const myPath = nextProps.location.pathname.split('/');
-    console.log("received props", nextProps, this.state);
       this.setState({
       pathUrl: myPath[2],
     });
-    
+
     if (this.state.authenticated === false) {
       this.props.history.push('/login');
     }
-    let sort = '';
-    if (myPath[1] === 'topnews') {
-      sort = 'top';
-    } else if (myPath[1] === 'latestnews'){
-      sort = 'latest';
-    } else if (myPath[1] === 'popularnews'){
-      sort = 'popular';
-    } else {
-      sort = '';
-    }
+    let sort = myPath[3];
     NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
     NewsStore.addChangeListener(this.onChange);
   }
@@ -81,7 +63,7 @@ export default class Articles extends React.Component {
 
   onChange() {
     this.setState({
-      topheadlines: NewsStore.getFilterSource(),
+      sortedArticle: NewsStore.getFilterSource(),
     });
   }
 
@@ -94,7 +76,7 @@ export default class Articles extends React.Component {
     NewsActions.addFavorite(src);
   }
   render() {
-    const newsNode = this.state.topheadlines.map((source) => {
+    const newsNode = this.state.sortedArticle.map((source) => {
       if (source.title.toString().toLowerCase().indexOf(this.state.filterText) === -1) {
         return;
       }
@@ -111,7 +93,7 @@ export default class Articles extends React.Component {
             <strong>published At:</strong>{source.publishedAt }<br />
             <span className="newsdesc">{source.description}</span>
           </Link>
-          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)}  className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
+          <div className="row rowbtn"><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span> <button onClick={() => this.addFavorite(source)} className=" favbtn"><i className=" favicon glyphicon glyphicon-heart pink"></i> </button> </div>
         </li>
       );
     });

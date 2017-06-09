@@ -15,6 +15,7 @@ export default class Main extends React.Component {
           <Switch>
             <Route exact path="/" component={Sources} history={browserHistory} />
             <Route path="/login" component={Login} />
+            <Route path="/sortedNews/:id" component={Articles} />
             <Route path="/topnews/:id" component={Articles} />
             <Route path="/latestnews/:id" component={Articles} />
             <Route path="/popularnews/:id" component={Articles} />

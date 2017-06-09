@@ -28,6 +28,7 @@ export default class Sources extends React.Component {
   }
 
   componentWillMount() {
+    localStorage.removeItem('omedale_sort_value');
     NewsStore.addChangeListener(this.onChange);
   }
 
@@ -48,19 +49,22 @@ export default class Sources extends React.Component {
     });
   }
 
-  render() {
+  passSortValue(sort) {
+    localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
+  }
+
+  render() { 
     const newsNode = this.state.sources.map((source) => {
       if (source.name.toString().toLowerCase().indexOf(this.state.filterText) === -1) {
         return;
-      }
+      }   
 
       return (
-        <li key={source.name}>
+        <li onClick={() => this.passSortValue(source)} key={source.name}>
           <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
           <Link
             key={source.name}
-            to={'/topnews/' + source.id}
-            className=""
+            to={'/sortedNews/' + source.id}
           >
             <strong className="newshead">{source.name}</strong><br />
             <strong>Category:</strong>{source.category}<br />
