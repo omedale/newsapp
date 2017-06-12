@@ -11,6 +11,7 @@
     "rules": {
         "strict" : 0,
         "eol-last": ["error", "never"],
+        "react/forbid-prop-types": 0,
         "linebreak-style": 0,
     },
     "env": {

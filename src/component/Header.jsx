@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';
 
 export default class Header extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userName: AuthStore.getUserName(),
       userEmail: AuthStore.getUserEmail(),
@@ -24,7 +25,7 @@ export default class Header extends React.Component {
       <div>
         <nav className="navbar navbar-default">
           <div className="navbar-inner">
-            <div className="container-fluid">
+            <div className="container-fluid headsty">
               <div className="navbar-header">
                 <a className="navbar-brand" href="/">NewsApp</a>
               </div>
@@ -53,3 +54,6 @@ export default class Header extends React.Component {
       </div>);
   }
 }
+Header.propTypes = {
+  history: PropTypes.object.isRequired,
+};

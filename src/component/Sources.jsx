@@ -1,34 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
+import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
 
 
 
 export default class Sources extends React.Component {
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       sources: [],
       filterText: '',
+      userName: AuthStore.getUserName(),
+      userEmail: AuthStore.getUserEmail(),
     };
+    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  handleFilterTextInput(filterText) {
-    this.setState({
-      filterText: filterText.toString().toLowerCase(),
-    });
-  }
-
   componentWillMount() {
-    localStorage.removeItem('omedale_sort_value');
     NewsStore.addChangeListener(this.onChange);
   }
 
@@ -49,13 +46,31 @@ export default class Sources extends React.Component {
     });
   }
 
+  signOut = () => {
+    AuthActions.logUserOut();
+    this.props.history.push('/login');
+  }
+
+
+  handleFilterTextInput(filterSource) {
+    this.setState({
+      filterText: filterSource,
+    });
+  }
+
+
+  handleFilterTextInputChange(e) {
+    this.props.onFilterTextInput(e.target.value);
+  }
+
+
   passSortValue(sort) {
     localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
   }
 
   render() { 
     const newsNode = this.state.sources.map((source) => {
-      if (source.name.toString().toLowerCase().indexOf(this.state.filterText) === -1) {
+      if (source.name.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
         return;
       }   
 
@@ -64,11 +79,10 @@ export default class Sources extends React.Component {
           <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
           <Link
             key={source.name}
-            to={'/sortedNews/' + source.id}
+            to={'/articles/' + source.id}
           >
             <strong className="newshead">{source.name}</strong><br />
-            <strong>Category:</strong>{source.category}<br />
-            <span className="newsdesc">{source.description}</span>
+            <span className="newsdesc">{source.description.substr(0, 60)}...</span>
           </Link>
         </li>
       );
@@ -76,7 +90,7 @@ export default class Sources extends React.Component {
 
     return (
       <div>
-        <Header />
+        <Header history={this.props.history} />
         <div className="container">
           <div className="row">
             <SearchBar
@@ -98,3 +112,7 @@ export default class Sources extends React.Component {
     );
   }
 }
+
+Sources.propTypes = {
+  history: PropTypes.object.isRequired,
+};

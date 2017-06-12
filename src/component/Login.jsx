@@ -62,7 +62,7 @@ export default class Login extends React.Component {
                 onFailure={this.errorResp}
                 offline={false}
               >
-                <span> Login with Google</span>
+                <span>Login with Google</span>
               </GoogleLogin>
             </div>
 

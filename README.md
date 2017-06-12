@@ -8,7 +8,7 @@
 
 [![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=chore/coverage)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
 
-[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore/coverage)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=development)
+[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore/coverage)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=chore/code-refractor)
 
 An application that enables users view news by selecting source
 

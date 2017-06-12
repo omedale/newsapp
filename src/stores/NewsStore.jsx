@@ -18,7 +18,6 @@ function setFavorite(news) {
   }
   localStorage.removeItem(AuthStore.getUserEmail());
   localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(favNews));
-  alert('News Added to Favorite');
 }
 
 function setSources(src) {

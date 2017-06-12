@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default class FilterHead extends React.Component {
+export default class SortHeading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
+      sortType: [],
     };
+  }
+  componentDidMount() {
+    this.setState({
+      sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
+    });
   }
   render() {
     let sortNews = [];
@@ -14,7 +20,7 @@ export default class FilterHead extends React.Component {
     if (this.state.sortType !== '') {
       sortNews = this.state.sortType.map((sort) => {
         return (
-          <li><Link key={sort} to={`/sortedNews/${this.props.filterurl}/${sort}`}>{sort.toUpperCase()} NEWS</Link></li>
+          <li key={sort}><Link to={`/articles/${this.props.filterurl}/${sort}`}>{sort.toUpperCase()} NEWS</Link></li>
         );
       });
     }
@@ -30,3 +36,7 @@ export default class FilterHead extends React.Component {
       </div>);
   }
 }
+
+SortHeading.propTypes = {
+  filterurl: PropTypes.string.isRequired,
+};
