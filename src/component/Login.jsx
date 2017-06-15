@@ -28,7 +28,7 @@ export default class Login extends React.Component {
   }
 
   errorResp = () => {
-    alert('Ooops! .... connection error ');
+   
   }
 
   refreshing = () => {
