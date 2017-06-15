@@ -1,27 +1,48 @@
 {
-     "extends": [  "airbnb"],
-      "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
+   "extends": "airbnb",
+  "plugins": ["react","jsx-a11y","import"],
+    "globals": {
+    "window": true,
+    "localStorage": true,
+    "$": true,
+    "console": true,
+    "document": true,
+    "location": true
+  },
     "rules": {
-        "strict" : 0,
-        "eol-last": ["error", "never"],
-        "react/forbid-prop-types": 0,
-        "linebreak-style": 0,
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-boolean-value": "off",
+        "react/no-array-index-key": "off",
+        "jsx-a11y/img-redundant-alt": "off",
+        "no-prototype-builtins": "off",
+        "quote-props": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "one-var": 0,
+        "max-len": ["error", 80],
+    "one-var-declaration-per-line": 0,
+    "new-cap": 0,
+    "consistent-return": 0,
+    "no-param-reassign": 0,
+    "comma-dangle": 0,
+    "curly": ["error", "multi-line"],
+    "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
+    "valid-jsdoc": ["error", {
+      "requireReturn": true,
+      "requireReturnType": true,
+      "requireParamDescription": false,
+      "requireReturnDescription": true
+    }],
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true
+        }
+    }]
     },
     "env": {
-        "browser": true,
-        "mocha": true,
-        "node": true
+    "jest": true
     },
-    "plugins": [
-    "react"
-  ]
-
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
+    "arrow-body-style": ["error", "as-needed"]
 }
-

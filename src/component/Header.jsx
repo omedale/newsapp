@@ -31,8 +31,8 @@ export default class Header extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
-                  <li><Link to="/">Sources</Link></li>
-                  <li><Link to="/favorite">Favorite</Link></li>
+                  <li><a href="/">Sources</a></li>
+                  <li><a href="/favorite">Favorite</a></li>
                 </ul>
                 <div className="btn-group pull-right">
                   <button className="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -55,5 +55,5 @@ export default class Header extends React.Component {
   }
 }
 Header.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.any.isRequired,
 };

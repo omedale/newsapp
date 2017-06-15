@@ -2,15 +2,23 @@
 
 [![Code Climate](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/gpa.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 
-[![Test Coverage](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/coverage.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/coverage)
-
 [![Issue Count](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/issue_count.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 
 [![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=chore/coverage)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
 
-[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore/coverage)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=chore/code-refractor)
+[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore/coverage)](https://coveralls.io/github/omedalse/d0-checkpoint1-newsapp?branch=chore/code-refractor)
 
-An application that enables users view news by selecting source
+# Introdunction
+NewsApp application enables users view news by selecting source
+# Features
+<ul>
+<li>View News Sources</li>
+<li>Search News Sources</li>
+<li>View articles</li>
+<li>Search Articles</li>
+<li>Sort Articles</li>
+<li>Google Login</li>
+</ul>
 
 # Technology
 

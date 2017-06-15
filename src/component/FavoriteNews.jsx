@@ -20,7 +20,7 @@ export default class FavoriteNews extends React.Component {
       favoritenews: [],
       filterText: '',
     };
-    this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
+    this.filterFavorites = this.filterFavorites.bind(this);
   }
 
   componentWillMount() {
@@ -35,7 +35,7 @@ export default class FavoriteNews extends React.Component {
     }
   }
 
-  handleFilterTextInput = (filterFav) => {
+  filterFavorites = (filterFav) => {
     this.setState({
       filterText: filterFav,
     });
@@ -56,34 +56,36 @@ export default class FavoriteNews extends React.Component {
         favorite[i] = '';
       }
     }
-    newFavorite = favorite.filter(this.removeNews);
-    localStorage.removeItem(AuthStore.getUserEmail());
-    localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(newFavorite));
-    window.location.reload();
+    if(NewsStore.getFavNews() !== ''){
+      newFavorite = favorite.filter(this.removeNews);
+      localStorage.removeItem(AuthStore.getUserEmail());
+      localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(newFavorite));
+      window.location.reload();
+    }
   }
 
 
   render() {
     let newsNode = [];
     if (this.state.favoritenews !== '') {
-      newsNode = this.state.favoritenews.map((source) => {
-        if (source.title.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
+      newsNode = this.state.favoritenews.map((fav) => {
+        if (fav.title.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
             return;
         }
         return (
-          <li key={source.title}>
-            <img className="dashboard-avatar avata" alt="Article Image" src={source.urlToImage} />
+          <li key={`${fav.title}${fav.description}`}>
+            <img className="dashboard-avatar avata" alt="Article " src={fav.urlToImage} />
             <Link
-              key={source.title}
-              to={source.url}
+              key={fav.title}
+              to={fav.url}
               className=""
               target="_blank"
             >
-              <strong className="newshead">{source.title}</strong><br />
-              <strong>published At:</strong>{source.publishedAt }<br />
-              <span className="newsdesc">{source.description}</span>
+              <strong className="newshead">{fav.title}</strong><br />
+              {fav.publishedAt }<br />
+              <span className="newsdesc">{fav.description.substr(0, 100)}...</span>
             </Link>
-            <div className="row rowbtn"><button onClick={() => this.deleteFav(source)} className="btn btn-primary btn-sm">Delete </button><span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
+            <div className="row rowbtn"><button onClick={() => this.deleteFav(fav)} className="btn btn-primary btn-sm">Delete </button><span className="pull-right "> <FacebookShareButton url={fav.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={fav.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
           </li>
         );
       });
@@ -99,7 +101,7 @@ export default class FavoriteNews extends React.Component {
             <button className="btn pull-left clearbtn" onClick={() => this.deleteAll()} >clear all</button>
             <SearchBar
               filterText={this.state.filterText}
-              onFilterTextInput={this.handleFilterTextInput}
+              onFilterTextInput={this.filterFavorites}
             />
           </div>
           <div className="box ">
@@ -123,5 +125,5 @@ export default class FavoriteNews extends React.Component {
 }
 
 FavoriteNews.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.array.isRequired,
 };

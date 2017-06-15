@@ -12,7 +12,7 @@ export default {
   },
 
   recieveSources: () => {
-    NewsAPI
+    return NewsAPI
     .getSources('https://newsapi.org/v1/sources?language=en')
     .then((src) => {
       AppDispatcher.dispatch({
@@ -29,7 +29,7 @@ export default {
   },
 
   getFilterNewsSource: (id, filter) => {
-    NewsAPI
+    return NewsAPI
     .getFilterNewsSource(`https://newsapi.org/v1/articles?source=${id}&sortBy=${filter}&apiKey=213327409d384371851777e7c7f78dfe`)
     .then((articles) => {
       AppDispatcher.dispatch({

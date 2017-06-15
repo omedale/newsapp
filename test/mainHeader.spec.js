@@ -8,7 +8,7 @@ require('./test_helper.js');
 function option() {
   const props = {
     location: { action: 'PUSH', length: 5 },
-    history: { hash: '', key: 'aqosvv', pathname: '/sortedNews/abc-news-au', search: '', state: undefined },
+    history: [],
     match: { isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
   };
   const header = shallow(<Header{...props} />);
@@ -31,6 +31,6 @@ describe('Search Component :', () => {
 
   it('renders three links', () => {
     const { header } = option();
-    expect(header.find('a').length).toEqual(3);
+    expect(header.find('a').length).toEqual(5);
   });
 });

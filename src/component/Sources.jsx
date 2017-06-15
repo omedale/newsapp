@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Loading from 'react-loading';
 import PropTypes from 'prop-types';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
@@ -8,7 +9,12 @@ import Header from './Header';
 import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
 
+const col = '#1995dc';
+const typ = 'spinningBubbles';
 
+const LoadingComponent = () => (
+  <Loading type={typ} color={col} className="loading" />
+);
 
 export default class Sources extends React.Component {
   constructor(props) {
@@ -20,9 +26,11 @@ export default class Sources extends React.Component {
       userName: AuthStore.getUserName(),
       userEmail: AuthStore.getUserEmail(),
     };
-    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
-    this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
+    this.searchSource = this.searchSource.bind(this);
     this.onChange = this.onChange.bind(this);
+    if (this.state.authenticated === false) {
+      this.props.history.push('/login');
+    }
   }
 
   componentWillMount() {
@@ -30,9 +38,6 @@ export default class Sources extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.authenticated === false) {
-      this.props.history.push('/login');
-    }
     NewsActions.recieveSources();
   }
 
@@ -45,30 +50,19 @@ export default class Sources extends React.Component {
       sources: NewsStore.getSources(),
     });
   }
-
-  signOut = () => {
-    AuthActions.logUserOut();
-    this.props.history.push('/login');
-  }
-
-
-  handleFilterTextInput(filterSource) {
+  
+  searchSource(filterSource) {
     this.setState({
       filterText: filterSource,
     });
   }
 
-
-  handleFilterTextInputChange(e) {
-    this.props.onFilterTextInput(e.target.value);
-  }
-
-
-  passSortValue(sort) {
+  passSortValue = (sort) => {
     localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
   }
 
   render() { 
+
     const newsNode = this.state.sources.map((source) => {
       if (source.name.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
         return;
@@ -76,10 +70,11 @@ export default class Sources extends React.Component {
 
       return (
         <li onClick={() => this.passSortValue(source)} key={source.name}>
-          <img className="dashboard-avatar" alt="Source image" src="/img/download.jpe" />
+          <img className="dashboard-avatar" alt="Source" src="/img/download.jpe" />
           <Link
             key={source.name}
-            to={'/articles/' + source.id}
+            to={`/articles/${source.id}`}
+
           >
             <strong className="newshead">{source.name}</strong><br />
             <span className="newsdesc">{source.description.substr(0, 60)}...</span>
@@ -95,14 +90,14 @@ export default class Sources extends React.Component {
           <div className="row">
             <SearchBar
               filterText={this.state.filterText}
-              onFilterTextInput={this.handleFilterTextInput}
+              onFilterTextInput={this.searchSource}
             />
           </div>
           <div className="box ">
             <div className="box-content">
               <div className="box-inner">
                 <ul className="dashboard-list listpad">
-                  {newsNode}
+                   { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
                 </ul>
               </div>
             </div>
@@ -114,5 +109,6 @@ export default class Sources extends React.Component {
 }
 
 Sources.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.any.isRequired,
+  //onFilterTextInput: PropTypes.string.isRequired,
 };
