@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
+    this.filterInput = this.filterInput.bind(this);
   }
 
-  handleFilterTextInputChange(e) {
+  filterInput(e) {
     this.props.onFilterTextInput(e.target.value);
   }
 
@@ -19,7 +19,7 @@ export default class SearchBar extends React.Component {
           type="text"
           placeholder="Search"
           value={this.props.filterText}
-          onChange={this.handleFilterTextInputChange}
+          onChange={this.filterInput}
         />
       </form>
     );

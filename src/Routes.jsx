@@ -10,18 +10,13 @@ import NopageFound from './component/NopageFound';
 const Routes = () => {
   return (
     <Router >
-      <div>
         <Switch>
           <Route exact path="/" component={Sources} history={browserHistory} />
           <Route path="/login" component={Login} />
           <Route path="/articles/:id" component={Articles} />
-          <Route path="/topnews/:id" component={Articles} />
-          <Route path="/latestnews/:id" component={Articles} />
-          <Route path="/popularnews/:id" component={Articles} />
           <Route path="/favorite" component={FavoriteNews} />
           <Route component={NopageFound} />
         </Switch>
-      </div>
     </Router>);
 };
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export default {
   getSources: (url) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +8,6 @@ export default {
         resolve((res.data.sources));
       })
       .catch((error) => {
-        // alert('Ooops!!... connection error');
         if (error) reject(error);
       });
     });
@@ -22,7 +20,6 @@ export default {
         resolve(res.data.articles);
       })
       .catch((error) => {
-        // alert('Ooops!!... connection error  or news not available');
         reject(error.response);
       });
     });

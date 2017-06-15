@@ -8,7 +8,9 @@ export default class SortHeading extends React.Component {
     this.state = {
       sortType: [],
     };
+
   }
+
   componentDidMount() {
     this.setState({
       sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
@@ -40,3 +42,4 @@ export default class SortHeading extends React.Component {
 SortHeading.propTypes = {
   filterurl: PropTypes.string.isRequired,
 };
+

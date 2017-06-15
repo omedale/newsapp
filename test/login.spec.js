@@ -1,10 +1,15 @@
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import expect from 'expect';
+import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
 import Login from '../src/component/Login';
 
 require('./test_helper.js');
+
+ localStorage.removeItem('omedale_profile');
+ localStorage.removeItem('omedale_id_token');
+ localStorage.removeItem('omedale_profile_name');
+ localStorage.removeItem('omedale_profile_email');
 
 describe('Login Component :', () => {
   it('will render Welcome to NewsApp ', () => {
@@ -28,3 +33,4 @@ describe('Login Component :', () => {
     expect(login.find('div').length).toEqual(7);
   });
 });
+
