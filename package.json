@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "webpack -d -p --watch",
     "build": "webpack -p",
-    "start": "npm run build && node server.js",
+    "start": "npm run build & node server.js",
     "serve": "nodemon server.js",
     "test": "jest ./test/ mock-local-storage --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
