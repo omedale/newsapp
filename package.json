@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "NODE_ENV=production webpack -p",
+    "postinstall": "webpack -p",
     "watch": "webpack -d --watch",
     "build": "webpack",
     "serve": "nodemon server.js",
