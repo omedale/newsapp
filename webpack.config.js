@@ -11,18 +11,9 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
-  },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
-  },
-  externals: {
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
   },
   module: {
     loaders: [
