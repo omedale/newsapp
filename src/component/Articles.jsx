@@ -38,7 +38,6 @@ export default class Articles extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-
   componentDidMount() {
 
     NewsStore.addChangeListener(this.onChange);
@@ -64,17 +63,18 @@ export default class Articles extends React.Component {
     });
   }
 
-  filterArticle = (filterNews) => {
+  filterArticle(filterNews) {
     this.setState({
       filterText: filterNews,
     });
   }
-  addFavorite = (src) => {
+  
+  addFavorite(src) {
     NewsActions.addFavorite(src);
     const msg = 'News Added Successfully';
     this.showAlert(msg);
   }
-  showAlert = (msg) => {
+  showAlert(msg) {
     this.msg.show(msg, {
       time: 4000,
       position: 'top left',

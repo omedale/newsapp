@@ -27,11 +27,11 @@ export default class Login extends React.Component {
     this.props.history.push('/');
   }
 
-  errorResp = () => {
+  errorResp() {
    
   }
 
-  refreshing = () => {
+  refreshing() {
     window.location.reload();
   }
 
