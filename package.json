@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "webpack -p",
+    "start": "webpack -p & node server.js",
     "watch": "webpack -d --watch",
     "build": "webpack",
     "serve": "nodemon server.js",
