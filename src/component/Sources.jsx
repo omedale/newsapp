@@ -70,14 +70,12 @@ export default class Sources extends React.Component {
 
       return (
         <li onClick={() => this.passSortValue(source)} key={source.name}>
-          <img className="dashboard-avatar" alt="Source" src="/img/download.jpe" />
           <Link
             key={source.name}
             to={`/articles/${source.id}`}
-
           >
-            <strong className="newshead">{source.name}</strong><br />
-            <span className="newsdesc">{source.description.substr(0, 60)}...</span>
+            <h3 className="newshead">{source.name}</h3>
+            <span className="newsdesc">{source.description.substr(0, 160)}...</span>
           </Link>
         </li>
       );

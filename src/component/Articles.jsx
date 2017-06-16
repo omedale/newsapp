@@ -96,11 +96,10 @@ export default class Articles extends React.Component {
             className=""
             target="_blank"
           >
-            <strong className="newshead">{source.title}</strong><br />
-            {source.publishedAt }<br />
-            <span className="newsdesc">{source.description.substr(0, 100)}...</span>
+            <h3 className="newshead">{source.title}</h3>
+            <div className="newsdesc">{source.description.substr(0, 100)}...</div>
           </Link>
-          <div className="row rowbtn"><button onClick={() => this.addFavorite(source)} className="btn btn-primary btn-sm">Add Favorite </button> <span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
+          <div className="row rowbtn"><button onClick={() => this.addFavorite(source)} className="btn btn-primary btn-sm">Add Favorite </button> <span className="pull-right "> <FacebookShareButton url={source.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton className="twitterclass" url={source.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
         </li>
       );
     });
