@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp/badges/gpa.svg)](https://codeclimate.com/github/omedale/d0-checkpoint1-newsapp)
 [![Build Status](https://travis-ci.org/omedale/d0-checkpoint1-newsapp.svg?branch=chore/fix-npm-script)](https://travis-ci.org/omedale/d0-checkpoint1-newsapp)
-[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=fix-npm-script)](https://coveralls.io/github/omedalse/d0-checkpoint1-newsapp?branch=chore/fix-npm-script)
+[![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore%2Ffix-npm-script)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=chore%2Ffix-npm-script)
 
 # Introduction
 NewsApp application enables users view news by selecting source
