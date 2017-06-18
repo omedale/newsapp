@@ -28,4 +28,9 @@ describe('Search Component :', () => {
     const { header } = option();
     expect(header.find('a').length).toEqual(4);
   });
+  it('should have method signOut', () => {
+    const { header } = option();
+    const headerInstance = header.instance().signOut();
+    expect(headerInstance).toEqual(undefined);
+  });
 });

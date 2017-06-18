@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import Login from '../src/component/Login';
+
+import mockData from './mock/mock';
 
 require('./mock/test_helper.js');
 

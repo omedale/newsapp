@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import expect from 'expect';
 import SortHeading from '../src/component/SortHeading';
 
@@ -31,5 +32,10 @@ describe('Search Component :', () => {
   it('contain headerline class', () => {
     const { header } = option();
     expect(header.find('.headerline').length).toEqual(1);
+  });
+  it('calls componentDidMount', () => {
+    const spy = sinon
+    .spy(SortHeading.prototype, 'componentDidMount');
+    expect(spy.calledOnce).toEqual(false);
   });
 });
