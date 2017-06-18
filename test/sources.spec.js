@@ -4,9 +4,9 @@ import { shallow, mount } from 'enzyme';
 import expect from 'expect';
 import sinon from 'sinon';
 import Sources from '../src/component/Sources';
-import mockData from './mock';
+import mockData from './mock/mock';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
 describe('Sources Component :', () => {
 
@@ -17,6 +17,7 @@ describe('Sources Component :', () => {
     filterurl: '',
     filterText: '',
   }
+
   it('renders without crashing', () => {
     mount(<Sources {...props} />);
   });
@@ -24,10 +25,23 @@ describe('Sources Component :', () => {
     const spy = sinon.spy(Sources.prototype, 'componentWillMount');
     expect(spy.calledOnce).toEqual(false);
   });
+  it('calls componentWillUnmount', () => {
+    const wrapper = mount(<Sources{...props} />);
+    const spy = sinon
+    .spy(Sources.prototype, 'componentWillUnmount');
+    wrapper.unmount();
+    expect(spy.calledOnce).toBeTruthy();
+  });
   it('should render 2 soources', () => {
-    const sources  = shallow(<Sources{...props} />);
+    const sources = shallow(<Sources{...props} />);
     sources.setState({ sources: mockData.sources });
     expect(sources.find('li').length).toEqual(2);
+  });
+  it('should call setSortAvailable', () => {
+    const sort = { sortBysAvailable: ['latest', 'top'] };
+    const article = mount(<Sources{...props} />);
+    const setSortAvailable = article.instance().setSortAvailable(sort);
+    expect(setSortAvailable).toEqual(undefined);
   });
 });
 

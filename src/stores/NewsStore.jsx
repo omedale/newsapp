@@ -8,7 +8,7 @@ const CHANGE_EVENT = 'change';
 let sources = [];
 let filterNews = {};
 
-function setFavorite(news) {
+export function setFavorite(news) {
   let favNews = [];
   if (localStorage.getItem(AuthStore.getUserEmail())) {
     favNews = JSON.parse(localStorage.getItem(AuthStore.getUserEmail()));
@@ -20,11 +20,11 @@ function setFavorite(news) {
   localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(favNews));
 }
 
-function setSources(src) {
+export function setSources(src) {
   sources = src;
 }
 
-function setFilterSource(articles) {
+export function setFilterSource(articles) {
   filterNews = articles;
 }
 
@@ -50,7 +50,7 @@ class NewsStoreClass extends EventEmitter {
     return filterNews;
   }
 
-  getFavNews() {
+  getFavoriteNews() {
     if (localStorage.getItem(AuthStore.getUserEmail())) {
       return JSON.parse(localStorage.getItem(AuthStore.getUserEmail()));
     }

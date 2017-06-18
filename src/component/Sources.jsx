@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Loading from 'react-loading';
 import PropTypes from 'prop-types';
 import NewsActions from '../actions/NewsActions';
 import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
+import Footer from './Footer';
 import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
+import LoadingComponent from './LoadingComponent';
 
-const col = '#1995dc';
-const typ = 'spinningBubbles';
-
-const LoadingComponent = () => (
-  <Loading type={typ} color={col} className="loading" />
-);
 
 export default class Sources extends React.Component {
   constructor(props) {
@@ -34,11 +29,11 @@ export default class Sources extends React.Component {
   }
 
   componentWillMount() {
-    NewsStore.addChangeListener(this.onChange);
+    NewsActions.recieveSources();
   }
 
   componentDidMount() {
-    NewsActions.recieveSources();
+      NewsStore.addChangeListener(this.onChange);
   }
 
   componentWillUnmount() {
@@ -57,19 +52,22 @@ export default class Sources extends React.Component {
     });
   }
 
-  passSortValue = (sort) => {
+  setSortAvailable = (sort) => {
     localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
   }
 
   render() { 
-
+    let count = 0;
     const newsNode = this.state.sources.map((source) => {
       if (source.name.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
-        return;
-      }   
-
+         count +=1;
+          if(count === this.state.sources.length){
+            return <h3  key={source.name}>Ooops!!.... source not found</h3>;
+          }
+        return '';
+      }
       return (
-        <li onClick={() => this.passSortValue(source)} key={source.name}>
+        <li onClick={() => this.setSortAvailable(source)} key={source.name}>
           <Link
             key={source.name}
             to={`/articles/${source.id}`}
@@ -84,22 +82,23 @@ export default class Sources extends React.Component {
     return (
       <div>
         <Header history={this.props.history} />
-        <div className="container">
+        <div className="ch-container outercontainer">
+          <div className="">
           <div className="row">
             <SearchBar
               filterText={this.state.filterText}
               onFilterTextInput={this.searchSource}
             />
           </div>
-          <div className="box ">
-            <div className="box-content">
+            <div className="">
               <div className="box-inner">
-                <ul className="dashboard-list listpad">
+                <ul className="dashboard-list listpad listcontainer">
                    { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
                 </ul>
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
     );
@@ -108,5 +107,4 @@ export default class Sources extends React.Component {
 
 Sources.propTypes = {
   history: PropTypes.any.isRequired,
-  //onFilterTextInput: PropTypes.string.isRequired,
 };

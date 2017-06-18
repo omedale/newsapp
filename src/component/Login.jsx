@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
+import AlertContainer from 'react-alert';
 import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
 
@@ -7,20 +9,22 @@ export default class Login extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.goHome = this.goHome.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       auth: {},
     };
   }
 
-  goHome(response) {
-    localStorage.removeItem('omedale_profile');
-    localStorage.removeItem('omedale_id_token');
-    localStorage.removeItem('omedale_profile_name');
-    localStorage.removeItem('omedale_profile_email');
+  componentWillMount() {
+    if (this.state.authenticated === true) {
+      this.props.history.push('/');
+    }
+  }
+
+  onSuccess(response) {
     this.setState({ auth2: gapi.auth2.getAuthInstance() });
-    AuthActions.logUserIn(response.profileObj, response.tokenId);
+    AuthActions.logUserIn(response.profileObj);
     this.state.auth2.disconnect().then(() => {
 
     });
@@ -28,17 +32,11 @@ export default class Login extends React.Component {
   }
 
   errorResp() {
-   
-  }
-
-  refreshing() {
-    window.location.reload();
-  }
-
-  componentWillMount() {
-    if (this.state.authenticated === true) {
-      this.props.history.push('/');
-    }
+    this.msg.show('Error in connection', {
+      time: 4000,
+      position: 'top left',
+      type: 'success',
+    });
   }
 
   render() {
@@ -50,6 +48,7 @@ export default class Login extends React.Component {
           </div>
         </div>
         <div className="row">
+          <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
           <div className="well col-md-5 center login-box">
             <div className="alert alert-info">
             Please login with your Google account.
@@ -58,10 +57,11 @@ export default class Login extends React.Component {
 
               <GoogleLogin
                 clientId={'119051801386-fm4u444ls4fv0djtbac2u2lrseis815i.apps.googleusercontent.com'}
-                onSuccess={this.goHome}
+                onSuccess={this.onSuccess}
                 onFailure={this.errorResp}
                 offline={false}
               >
+                <i className="fa fa-google-plus iconspace" aria-hidden="true" />
                 <span>Login with Google</span>
               </GoogleLogin>
             </div>
@@ -74,6 +74,11 @@ export default class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.any.isRequired,
+};
+
 
 
 

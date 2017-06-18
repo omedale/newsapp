@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import expect from 'expect';
 import SortHeading from '../src/component/SortHeading';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
 function option() {
   const props = {

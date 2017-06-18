@@ -60,6 +60,7 @@
     "express": "^4.15.3",
     "flux": "^3.1.2",
     "istanbul": "^0.4.5",
+    "jsdoc-react": "^0.3.2",
     "jsdom": "^11.0.0",
     "json-loader": "^0.5.4",
     "keymirror": "^0.1.1",
@@ -77,6 +78,7 @@
     "react-google-login": "^2.8.9",
     "react-google-login-component": "^0.7.0",
     "react-loading": "^0.1.2",
+    "react-message-box": "^1.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-share": "^1.13.3",
@@ -87,4 +89,3 @@
     "webpack-dev-server": "^2.4.5"
   }
 }
-

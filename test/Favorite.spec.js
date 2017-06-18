@@ -4,18 +4,21 @@ import { shallow, mount } from 'enzyme';
 import expect from 'expect';
 import sinon from 'sinon';
 import FavoriteNews from '../src/component/FavoriteNews';
-import mockData from './mock';
+import mockData from './mock/mock';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
 localStorage.setItem('omedale_profile_email', 'omedale@gmail.com');
+localStorage.setItem('omedale_confirm_delete',
+JSON.stringify(mockData.singleNews));
 localStorage.getItem('omedale@gmail.com');
 
 describe('FavoriteNews Component :', () => { 
   const props = {
     location: { pathname: '/articles/abc-news-au/top' },
-    history: [{ action: 'POP', push: (path, state) => { return state; } }],
-    match: { params: { id: 'abc-news-au' }, isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
+    history: { action: 'POP', push: (path, state) => { return state; } },
+    match: { params: { id: 'abc-news-au' },
+      isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
     filterurl: '',
     filterText: '',
   };
@@ -23,7 +26,7 @@ describe('FavoriteNews Component :', () => {
     mount(<FavoriteNews {...props} />);
   });
   it('should render 5 articles', () => {
-    const favorite  = shallow(<FavoriteNews{...props} />)
+    const favorite = shallow(<FavoriteNews{...props} />)
     favorite.setState({ favoritenews: mockData.articles });
     expect(favorite.find('li').length).toEqual(5);
   });
@@ -39,9 +42,20 @@ describe('FavoriteNews Component :', () => {
     const wrapper = mount(<FavoriteNews {...props} />);
     expect(wrapper.instance().removeNews(0)).toEqual(true);
   });
-  it('contains a deleteFav method', () => {
-    const mock = jest.fn();
-    const wrapper = mount(<FavoriteNews {...props} favorite={mockData.articles} />);
-    expect(wrapper.instance().deleteFav(0)).toEqual(undefined);
+  it('contains a deleteFavorite method', () => {
+    const wrapper = mount(
+      <FavoriteNews
+        {...props}
+        favorite={mockData.articles} 
+      />);
+    expect(wrapper.instance().deleteFavorite(0)).toEqual(undefined);
+  });
+  it('contains a setDeleteItem method', () => {
+    const wrapper = mount(
+      <FavoriteNews
+        {...props}
+        favorite={mockData.articles} 
+      />);
+    expect(wrapper.instance().setDeleteItem(0)).toEqual(undefined);
   });
 });

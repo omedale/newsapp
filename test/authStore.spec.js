@@ -1,21 +1,22 @@
 
 import expect from 'expect';
+import { setUser, removeUser } from '../src/stores/AuthStore';
 import AuthStore from '../src/stores/AuthStore';
+import mockData from './mock/mock';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
-describe('AuthActions  :', () => {
+localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
+
+describe('AuthStores  :', () => {
   it('contain funtion isAuthenticated and return false', () => {
-    expect(AuthStore.isAuthenticated()).toEqual(false);
-  });
-  it('contain funtion getUser', () => {
-    expect(AuthStore.getUser()).toEqual(undefined);
+    expect(AuthStore.isAuthenticated()).toEqual(true);
   });
   it('contain funtion getUserName', () => {
-    expect(AuthStore.getUserName()).toEqual(false);
+    expect(AuthStore.getUserName()).toEqual('Oluwafemi');
   });
   it('contain funtion getUserEmail', () => {
-    expect(AuthStore.getUserEmail()).toEqual(' ');
+    expect(AuthStore.getUserEmail()).toEqual('omedale@gmail.co');
   });
   it('contain funtion emitChange', () => {
     expect(AuthStore.emitChange()).toEqual(undefined);
@@ -32,4 +33,11 @@ describe('AuthActions  :', () => {
     }
     expect(AuthStore.removeChangeListener(callback)).toEqual(undefined);
   });
+  it('should call setUser', () => {
+    expect(setUser(mockData.googleProfile)).toEqual(undefined);
+  });
+  it('should call removeUser', () => {
+    expect(removeUser()).toEqual(undefined);
+  });
 });
+

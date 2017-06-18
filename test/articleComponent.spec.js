@@ -5,9 +5,9 @@ import expect from 'expect';
 import Articles from '../src/component/Articles';
 import NewsStore from '../src/stores/NewsStore';
 
-import mockData from './mock';
+import mockData from './mock/mock';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
 localStorage.setItem('omedale_sort_value', JSON.stringify(['top', 'latest']));
 
@@ -20,8 +20,29 @@ describe('Article Component :', () => {
     filterText: '',
   };
   it('should render 5 articles', () => {
-    const article  = shallow(<Articles{...props} />)
+    const article = shallow(<Articles{...props} />)
     article.setState({ sortedArticle: mockData.articles });
     expect(article.find('li').length).toEqual(5);
+  });
+
+  it('calls componentWillUnmount', () => {
+    const wrapper = shallow(<Articles{...props} />);
+    const spy = sinon
+    .spy(Articles.prototype, 'componentWillUnmount');
+    wrapper.unmount();
+    expect(spy.calledOnce).toBeTruthy();
+  });
+  it('should call filterArticle', () => {
+    const article = shallow(<Articles{...props} />);
+    const filterArticle = article.instance().filterArticle('lets');
+    expect(filterArticle).toEqual(undefined);
+  });
+
+  it('calls componentWillReceiveProps and update the state', () => {
+    const wrapper = shallow(<Articles{...props} />);
+    const spy = sinon.spy(Articles.prototype, 'componentWillReceiveProps');
+    expect(spy.calledOnce).toEqual(false);
+    wrapper.setProps(props);
+    expect(spy.calledOnce).toEqual(true);
   });
 });

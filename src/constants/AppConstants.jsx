@@ -7,4 +7,6 @@ export default keyMirror({
   FAV_NEWS: null,
   RECIEVE_SORT_SOURCE_ERROR: null,
   RECIEVE_SOURCES_ERROR: null,
+  LOGIN_USER: null,
+  LOGOUT_USER: null,
 });

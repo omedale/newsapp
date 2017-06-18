@@ -1,14 +1,15 @@
 
 import expect from 'expect';
+
 import AuthActions from '../src/actions/AuthActions';
 
-require('./test_helper.js');
+require('./mock/test_helper.js');
 
 describe('AuthActions  :', () => {
   it('contain funtion logUserIn', () => {
-    expect(AuthActions.logUserIn('profile', 'token', 'auth')).toEqual(undefined);
+    expect(AuthActions.logUserIn('profile')).toBeTruthy();
   });
   it('contain funtion logUserOut', () => {
-    expect(AuthActions.logUserOut()).toEqual(undefined);
+    expect(AuthActions.logUserOut()).toBeTruthy();
   });
 });

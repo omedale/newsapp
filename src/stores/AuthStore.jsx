@@ -1,22 +1,18 @@
 
 import EventEmitter from 'events';
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
-import AuthConstants from '../constants/AuthConstants';
+import AuthConstants from '../constants/AppConstants';
 
 const CHANGE_EVENT = 'change';
 
-function setUser(profile, token) {
-  if (!localStorage.getItem('omedale_id_token')) {
+export function setUser(profile) {
+  if (!localStorage.getItem('omedale_profile')) {
     localStorage.setItem('omedale_profile', JSON.stringify(profile));
-    localStorage.setItem('omedale_id_token', token);
-    localStorage.setItem('omedale_profile_name', profile.name);
-    localStorage.setItem('omedale_profile_email', profile.email);
   }
 }
 
-function removeUser() {
+export function removeUser() {
   localStorage.removeItem('omedale_profile');
-  localStorage.removeItem('omedale_id_token');
 }
 
 class AuthStoreClass extends EventEmitter {
@@ -33,27 +29,24 @@ class AuthStoreClass extends EventEmitter {
   }
 
   isAuthenticated() {
-    if (localStorage.getItem('omedale_id_token')) {
+    if (localStorage.getItem('omedale_profile')) {
       return true;
     }
     return false;
   }
-  getUser() {
-    return localStorage.getItem('omedale_profile');
-  }
-  getUserName() {
-    if (localStorage.getItem('omedale_profile_name')) {
-      return localStorage.getItem('omedale_profile_name');
+  getUserName() {  
+    if (localStorage.getItem('omedale_profile')) {
+      const userName = JSON.parse(localStorage.getItem('omedale_profile'));
+      return userName.familyName;
     }
-    localStorage.setItem('omedale_profile_name', ' ');
-    return localStorage.getItem('omedale_profile_name');
+    return 'Unknown user';
   }
   getUserEmail() {
-    if (localStorage.getItem('omedale_profile_email')) {
-      return localStorage.getItem('omedale_profile_email');
+    if (localStorage.getItem('omedale_profile')) {
+      const userEmail = JSON.parse(localStorage.getItem('omedale_profile'));
+      return userEmail.email;
     }
-    localStorage.setItem('omedale_profile_email', ' ');
-    return localStorage.getItem('omedale_profile_email');
+    return 'Unknown';
   }
 }
 

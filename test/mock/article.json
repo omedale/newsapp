@@ -1,0 +1,87 @@
+{
+    "status": "ok",
+    "source": "ign",
+    "sortBy": "top",
+    "articles": [
+        {
+            "author": null,
+            "title": "My First E3: Exploring the Show Floor - IGN Video",
+            "description": "The bright lights, ground-shaking sound and bags of swag are a bit too much for our boy Rory.",
+            "url": "http://ca.ign.com/videos/2017/06/15/my-first-e3-exploring-the-show-floor",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/15/showfloor-1497521314768_1280w.jpg",
+            "publishedAt": "2017-06-15T11:00:00Z"
+        },
+        {
+            "author": "Jordan Sirani",
+            "title": "E3 2017: New Xbox Live Avatars Arriving Later This Year - IGN",
+            "description": "New Avatar system adds more customization, ditches gender restrictions on clothing.",
+            "url": "http://ca.ign.com/articles/2017/06/15/e3-2017-new-xbox-live-avatars-arriving-later-this-year",
+            "urlToImage": "http://assets1.ignimgs.com/2017/06/15/xbl-avatar-1497496022458_1280w.png",
+            "publishedAt": "2017-06-15T04:51:19Z"
+        },
+        {
+            "author": "Jon Ryan",
+            "title": "E3 2017: Beyond Good and Evil 2 Is a Massively Ambitious RPG - IGN",
+            "description": "We sat down with the development team of Beyond Good &amp; Evil 2 to learn about their new engine and the concepts they want to implement in the game.",
+            "url": "http://ca.ign.com/articles/2017/06/15/e3-2017-beyond-good-evil-2-is-a-massively-ambitious-rpg",
+            "urlToImage": "http://assets1.ignimgs.com/2017/06/15/bgande2-1280-1497494409724_1280w.jpg",
+            "publishedAt": "2017-06-15T02:54:13Z"
+        },
+        {
+            "author": "Alex Osborn",
+            "title": "E3 2017: Nintendo on Switch Virtual Console: 'We Recognize There's an Appetite' - IGN",
+            "description": "Reggie Fils-Aime shed light on the future of My Nintendo and the company's plan for delivering legacy content.",
+            "url": "http://ca.ign.com/articles/2017/06/15/e3-2017-nintendo-on-switch-virtual-console-we-recognize-theres-an-appetite",
+            "urlToImage": "http://assets1.ignimgs.com/2017/01/13/nintendoswitch-topslider-1280x720-1484324657494_1280w.jpg",
+            "publishedAt": "2017-06-15T02:04:02Z"
+        },
+        {
+            "author": null,
+            "title": "9 Minutes of Sushi Striker Gameplay - E3 2017 - IGN Video",
+            "description": "Nintendo Treehouse showed off gameplay from the upcoming 3DS title, Sushi Striker: The Way of Sushido!",
+            "url": "http://ca.ign.com/videos/2017/06/15/9-minutes-of-sushi-striker-gameplay-e3-2017",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/14/screen-shot-2017-06-14-at-35633-pm-1497482966274_1280w.png",
+            "publishedAt": "2017-06-15T01:45:00Z"
+        },
+        {
+            "author": "Evan Campbell",
+            "title": "E3 2017: Nintendo Working to Scale Up Switch Production - IGN",
+            "description": "Reggie Fils-Aime talks to us about what the company is doing to make sure everyone can find the hybrid system.",
+            "url": "http://ca.ign.com/articles/2017/06/15/e3-2017-nintendo-working-to-scale-up-switch-production",
+            "urlToImage": "http://assets1.ignimgs.com/2017/01/13/nswitch-1280-3-1484311944663_1280w.jpg",
+            "publishedAt": "2017-06-15T01:37:13Z"
+        },
+        {
+            "author": null,
+            "title": "10 Minutes of Observer Gameplay - E3 2017 - IGN Video",
+            "description": "Head into the cyberpunk like world of Observer for a cerebral horror adventure.",
+            "url": "http://ca.ign.com/videos/2017/06/15/10-minutes-of-observer-gameplay-e3-2017",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/2017/06/14/3-0093e0eb49f7bf6f663093f8fabf15a1-1497489814/frame_0000_1280w.jpg",
+            "publishedAt": "2017-06-15T01:19:00Z"
+        },
+        {
+            "author": null,
+            "title": "Sushi Striker: The Way of Sushido Official Trailer - E3 2017 - IGN Video",
+            "description": "This plate-smacking action puzzle game comes to Nintendo 3DS next year.",
+            "url": "http://ca.ign.com/videos/2017/06/15/sushi-striker-the-way-of-sushido-official-trailer-e3-2017",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/14/sushie3-1497488998237_1280w.jpg",
+            "publishedAt": "2017-06-15T01:15:00Z"
+        },
+        {
+            "author": null,
+            "title": "Mario + Rabbids Kingdom Battle: Fighting Rabbid Kong  - E3 2017 - IGN Video",
+            "description": "Nintendo Treehouse showed off a portion of the first boss fight in Mario + Rabbids Kingdom Battle!",
+            "url": "http://ca.ign.com/videos/2017/06/15/mario-rabbids-kingdom-battle-fighting-rabbid-kong-e3-2017",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/14/screen-shot-2017-06-14-at-35948-pm-1497481794338_1280w.png",
+            "publishedAt": "2017-06-15T01:15:00Z"
+        },
+        {
+            "author": null,
+            "title": "Injustice 2 Official Introducing Sub-Zero Trailer - IGN Video",
+            "description": "The Mortal Kombat fighter is ready to take on DC superheroes and supervillains.",
+            "url": "http://ca.ign.com/videos/2017/06/15/injustice-2-official-introducing-sub-zero-trailer",
+            "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/14/insub-1497488672308_1280w.jpg",
+            "publishedAt": "2017-06-15T01:08:00Z"
+        }
+    ]
+}
