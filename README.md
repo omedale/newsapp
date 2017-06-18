@@ -64,7 +64,6 @@ NewsApp application enables users view news by selecting source
 
 ## Front End Dependencies
 *  **[Charisma CSS](https://usman.it/themes/charisma/)** - Some part of the app was styled with this css framework.
-*  **[Bootstrap CSS](https://bootstrap.com/)** - Some part of the app was styled with bootstrap css framework.
 *  **[Font Awesome Icons](https://fontawesome.io/icons/)** - All font used were from Font Awesome library 
 *  **[JQuery](https://)** - Charisma css framework requires JQuery library for some actions. 
 
