@@ -28,10 +28,6 @@ describe('Login Component :', () => {
     const login = shallow(<Login{...props} />);
     expect(login.find('span').text()).toEqual('Login with Google');
   });
-  it('should have state.authenticated = false', () => {
-    const login = shallow(<Login{...props} />);
-    expect(login.state('authenticated')).toEqual(false);
-  });
   it('renders two row', () => {
     const login = shallow(<Login{...props} />);
     expect(login.find('.row').length).toEqual(2);
