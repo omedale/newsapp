@@ -4,11 +4,11 @@ import {
   Route, browserHistory,
   Switch } from 'react-router-dom';
 
-import Login from './component/Login';
-import Sources from './component/Sources';
 import Articles from './component/Articles';
 import FavoriteNews from './component/FavoriteNews';
-import NopageFound from './component/NopageFound';
+import Login from './component/Login';
+import NopageFound from './component/NoPageFound';
+import Sources from './component/Sources';
 
 // Route defines all the route used in the application
 const Routes = () => {
