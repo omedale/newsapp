@@ -19,7 +19,7 @@ describe('Login Component :', () => {
     match: { params: { id: 'abc-news-au' }, isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
     filterurl: '',
     filterText: '',
-  }
+  };
   it('will render Welcome to NewsApp ', () => {
     const login = shallow(<Login{...props} />);
     expect(login.find('h2').text()).toEqual('Welcome to NewsApp');
