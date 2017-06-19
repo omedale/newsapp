@@ -1,6 +1,12 @@
 import axios from 'axios';
 
 export default {
+/**
+   * Fetches articles from base on the url supplied
+   * @method getSources
+   * @param {string} url
+   * @return {object} - sources
+   */
   getSources: (url) => {
     return new Promise((resolve, reject) => {
       axios.get(url)
@@ -12,7 +18,12 @@ export default {
       });
     });
   },
-
+/**
+   * Fetches articles from base on the url supplied
+   * @method getFilterNewsSource
+   * @param {string} url
+   * @return {object} - articles
+   */
   getFilterNewsSource(url) {
     return new Promise((resolve, reject) => {
       axios.get(url)
