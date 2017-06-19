@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -p & node server.js",
+    "start": "npm run deploy & npm run dev",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "dev": "node server.js",
     "watch": "webpack -d --watch",
     "build": "webpack",
     "serve": "nodemon server.js",
