@@ -19,7 +19,7 @@ const Routes = () => {
         <Route path="/login" component={Login} />
         <Route path="/articles/:id" component={Articles} />
         <Route path="/favorite" component={FavoriteNews} />
-        <Route component={NopageFound} />
+        <Route path="*" component={NopageFound} />
       </Switch>
     </Router>);
 };
