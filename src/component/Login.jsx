@@ -5,23 +5,42 @@ import AlertContainer from 'react-alert';
 import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
 
+/**
+ * Create a react component
+ * @class Articles
+ */
 export default class Login extends React.Component {
-
-  constructor(props, context) {
-    super(props, context);
+ /**
+   * Create a constructor
+   * @constructor
+   * @param {object} props
+   */
+  constructor(props) {
+    super(props);
     this.onSuccess = this.onSuccess.bind(this);
     this.state = {
-      authenticated: AuthStore.isAuthenticated(),
       auth: {},
     };
   }
-
+ /**
+  * executes when the component is mounting
+   * redirect user to login if user has not loggedin
+   * @method componentWillMount
+   * @return {event} - push location
+   */
   componentWillMount() {
-    if (this.state.authenticated === true) {
+    if (AuthStore.isAuthenticated() === true) {
       this.props.history.push('/');
     }
   }
-
+  /**
+   * gets user profile from google
+   *  send the info to store by triggering action: loginuser
+   * redirect to home page
+   * @method onSuccess
+   * @param {object} response
+   * @return {void} - set user authentication details
+   */
   onSuccess(response) {
     this.setState({ auth2: gapi.auth2.getAuthInstance() });
     AuthActions.logUserIn(response.profileObj);
@@ -30,7 +49,11 @@ export default class Login extends React.Component {
     });
     this.props.history.push('/');
   }
-
+  /**
+   * Display error message after unsuccessful signin
+   * @method errorResp
+   * @return {void} - show alert
+   */
   errorResp() {
     this.msg.show('Error in connection', {
       time: 4000,
@@ -38,7 +61,11 @@ export default class Login extends React.Component {
       type: 'success',
     });
   }
-
+/**
+   * Render react component
+   * @method render
+   * @return {function} react-component
+   */
   render() {
     return (
       <div>
@@ -78,7 +105,3 @@ export default class Login extends React.Component {
 Login.propTypes = {
   history: PropTypes.any.isRequired,
 };
-
-
-
-

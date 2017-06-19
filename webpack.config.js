@@ -12,6 +12,7 @@ const config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
+    publicPath: '/public/'
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map',
   resolve: {
@@ -37,6 +38,13 @@ const config = {
       filename: 'src/common/main.css',
       allChunks: true,
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
 

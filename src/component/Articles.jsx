@@ -72,7 +72,7 @@ export default class Articles extends React.Component {
   }
 
   /**
-   * Remove event listener from the Sources store
+   * Remove event listener from the store
    * @method componentWilUnMount
    * @return {event} - removes event
    */
