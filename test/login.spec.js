@@ -1,16 +1,14 @@
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Login from '../src/component/Login';
-
-import mockData from './mock/mock';
 
 require('./mock/test_helper.js');
 
- localStorage.removeItem('omedale_profile');
- localStorage.removeItem('omedale_id_token');
- localStorage.removeItem('omedale_profile_name');
- localStorage.removeItem('omedale_profile_email');
+localStorage.removeItem('omedale_profile');
+localStorage.removeItem('omedale_id_token');
+localStorage.removeItem('omedale_profile_name');
+localStorage.removeItem('omedale_profile_email');
 
 describe('Login Component :', () => {
   const props = {
