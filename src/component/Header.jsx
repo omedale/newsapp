@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';
 
+/**
+ * Create a react component
+ * @class Header
+ */
 export default class Header extends React.Component {
-
+ /**
+   * Create a constructor
+   * @constructor
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +21,20 @@ export default class Header extends React.Component {
     };
   }
 
-
+  /**
+   * Sign Out user
+   * @method filterFavorites
+   * @return {void} - sign out user
+   */
   signOut() {
     AuthActions.logUserOut();
     this.props.history.push('/login');
   }
-
+/**
+   * Render react component
+   * @method render
+   * @return {function} react-component
+   */
   render() {
     return (
       <div>

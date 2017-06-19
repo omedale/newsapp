@@ -1,7 +1,15 @@
 import React from 'react';
 
+/**
+ * Create a react component
+ * @class NopageFound
+ */
 export default class NopageFound extends React.Component {
-  
+/**
+   * Render react component
+   * @method render
+   * @return {function} react-component
+   */
   render() {
     return (
       <div>

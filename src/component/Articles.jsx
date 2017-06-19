@@ -72,7 +72,7 @@ export default class Articles extends React.Component {
   }
 
   /**
-   * Remove event listener from the Sources store
+   * Remove event listener from the news store
    * @method componentWilUnMount
    * @return {event} - removes event
    */
@@ -143,7 +143,7 @@ export default class Articles extends React.Component {
             className=""
             target="_blank"
           >
-            <h3 className="newshead">{source.title.substr(0, 80)}</h3>
+            <h3 className="newshead">{source.title.substr(0, 50)}</h3>
             <div className="newsdesc">{source.description.substr(0, 100)}...
             </div>
           </Link>

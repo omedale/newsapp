@@ -20,13 +20,10 @@ NewsApp application enables users view news by selecting source
 
 ## Technology
 
-1. React
-2. Express
-3. Webpack
-4. Babel
-5. scss
-6. Jest
-7. JQuery
+*  **[React](https://facebook.github.io/react/)** - A JavaScript library for building user interfaces
+*  **[Express](https://expressjs.com/)** - Express is Node.js web application framework
+*  **[JQuery](https://jquery.com/)** - This a javascript library
+
 
 # Dependencies
 
@@ -38,7 +35,7 @@ NewsApp application enables users view news by selecting source
   *  **[eslint](https://www.npmjs.com/package/eslint)** - This is a javascript syntax highlighter used to highligh syntax error during the development of this app
   *  **[jsdom](https://www.npmjs.com/package/jsdom)**, **[jsdom-global](https://www.npmjs.com/package/jsdom-global)**, **[mocha-jsdom](https://www.npmjs.com/package/mocha-jsdom)**, **[mock-local-storage](https://www.npmjs.com/package/mock-local-storage)** - Used to emulate web browser during application testing.
    *  **[node-sass](https://www.npmjs.com/package/node-sass)**, **[sass-loader](https://www.npmjs.com/package/sass-loader)** - This enables the app to use sass (.scss) directly in scripts
-  *  **[nyc](https://www.npmjs.com/package/nyc)** - Used with mocha for test coverage report
+  *  **[jest](https://www.google.com.ng/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwj7kJqXk8rUAhXkLMAKHW2ICPwQFggkMAA&url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fjest&usg=AFQjCNG6mScpYVllIQqsYUFlECVccwfTwg&sig2=UGTyMGDHitKf0V22sgLKXA)** - Used with mocha for test coverage report
   *  **[sinon](https://www.npmjs.com/package/sinon)** - Used with mocha and enzyme for mocking React components during test.
 
   ## Dependencies
@@ -54,8 +51,7 @@ NewsApp application enables users view news by selecting source
 *  **[flux](https://www.npmjs.com/package/flux)** - It enables the app to implement the flux architecture
 *  **[history](https://www.npmjs.com/package/history)** - Allows the app to implement history in routes.
 *  **[json-loader](https://www.npmjs.com/package/json-loader)** - Enables the app to inport json files.
-*  **[lodash](https://www.npmjs.com/package/lodash)** - Used to perform filter on objects
-*  **[react](https://www.npmjs.com/package/react)** - It enables the app to use the React architecture
+* **[react](https://www.npmjs.com/package/react)** - It enables the app to use the React architecture
 *  **[react](https://www.npmjs.com/package/react)** - Used with **[react-dom](https://www.npmjs.com/package/react-dom)** enables the app to use the React architecture
 *  **[react-google-login](https://www.npmjs.com/package/react-google-login)** - Enables authentication with Google
 *  **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** - Used to perform app routing
@@ -65,7 +61,7 @@ NewsApp application enables users view news by selecting source
 ## Front End Dependencies
 *  **[Charisma CSS](https://usman.it/themes/charisma/)** - Some part of the app was styled with this css framework.
 *  **[Font Awesome Icons](https://fontawesome.io/icons/)** - All font used were from Font Awesome library 
-*  **[JQuery](https://)** - Charisma css framework requires JQuery library for some actions. 
+*  **[JQuery](https://www.google.com.ng/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-0ry6k8rUAhVlF8AKHSieBmEQFggkMAA&url=https%3A%2F%2Fjquery.com%2F&usg=AFQjCNFnz7C6MAXGLm7pVcOD_LrOjJUUiA&sig2=xsPUng8k-olBvHXKLQ2O8w)** - Charisma css framework requires JQuery library for some actions. 
 
 
 # Installation
@@ -93,9 +89,29 @@ click the url below for live demo
 https://d0-checkpoint1-newsapp.herokuapp.com/
 
 
-## How to contribute
 
 ## Limitations
 News saved to favorite can only be view on the PC used to save the news, user cannot view favorite news on another PC.
 
-### Troubleshooting & FAQ
+## License
+
+(The MIT License)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

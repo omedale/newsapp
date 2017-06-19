@@ -1,5 +1,5 @@
 import keyMirror from 'keymirror';
-
+// Set all constant
 export default keyMirror({
   RECIEVE_SOURCE: null,
   RECIEVE_SOURCES: null,

@@ -10,8 +10,16 @@ import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
 import LoadingComponent from './LoadingComponent';
 
-
+/**
+ * Create a react component
+ * @class Sources
+ */
 export default class Sources extends React.Component {
+    /**
+   * Create a constructor
+   * @constructor
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -27,43 +35,75 @@ export default class Sources extends React.Component {
       this.props.history.push('/login');
     }
   }
-
+  /**
+   * executes when the component is mounting
+   * Trigger action to fetch source
+   * @method componentWillMount
+   * @return {void} - trigger axious to fetch sources
+   */
   componentWillMount() {
     NewsActions.recieveSources();
   }
-
+  /**
+   * Add event Listener to the News Store
+   * executes when the component is fully mounted
+   * @method componentDidMount
+   * @return {event} - resgister event
+   */
   componentDidMount() {
-      NewsStore.addChangeListener(this.onChange);
+    NewsStore.addChangeListener(this.onChange);
   }
-
+  /**
+   * Remove event listener from the news store
+   * @method componentWilUnMount
+   * @return {event} - removes event
+   */
   componentWillUnmount() {
     NewsStore.removeChangeListener(this.onChange);
   }
-
+  /**
+   * gets filter sources and set the state
+   * @method onChange
+   * @return {state} - Set source to the state
+   */
   onChange() {
     this.setState({
       sources: NewsStore.getSources(),
     });
   }
-  
+ /**
+   * gets filter text and set the state
+   * @method searchSource
+   * @param {string} filterSource
+   * @return {state} - Set search text to the state
+   */
   searchSource(filterSource) {
     this.setState({
       filterText: filterSource,
     });
   }
-
-  setSortAvailable = (sort) => {
+ /**
+   * set sort type available
+   * @method setSortAvailable
+   * @param {array} sort
+   * @return {void} - Set sort type
+   */
+  setSortAvailable(sort) {
     localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
   }
-
+/**
+   * Render react component
+   * @method render
+   * @return {function} react-component
+   */
   render() { 
     let count = 0;
     const newsNode = this.state.sources.map((source) => {
       if (source.name.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
-         count +=1;
-          if(count === this.state.sources.length){
-            return <h3  key={source.name}>Ooops!!.... source not found</h3>;
-          }
+        count +=1;
+        if (count === this.state.sources.length){
+          return <h3 key={source.name}>Ooops!!.... source not found</h3>;
+        }
         return '';
       }
       return (
@@ -72,7 +112,7 @@ export default class Sources extends React.Component {
             key={source.name}
             to={`/articles/${source.id}`}
           >
-            <h3 className="newshead">{source.name}</h3>
+            <h3 className="newshead">{source.name.substr(0, 50)}</h3>
             <span className="newsdesc">{source.description.substr(0, 160)}...</span>
           </Link>
         </li>

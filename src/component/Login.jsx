@@ -5,23 +5,41 @@ import AlertContainer from 'react-alert';
 import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
 
+/**
+ * Create a react component
+ * @class Login
+ */
 export default class Login extends React.Component {
-
-  constructor(props, context) {
-    super(props, context);
+  /**
+   * Create a constructor
+   * @constructor
+   * @param {object} props
+   */
+  constructor(props) {
+    super(props);
     this.onSuccess = this.onSuccess.bind(this);
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
       auth: {},
     };
   }
-
+  /**
+   * redirect user to home
+   * Trigger action to fetch articles
+   * @method componentWillMount
+   * @return {void} - redirect
+   */
   componentWillMount() {
     if (this.state.authenticated === true) {
       this.props.history.push('/');
     }
   }
-
+  /**
+   * On successful login 
+   * @method onSuccess
+   * @param {object} response
+   * @return {void} -signs user in
+   */
   onSuccess(response) {
     this.setState({ auth2: gapi.auth2.getAuthInstance() });
     AuthActions.logUserIn(response.profileObj);
@@ -30,7 +48,11 @@ export default class Login extends React.Component {
     });
     this.props.history.push('/');
   }
-
+/**
+   * Triggers login is not successful
+   * @method errorResp
+   * @return {void} - display alert
+   */
   errorResp() {
     this.msg.show('Error in connection', {
       time: 4000,
@@ -38,7 +60,11 @@ export default class Login extends React.Component {
       type: 'success',
     });
   }
-
+/**
+   * Render react component
+   * @method render
+   * @return {function} react-component
+   */
   render() {
     return (
       <div>
