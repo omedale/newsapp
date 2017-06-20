@@ -51,7 +51,7 @@ export default class FavoriteNews extends React.Component {
    * @return {void} - redirect
    */
   componentDidMount() {
-    if (this.state.authenticated === false){
+    if (this.state.authenticated === false) {
       this.props.history.push('/login');
     }
   }

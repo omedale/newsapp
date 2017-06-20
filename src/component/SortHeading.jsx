@@ -38,7 +38,12 @@ export default class SortHeading extends React.Component {
     if (this.state.sortType !== '') {
       sortNews = this.state.sortType.map((sort) => {
         return (
-          <li key={sort}><Link to={`/articles/${this.props.filterurl}/${sort}`}>{sort.toUpperCase()} NEWS</Link></li>
+          <li
+            key={sort}
+          >
+            <Link
+              to={`/articles/${this.props.filterurl}/${sort}`}
+            >{sort.toUpperCase()} NEWS</Link></li>
         );
       });
     }
