@@ -18,8 +18,8 @@ export default class SortHeading extends React.Component {
     };
   }
 /**
-   * executes when the component is mounting
-   * @method componentWillMount
+   * executes after component mount
+   * @method componentDidMount
    * @return {void} - set sortype available
    */
   componentDidMount() {
