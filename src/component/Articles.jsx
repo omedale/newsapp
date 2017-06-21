@@ -143,7 +143,7 @@ export default class Articles extends React.Component {
             className=""
             target="_blank"
           >
-            <h3 className="newshead">{source.title.substr(0, 50)}</h3>
+            <h3 className="newshead">{source.title.substr(0, 60)}...</h3>
             <div className="newsdesc">{source.description.substr(0, 100)}...
             </div>
           </Link>

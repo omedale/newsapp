@@ -35,7 +35,7 @@ export default class Login extends React.Component {
     }
   }
   /**
-   * On successful login 
+   * On successful login
    * @method onSuccess
    * @param {object} response
    * @return {void} -signs user in
@@ -47,18 +47,6 @@ export default class Login extends React.Component {
 
     });
     this.props.history.push('/');
-  }
-/**
-   * Triggers login is not successful
-   * @method errorResp
-   * @return {void} - display alert
-   */
-  errorResp() {
-    this.msg.show('Error in connection', {
-      time: 4000,
-      position: 'top left',
-      type: 'success',
-    });
   }
 /**
    * Render react component

@@ -81,7 +81,6 @@ export default class Header extends React.Component {
                     <span className="caret" />
                   </button>
                   <ul className="dropdown-menu">
-                    <li className="divider" />
                     <li>
                       <a href="" onClick={this.signOut}>Logout</a></li>
                   </ul>

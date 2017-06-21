@@ -161,7 +161,7 @@ export default class FavoriteNews extends React.Component {
               className=""
               target="_blank"
             >
-              <h3 className="newshead">{fav.title.substr(0, 50)}</h3><br />
+              <h3 className="newshead">{fav.title.substr(0, 60)}...</h3>
               <div className="newsdesc">{fav.description.substr(0, 100)}...</div>
             </Link>
             <div className="row rowbtn"><button onClick={() => this.setDeleteItem(fav)} className="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteFavorite">Delete </button><span className="pull-right "> <FacebookShareButton url={fav.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton className="twitterclass" url={fav.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
