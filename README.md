@@ -8,9 +8,8 @@
 NewsApp application enables users view news by selecting source
 ## Features
 <ul>
-<li>User can search for news sources</li>
-<li>Search News Sources</li>
-<li>user view all articles on a page</li>
+<li>User can search for available news sources</li>
+<li>User can view all articles on a page</li>
 <li>User can search for articles</li>
 <li>User can sort Articles based on available sort type</li>
 <li>User can login via Google</li>
@@ -29,8 +28,6 @@ NewsApp application enables users view news by selecting source
 
 ## Development Dependencies
 *  The following depencies are required by the app during developmment
-  *  **[Babel-register](https://www.npmjs.com/package/babel-register)** - This framework helps to compile from es6 to es5
-  *  **[css-loader](https://www.npmjs.com/package/css-loader)** - The  css-loader is used with webpack and it interprets @import and url() like import/require()
   *  **[enzyme](https://www.npmjs.com/package/enzyme)** - Enzyme is used together with mocha, chai and expect.js to test this application
   *  **[eslint](https://www.npmjs.com/package/eslint)** - This is a javascript syntax highlighter used to highligh syntax error during the development of this app
   *  **[jsdom](https://www.npmjs.com/package/jsdom)**, **[jsdom-global](https://www.npmjs.com/package/jsdom-global)**, **[mocha-jsdom](https://www.npmjs.com/package/mocha-jsdom)**, **[mock-local-storage](https://www.npmjs.com/package/mock-local-storage)** - Used to emulate web browser during application testing.
@@ -46,16 +43,26 @@ NewsApp application enables users view news by selecting source
 *  **[babel-eslint](https://www.npmjs.com/package/babel-eslint)** - Used with ESlint to lint syntax errors
 *  **[babel-loader](https://www.npmjs.com/package/babel-loader)** - Used with Webpack to transpile javascript codes
 *  **[babel-plugin-react-html-attrs](https://www.npmjs.com/package/babel-plugin-react-html-attrs)** - It help convert JSX `class` attribute into `className` 
+*  **[Babel-register](https://www.npmjs.com/package/babel-register)** - This framework helps to compile from es6 to es5
+*  **[css-loader](https://www.npmjs.com/package/css-loader)** - The  css-loader is used with webpack and it interprets @import and url() like import/require()
 *  **[coveralls](https://www.npmjs.com/package/coveralls)** - Display test coverage
+*  **[dotenv](https://www.npmjs.com/package/dotenv)** - To protect secret ID
 *  **[express](https://www.npmjs.com/package/express)** - Used as the web server for this application
+*  **[events](https://www.npmjs.com/package/events)** - Use to create emiter fir flux implementation
 *  **[flux](https://www.npmjs.com/package/flux)** - It enables the app to implement the flux architecture
 *  **[history](https://www.npmjs.com/package/history)** - Allows the app to implement history in routes.
 *  **[json-loader](https://www.npmjs.com/package/json-loader)** - Enables the app to inport json files.
-* **[react](https://www.npmjs.com/package/react)** - It enables the app to use the React architecture
+*  **[json-loader](https://www.npmjs.com/package/json-loader)** - Enables the app to inport json files.
+* **[keymirror](https://www.npmjs.com/package/keymirror)** - used to create an object with values equal to its key names in constant files
+* **[nodemon](https://www.npmjs.com/package/nodemon)** - to watch the files in the directory for any files change
+* **[path](https://www.npmjs.com/package/nodemon)** - to get paths during production
+* **[prop-type](https://www.npmjs.com/package/prop-types)** - used to document the intended types of properties passed to components
 *  **[react](https://www.npmjs.com/package/react)** - Used with **[react-dom](https://www.npmjs.com/package/react-dom)** enables the app to use the React architecture
 *  **[react-google-login](https://www.npmjs.com/package/react-google-login)** - Enables authentication with Google
+*  **[react-loading](https://www.npmjs.com/package/react-loading)** - used to add animation while app is loading
 *  **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** - Used to perform app routing
 *  **[webpack](https://www.npmjs.com/package/react-router-dom)** - Used to bundle the app's js and scss files for usage in the browser
+*  **[sass-loader](https://www.npmjs.com/package/sass-loader)** - Used for loading sass style
 *  **[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server)** - Serves as the server during development.
 
 ## Front End Dependencies
