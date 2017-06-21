@@ -33,4 +33,14 @@ describe('Search Component :', () => {
     const headerInstance = header.instance().signOut();
     expect(headerInstance).toEqual(undefined);
   });
+  it('should have method showSources', () => {
+    const { header } = option();
+    const headerInstance = header.instance().showSources();
+    expect(headerInstance).toEqual(undefined);
+  });
+  it('should have method showFavorite', () => {
+    const { header } = option();
+    const headerInstance = header.instance().showFavorite();
+    expect(headerInstance).toEqual(undefined);
+  });
 });

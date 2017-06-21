@@ -31,6 +31,22 @@ export default class Header extends React.Component {
     this.props.history.push('/login');
   }
 /**
+   * Navigate to sources page
+   * @method showSources
+   * @return {void} - navigate
+   */
+  showSources() {
+    this.props.history.push('/');
+  }
+/**
+   * Navigate to favorite page
+   * @method showSources
+   * @return {void} - navigate
+   */
+  showFavorite() {
+    this.props.history.push('/favorite');
+  }
+/**
    * Render react component
    * @method render
    * @return {function} react-component
@@ -46,8 +62,8 @@ export default class Header extends React.Component {
               </div>
               <div className="">
                 <ul className="nav navbar-nav">
-                  <li><a href="/">Sources</a></li>
-                  <li><a href="/favorite">Favorite</a></li>
+                  <li><button className="navbtn" onClick={() => this.showSources()} >Sources</button></li>
+                  <li><button className="navbtn" onClick={() => this.showFavorite()}>Favorite</button></li>
                 </ul>
                 <div className="btn-group pull-right">
                   <button

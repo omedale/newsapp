@@ -19,11 +19,11 @@ const TwitterIcon = generateShareIcon('twitter');
  * @class FavoriteNews
  */
 export default class FavoriteNews extends React.Component {
- /**
-   * Create a constructor
-   * @constructor
-   * @param {object} props
-   */
+  /**
+    * Create a constructor
+    * @constructor
+    * @param {object} props
+    */
   constructor() {
     super();
     this.state = {
@@ -55,11 +55,11 @@ export default class FavoriteNews extends React.Component {
       this.props.history.push('/login');
     }
   }
- /**
-   * Delete set news
-   * @method deleteFavorite
-   * @return {void} - set news
-   */
+  /**
+    * Delete set news
+    * @method deleteFavorite
+    * @return {void} - set news
+    */
   deleteFavorite() {
     const article = JSON.parse(localStorage.getItem('omedale_confirm_delete'));
     let newFavorite = [];
@@ -93,28 +93,28 @@ export default class FavoriteNews extends React.Component {
    * @return {void} - Delete news
    */
   deleteAll() {
-    if (NewsStore.getFavoriteNews() === ''){
+    if (NewsStore.getFavoriteNews() === '') {
       this.showAlert('Favorite List is Empty');
       return;
     }
     localStorage.removeItem(AuthStore.getUserEmail());
     window.location.reload();
   }
- /**
-   * Filter in input array
-   * @method removeNews
-   * @param {arrray} obj
-   * @return {void} - return filtered array
-   */
+  /**
+    * Filter in input array
+    * @method removeNews
+    * @param {arrray} obj
+    * @return {void} - return filtered array
+    */
   removeNews(obj) {
     return obj !== '' && typeof (obj) !== 'string';
   }
- /**
-   * Set news to be deleted
-   * @method setDeleteItem
-   * @param {object} article
-   * @return {void} - set news
-   */
+  /**
+    * Set news to be deleted
+    * @method setDeleteItem
+    * @param {object} article
+    * @return {void} - set news
+    */
   setDeleteItem(article) {
     localStorage.setItem('omedale_confirm_delete', JSON.stringify(article));
   }
@@ -131,19 +131,19 @@ export default class FavoriteNews extends React.Component {
       type: 'success',
     });
   }
-/**
-   * Render react component
-   * @method render
-   * @return {function} react-component
-   */
+  /**
+     * Render react component
+     * @method render
+     * @return {function} react-component
+     */
   render() {
     let newsNode = [];
     let count = 0;
     if (this.state.favoritenews !== '') {
       newsNode = this.state.favoritenews.map((fav) => {
         if (fav.title.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
-          count +=1;
-          if (count === this.state.favoritenews.length){
+          count += 1;
+          if (count === this.state.favoritenews.length) {
             return <h3 key={`${fav.title}${fav.description}`}>Ooops!!.... article not found</h3>;
           }
           return '';
@@ -173,20 +173,20 @@ export default class FavoriteNews extends React.Component {
         <Header history={this.props.history} />
         <div className="ch-container outercontainer">
           <div className="">
-          <div className="row">
-            <button className="btn pull-left clearbtn" onClick={() => this.deleteAll()} >clear all</button>
-            <SearchBar
-              filterText={this.state.filterText}
-              onFilterTextInput={this.filterFavorites}
-            />
-            <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-          </div>
+            <div className="row">
+              <button className="btn pull-left clearbtn" onClick={() => this.deleteAll()} >clear all</button>
+              <SearchBar
+                filterText={this.state.filterText}
+                onFilterTextInput={this.filterFavorites}
+              />
+              <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+            </div>
             <div className="box-inner">
-            <div className="tab-content">
+              <div className="tab-content">
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad listcontainer">
-                      {newsNode.length > 0 ? newsNode : 'No favorite news' }
+                      {newsNode.length > 0 ? newsNode : 'No favorite news'}
                     </ul>
                   </div>
                 </div>
@@ -195,23 +195,23 @@ export default class FavoriteNews extends React.Component {
           </div>
           <Footer />
         </div>
-       <div id="deleteFavorite" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <button type="button" className="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div className="modal-body">
-                  <p>Are you sure you want to delete</p>
-                </div>
-                <div className="modal-footer">
-                  <button onClick={() => this.deleteFavorite()} className="btn btn-primary btn-sm" >Yes </button>
-                  <button type="button" className="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
-                </div>
+        <div id="deleteFavorite" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
               </div>
-
+              <div className="modal-body">
+                <p>Are you sure you want to delete</p>
+              </div>
+              <div className="modal-footer">
+                <button onClick={() => this.deleteFavorite()} className="btn btn-primary btn-sm" >Yes </button>
+                <button type="button" className="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+              </div>
             </div>
+
           </div>
+        </div>
       </div>
     );
   }
