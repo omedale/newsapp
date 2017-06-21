@@ -73,7 +73,9 @@ export default class FavoriteNews extends React.Component {
       newFavorite = favorite.filter(this.removeNews);
       localStorage.removeItem(AuthStore.getUserEmail());
       localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(newFavorite));
-      window.location.reload();
+      this.setState({
+        favoritenews: NewsStore.getFavoriteNews(),
+      });
     }
   }
   /**
@@ -89,7 +91,7 @@ export default class FavoriteNews extends React.Component {
   }
   /**
    * Delete all favorite
-   * @method filterFavorites
+   * @method deleteAll
    * @return {void} - Delete news
    */
   deleteAll() {
@@ -98,10 +100,12 @@ export default class FavoriteNews extends React.Component {
       return;
     }
     localStorage.removeItem(AuthStore.getUserEmail());
-    window.location.reload();
+    this.setState({
+      favoritenews: NewsStore.getFavoriteNews(),
+    });
   }
   /**
-    * Filter in input array
+    * Filter input array
     * @method removeNews
     * @param {arrray} obj
     * @return {void} - return filtered array
@@ -205,7 +209,7 @@ export default class FavoriteNews extends React.Component {
                 <p>Are you sure you want to delete</p>
               </div>
               <div className="modal-footer">
-                <button onClick={() => this.deleteFavorite()} className="btn btn-primary btn-sm" >Yes </button>
+                <button onClick={() => this.deleteFavorite()} className="btn btn-primary btn-sm" data-dismiss="modal">Yes </button>
                 <button type="button" className="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
               </div>
             </div>

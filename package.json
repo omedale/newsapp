@@ -1,5 +1,5 @@
 {
-  "name": "d0-checkpoint1-newsapp",
+  "name": "d0-checkpoint-newsapp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "serve": "nodemon server.js",
     "test": "jest ./test/ mocks-local-storage --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
-  "author": "",
+  "author": "oluwafemi medalem <oluwafemi.medale@andela.com>",
   "license": "ISC",
   "devDependencies": {
     "enzyme": "^2.8.2",
@@ -38,6 +38,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
+    "charisma": "^0.0.10",
     "cover": "^0.2.9",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.3",
@@ -83,5 +84,6 @@
     "style-loader": "^0.18.1",
     "webpack": "^2.6.0",
     "webpack-dev-server": "^2.4.5"
-  }
+  },
+  "repository": "https://github.com/omedale/d0-checkpoint1-newsapp.git"
 }
