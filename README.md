@@ -15,6 +15,7 @@ NewsApp application enables users view news by selecting source
 <li>User can login via Google</li>
 <li>User can save news to favorite</li>
 <li>User can delete favorite news</li>
+<li>User can share articles on social media</li>
 </ul>
 
 ## Technology
