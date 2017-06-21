@@ -14,18 +14,8 @@ export default class SortHeading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: [],
-    };
-  }
-/**
-   * executes after component mount
-   * @method componentDidMount
-   * @return {void} - set sortype available
-   */
-  componentDidMount() {
-    this.setState({
       sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
-    });
+    };
   }
 /**
    * Render react component
@@ -34,9 +24,8 @@ export default class SortHeading extends React.Component {
    */
   render() {
     let sortNews = [];
-
-    if (this.state.sortType !== '') {
-      sortNews = this.state.sortType.map((sort) => {
+    if (this.state.sortType.sortAvailable !== '') {
+      sortNews = this.state.sortType.sortAvailable.map((sort) => {
         return (
           <li
             key={sort}

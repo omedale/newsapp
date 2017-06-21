@@ -89,7 +89,8 @@ export default class Sources extends React.Component {
    * @return {void} - Set sort type
    */
   setSortAvailable(sort) {
-    localStorage.setItem('omedale_sort_value', JSON.stringify(sort.sortBysAvailable));
+    const articleData = { name: sort.name, sortAvailable: sort.sortBysAvailable };
+    localStorage.setItem('omedale_sort_value', JSON.stringify(articleData));
   }
 /**
    * Render react component
@@ -124,16 +125,19 @@ export default class Sources extends React.Component {
         <Header history={this.props.history} />
         <div className="ch-container outercontainer">
           <div className="">
-          <div className="row">
-            <SearchBar
-              filterText={this.state.filterText}
-              onFilterTextInput={this.searchSource}
-            />
-          </div>
+            <div className="row">
+              <div className="col-sm-6">
+                <h2>News Sources</h2>
+              </div>
+              <SearchBar
+                filterText={this.state.filterText}
+                onFilterTextInput={this.searchSource}
+              />
+            </div>
             <div className="">
               <div className="box-inner">
                 <ul className="dashboard-list listpad listcontainer">
-                   { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
+                  { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
                 </ul>
               </div>
             </div>

@@ -33,6 +33,7 @@ export default class Articles extends React.Component {
       authenticated: AuthStore.isAuthenticated(),
       sortType: localStorage.getItem('omedale_sort_value'),
       sortedArticle: [],
+      sourceName: JSON.parse(localStorage.getItem('omedale_sort_value')).name,
       filterText: '',
       sourceID: this.props.location.pathname.split('/')[2],
     };
@@ -174,6 +175,9 @@ export default class Articles extends React.Component {
         <div className="ch-container outercontainer">
           <div className="">
             <div className="row">
+              <div className="col-sm-6">
+                <h2>{this.state.sourceName}</h2>
+              </div>
               <SearchBar
                 filterText={this.state.filterText}
                 onFilterTextInput={this.filterArticle}

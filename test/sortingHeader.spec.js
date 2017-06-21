@@ -6,6 +6,8 @@ import SortHeading from '../src/component/SortHeading';
 
 require('./mock/test_helper.js');
 
+localStorage.setItem('omedale_sort_value', JSON.stringify({ name: 'ABC', sortAvailable: ['top', 'latest'] }));
+
 function option() {
   const props = {
     filterurl: '',
@@ -32,10 +34,5 @@ describe('Search Component :', () => {
   it('contain headerline class', () => {
     const { header } = option();
     expect(header.find('.headerline').length).toEqual(1);
-  });
-  it('calls componentDidMount', () => {
-    const spy = sinon
-    .spy(SortHeading.prototype, 'componentDidMount');
-    expect(spy.calledOnce).toEqual(false);
   });
 });
