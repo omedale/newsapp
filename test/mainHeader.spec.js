@@ -24,9 +24,9 @@ describe('Search Component :', () => {
     const { header } = option();
     expect(header.find('div').length).toEqual(6);
   });
-  it('renders three links', () => {
+  it('renders 2 links', () => {
     const { header } = option();
-    expect(header.find('a').length).toEqual(4);
+    expect(header.find('a').length).toEqual(2);
   });
   it('should have method signOut', () => {
     const { header } = option();
