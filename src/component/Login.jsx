@@ -66,6 +66,7 @@ export default class Login extends React.Component {
    * @return {function} react-component
    */
   render() {
+    //console.log(process.env.CLIENT_ID);
     return (
       <div>
         <div className="row">
@@ -82,7 +83,7 @@ export default class Login extends React.Component {
             <div>
 
               <GoogleLogin
-                clientId={'119051801386-fm4u444ls4fv0djtbac2u2lrseis815i.apps.googleusercontent.com'}
+                clientId={process.env.CLIENT_ID}
                 onSuccess={this.onSuccess}
                 onFailure={this.errorResp}
                 offline={false}
@@ -104,7 +105,3 @@ export default class Login extends React.Component {
 Login.propTypes = {
   history: PropTypes.any.isRequired,
 };
-
-
-
-
