@@ -44,11 +44,3 @@ describe('Sources Component :', () => {
     expect(setSortAvailable).toEqual(undefined);
   });
 });
-
-
-
-
-
-
-
-
