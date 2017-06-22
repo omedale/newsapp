@@ -10,7 +10,7 @@ import Header from './Header';
 import SortHeading from './SortHeading';
 import SearchBar from './SearchBar';
 import Footer from './Footer';
-import Loading from './LoadingComponent';
+import Loading from './Loader';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 

@@ -8,7 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
-import Loading from './LoadingComponent';
+import Loading from './Loader';
 
 /**
  * Create a react component
