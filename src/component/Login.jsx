@@ -54,7 +54,6 @@ export default class Login extends React.Component {
    * @return {function} react-component
    */
   render() {
-    //console.log(process.env.CLIENT_ID);
     return (
       <div>
         <div className="row">
@@ -66,7 +65,6 @@ export default class Login extends React.Component {
           <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
           <div className="well col-md-5 center login-box">
             <div className="alert alert-info">
-            {process.env.CLIENT_ID}
             Please login with your Google account.
             </div>
             <div>
