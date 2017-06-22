@@ -14,7 +14,8 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map',
+  devtool: process.env.NODE_ENV === 'production' ?
+    'eval-source-map' : 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
   },

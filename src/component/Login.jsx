@@ -68,7 +68,6 @@ export default class Login extends React.Component {
             Please login with your Google account.
             </div>
             <div>
-
               <GoogleLogin
                 clientId={process.env.CLIENT_ID}
                 onSuccess={this.onSuccess}
