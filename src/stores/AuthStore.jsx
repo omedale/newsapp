@@ -1,64 +1,102 @@
 
 import EventEmitter from 'events';
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
-import AuthConstants from '../constants/AuthConstants';
+import AuthConstants from '../constants/AppConstants';
 
 const CHANGE_EVENT = 'change';
 
-function setUser(profile, token) {
-  if (!localStorage.getItem('omedale_id_token')) {
+ /**
+   * Set user profile
+   * @method setUser
+   * @param {object} profile
+   * @return {void} - set profile
+   */
+export function setUser(profile) {
+  if (!localStorage.getItem('omedale_profile')) {
     localStorage.setItem('omedale_profile', JSON.stringify(profile));
-    localStorage.setItem('omedale_id_token', token);
-    localStorage.setItem('omedale_profile_name', profile.name);
-    localStorage.setItem('omedale_profile_email', profile.email);
   }
 }
-
-function removeUser() {
+ /**
+   * Remove user profile
+   * @method removeUser
+   * @return {void} - remove user
+   */
+export function removeUser() {
   localStorage.removeItem('omedale_profile');
-  localStorage.removeItem('omedale_id_token');
 }
 
+/**
+ * Create a EventEmmiter
+ * @class AuthStoreClass
+ */
 class AuthStoreClass extends EventEmitter {
+ /**
+   * Emit changes in the store
+   * @method emitChange
+   * @return {event} - emit changes
+   */
   emitChange() {
     this.emit(CHANGE_EVENT);
   }
-
+  /**
+   * Add event listener to the store
+   * @method addChangeListener
+   * @param {func} callback
+   * @return {event} - add event
+   */
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   }
-
+  /**
+   * Remove event listener to the store
+   * @method removeChangeListener
+   * @param {func} callback
+   * @return {void} - remove event
+   */
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
-
+/**
+   * verifies if user has sign in or not
+   * @method isAuthenticated
+   * @return {boolean} - true or false
+   */
   isAuthenticated() {
-    if (localStorage.getItem('omedale_id_token')) {
+    if (localStorage.getItem('omedale_profile')) {
       return true;
     }
     return false;
   }
-  getUser() {
-    return localStorage.getItem('omedale_profile');
-  }
-  getUserName() {
-    if (localStorage.getItem('omedale_profile_name')) {
-      return localStorage.getItem('omedale_profile_name');
+/**
+   * Get current user name
+   * @method getUserName
+   * @return {string} - user familyname
+   */
+  getUserName() {  
+    if (localStorage.getItem('omedale_profile')) {
+      const userName = JSON.parse(localStorage.getItem('omedale_profile'));
+      return userName.familyName;
     }
-    localStorage.setItem('omedale_profile_name', ' ');
-    return localStorage.getItem('omedale_profile_name');
+    return 'Unknown user';
   }
+/**
+   * Get current user email
+   * @method getUserEmail
+   * @return {string} - user email
+   */
   getUserEmail() {
-    if (localStorage.getItem('omedale_profile_email')) {
-      return localStorage.getItem('omedale_profile_email');
+    if (localStorage.getItem('omedale_profile')) {
+      const userEmail = JSON.parse(localStorage.getItem('omedale_profile'));
+      return userEmail.email;
     }
-    localStorage.setItem('omedale_profile_email', ' ');
-    return localStorage.getItem('omedale_profile_email');
+    return 'Unknown';
   }
 }
 
+// create a new instance of `NewsStoreClass`
 const AuthStore = new AuthStoreClass();
 
+// register a dispatcher and emit event base on the triggered action
 AuthStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case AuthConstants.LOGIN_USER:

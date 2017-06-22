@@ -10,8 +10,36 @@
 .newshead{
     color: black;
 }
+.articleImage{
+    border-radius: 5% !important;
+}
 .favicon{
     color: #178acc;
+}
+.loading{
+     height: 600px !important;
+      width: 455px !important;
+          margin-left: 10% !important;
+}
+
+.twitterclass{
+    padding-right: 10px !important;
+}
+.fixhader{
+    position: fixed !important; 
+    top: 0 !important; 
+    width: 100% !important;}
+.headsty{
+        margin-right: 10%;
+    margin-left: 10%;
+}
+.avata{
+    height: 150px !important;
+    width: 150px !important;
+}
+.srcavata{
+    height: 85px !important;
+    width: 85px !important;
 }
 .favbtn{
     border-radius: 50%;
@@ -23,23 +51,85 @@
     float: right !important;
 }
 .rowbtn{
-        margin-left: 0px !important;
+    margin-left: 0px !important;
     margin-right: 0px !important;
+    margin-top: 4% !important;
 }
 .headerline{
     border-bottom: 1px solid #EBEBEB;
 }
+.nopagefound{
+        margin-top: 10%;
+}
 .listpad{
     padding-right: 3%;
+}
+.iconspace{
+        margin-right: 10px;
+}
+.innernav{
+    margin-right: 68px !important;
+    margin-left: 68px !important;
 }
 .searchbar{
     width: 40%;
     float: right;
-    margin-right: 3%;
+    margin-right: 2%;
+    margin-top: 2%;
 }
 .clearbtn{
-    margin-left: 3%;
+    margin-left: 15px;
     background: #2fa4e7;
     border: 1px solid #2fa4e7;
     color: white;
+}
+.bodybox{
+        margin-top: 10% !important;
+}
+.listcontainer{
+    height: 100%;
+    overflow: auto;
+    background: #fff;
+}
+.outercontainer{
+    height: 72%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.nav-inner{
+    margin-right: 11%;
+    margin-left: 11%;
+}
+.navbtn{
+    background-color: #2fa4e7;
+    border: none;
+    color: white;
+    padding: 15px 32px !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block !important;
+    position: relative !important;
+    display: block;
+    border-radius: 2px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px !important;
+
+}
+.logoutbtn{
+    width: 100%;
+    background-color: #cccccc;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block !important;
+    position: relative !important;
+    display: block;
+    border-radius: 2px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.userName{
+  padding-right: 15px;
 }

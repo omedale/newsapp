@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./common/Main";
-import style from './common/main.scss';
-
-ReactDOM.render(<Main />,
+import Routes from "./Routes";
+ReactDOM.render(<Routes />,
     document.getElementById("container"),
 )
