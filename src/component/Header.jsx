@@ -75,7 +75,7 @@ export default class Header extends React.Component {
                       aria-hidden="true"
                     />
                     <span
-                      className="hidden-sm hidden-xs"
+                      className="hidden-sm hidden-xs userName"
                     >
                       {this.state.userName}</span>
                     <span className="caret" />

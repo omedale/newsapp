@@ -5,7 +5,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/omedale/d0-checkpoint1-newsapp/badge.svg?branch=chore%2Ffeedback-fix)](https://coveralls.io/github/omedale/d0-checkpoint1-newsapp?branch=chore%2Ffeedback-fix)
 
 # Introduction
-NewsApp application enables users view news by selecting source
+NewsApp is an open source application that enables users view news by selecting preffered sources and it also enables users to share news on social media. The application is easy to use and it provides users with latest news, users can also save fovorite news.
+**[Click here](https://d0-checkpoint1-newsapp.herokuapp.com/)** to access the application
+
+
+
 ## Features
 <ul>
 <li>User can search for available news sources</li>
