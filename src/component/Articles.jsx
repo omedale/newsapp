@@ -10,7 +10,7 @@ import Header from './Header';
 import SortHeading from './SortHeading';
 import SearchBar from './SearchBar';
 import Footer from './Footer';
-import LoadingComponent from './LoadingComponent';
+import Loading from './LoadingComponent';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
@@ -192,7 +192,7 @@ export default class Articles extends React.Component {
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad listcontainer">
-                      { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
+                      { newsNode.length > 0 ? newsNode : <Loading /> }
                     </ul>
                   </div>
                 </div>

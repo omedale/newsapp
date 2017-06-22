@@ -8,7 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
-import LoadingComponent from './LoadingComponent';
+import Loading from './LoadingComponent';
 
 /**
  * Create a react component
@@ -137,7 +137,7 @@ export default class Sources extends React.Component {
             <div className="">
               <div className="box-inner">
                 <ul className="dashboard-list listpad listcontainer">
-                  { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
+                  { newsNode.length > 0 ? newsNode : <Loading /> }
                 </ul>
               </div>
             </div>
