@@ -1,6 +1,9 @@
 const webpack = require('webpack');
+const env = require('dotenv').config();
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
@@ -11,18 +14,10 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
+  devtool: process.env.NODE_ENV === 'production' ?
+    'eval-source-map' : 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
-  },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
-  },
-  externals: {
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
   },
   module: {
     loaders: [
@@ -33,7 +28,10 @@ const config = {
         loader: 'babel-loader',
       },
        { test: /\.scss$/, loader: ExtractTextPlugin.extract({ use: 'css-loader' }) },
-       { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
+       { 
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader', use: 'css-loader' }) },
     ],
   },
   plugins: [
@@ -41,6 +39,13 @@ const config = {
       filename: 'src/common/main.css',
       allChunks: true,
     }),
+    new webpack.DefinePlugin({
+      'process': {
+        'env': {
+          'CLIENT_ID': JSON.stringify(process.env.CLIENT_ID)
+        }
+      }
+    })
   ],
 };
 
