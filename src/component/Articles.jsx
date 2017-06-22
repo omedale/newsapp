@@ -44,7 +44,7 @@ export default class Articles extends React.Component {
    * executes when the component is mounting
    * Trigger action to fetch articles
    * @method componentWillMount
-   * @return {void} - trigger saxious to fetch article
+   * @return {void} - trigger axios to fetch article
    */
   componentWillMount() {
     NewsActions.getFilterNewsSource(this.props.match.params.id, '');

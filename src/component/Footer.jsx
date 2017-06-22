@@ -11,7 +11,7 @@ const Footer = () => {
         >© <a href="" >Medale</a> 2017</p>
         <p
           className="col-md-3 col-sm-3 col-xs-12 powered-by"
-        >Powered by: <a href="">Andela</a></p>
+        ></p>
       </footer>
     </div>);
 };
