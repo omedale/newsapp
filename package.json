@@ -53,6 +53,7 @@
     "expect": "^1.20.2",
     "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.1.0",
+    "flux": "^3.1.2",
     "json-loader": "^0.5.4",
     "keymirror": "^0.1.1",
     "lcov-parse": "0.0.10",
