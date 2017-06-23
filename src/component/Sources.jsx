@@ -8,7 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
-import LoadingComponent from './LoadingComponent';
+import Loading from './LoadingComponent';
 
 /**
  * Create a react component
@@ -111,7 +111,7 @@ export default class Sources extends React.Component {
         <li onClick={() => this.setSortAvailable(source)} key={source.name}>
           <Link
             key={source.name}
-            to={`/articles/${source.id}`}
+            to={`/articles/${source.id}/${source.name}`}
           >
             <h3 className="newshead">{source.name.substr(0, 50)}</h3>
             <span className="newsdesc">{source.description.substr(0, 160)}...</span>
@@ -137,7 +137,7 @@ export default class Sources extends React.Component {
             <div className="">
               <div className="box-inner">
                 <ul className="dashboard-list listpad listcontainer">
-                  { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
+                  { newsNode.length > 0 ? newsNode : <Loading /> }
                 </ul>
               </div>
             </div>

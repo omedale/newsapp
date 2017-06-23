@@ -11,7 +11,8 @@ localStorage.setItem('omedale_sort_value', JSON.stringify({ name: 'ABC', sortAva
 function option() {
   const props = {
     filterurl: '',
-    sortType: ['top', 'latest', 'popular']
+    sortType: ['top', 'latest', 'popular'],
+    sourceName: '',
   };
   const header = shallow(<SortHeading{...props} />);
   return {

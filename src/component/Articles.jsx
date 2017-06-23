@@ -10,7 +10,7 @@ import Header from './Header';
 import SortHeading from './SortHeading';
 import SearchBar from './SearchBar';
 import Footer from './Footer';
-import LoadingComponent from './LoadingComponent';
+import Loading from './LoadingComponent';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
@@ -33,9 +33,9 @@ export default class Articles extends React.Component {
       authenticated: AuthStore.isAuthenticated(),
       sortType: localStorage.getItem('omedale_sort_value'),
       sortedArticle: [],
-      sourceName: JSON.parse(localStorage.getItem('omedale_sort_value')).name,
       filterText: '',
       sourceID: this.props.location.pathname.split('/')[2],
+      sourceName: this.props.location.pathname.split('/')[3],
     };
     this.filterArticle = this.filterArticle.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -68,7 +68,7 @@ export default class Articles extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     const getPath = nextProps.location.pathname.split('/');
-    const sort = getPath[3];
+    const sort = getPath[4];
     NewsActions.getFilterNewsArticle(this.props.match.params.id, sort);
   }
 
@@ -185,14 +185,14 @@ export default class Articles extends React.Component {
             </div>
             <div className="box-inner">
               <div className=" ">
-                <SortHeading filterurl={this.state.sourceID} />
+                <SortHeading sourceName={this.state.sourceName} filterurl={this.state.sourceID} />
               </div>
               <div className="tab-content">
                 <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad listcontainer">
-                      { newsNode.length > 0 ? newsNode : <LoadingComponent /> }
+                      { newsNode.length > 0 ? newsNode : <Loading /> }
                     </ul>
                   </div>
                 </div>

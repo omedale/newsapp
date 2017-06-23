@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';

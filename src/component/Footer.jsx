@@ -1,6 +1,10 @@
 import React from 'react';
 
-// footer component
+/**
+   * Return footer component
+   * @method Footer
+   * @return {function} footer
+   */
 const Footer = () => {
   return (
     <div>
