@@ -17,7 +17,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Sources} history={browserHistory} />
         <Route path="/login" component={Login} />
-        <Route path="/articles/:id" component={Articles} />
+        <Route path="/articles/:id/:name" component={Articles} />
         <Route path="/favorite" component={FavoriteNews} />
         <Route path="*" component={NopageFound} />
       </Switch>

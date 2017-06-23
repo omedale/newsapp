@@ -63,14 +63,17 @@ export default class FavoriteNews extends React.Component {
   deleteFavorite() {
     const article = JSON.parse(localStorage.getItem('omedale_confirm_delete'));
     let newFavorite = [];
-    const favorite = NewsStore.getFavoriteNews();
-    for (let i = 0; i < favorite.length; i++) {
-      if (article.title === favorite[i].title) {
-        favorite[i] = '';
+    let temp = [];
+    //const favorite = NewsStore.getFavoriteNews();
+    const favorites = NewsStore.getFavoriteNews();
+    favorites.forEach((favorite) => {
+      if (article.title != favorite.title) {
+        temp.push(favorite);
+        favorite = '';
       }
-    }
+    });
     if (NewsStore.getFavoriteNews() !== '') {
-      newFavorite = favorite.filter(this.removeNews);
+      newFavorite = temp.filter(this.removeNews);
       localStorage.removeItem(AuthStore.getUserEmail());
       localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(newFavorite));
       this.setState({

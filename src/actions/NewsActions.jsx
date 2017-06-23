@@ -27,11 +27,11 @@ export default {
       });
     });
   },
-// getFilterNewsSource action get articles based on
+// getFilterNewsArticle action get articles based on
 // source id and sortype from axios and dispatch to store
-  getFilterNewsSource(id, filter) {
+  getFilterNewsArticle(id, filter) {
     return NewsAPI
-    .getFilterNewsSource(`https://newsapi.org/v1/articles?source=${id}&sortBy=${filter}&apiKey=213327409d384371851777e7c7f78dfe`)
+    .getFilterNewsArticle(`https://newsapi.org/v1/articles?source=${id}&sortBy=${filter}&apiKey=213327409d384371851777e7c7f78dfe`)
     .then((articles) => {
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_SORT_SOURCE,

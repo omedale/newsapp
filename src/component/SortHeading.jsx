@@ -31,7 +31,7 @@ export default class SortHeading extends React.Component {
             key={sort}
           >
             <Link
-              to={`/articles/${this.props.filterurl}/${sort}`}
+              to={`/articles/${this.props.filterurl}/${this.props.sourceName}/${sort}`}
             >{sort.toUpperCase()} NEWS</Link></li>
         );
       });
@@ -51,5 +51,5 @@ export default class SortHeading extends React.Component {
 
 SortHeading.propTypes = {
   filterurl: PropTypes.string.isRequired,
+  sourceName: PropTypes.string.isRequired,
 };
-
