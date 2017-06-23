@@ -7,6 +7,7 @@ import mockData from './mock/mock';
 require('./mock/test_helper.js');
 
 localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
+//localStorage.setItem('omedale_token', 'hgvng');
 
 describe('AuthStores  :', () => {
   it('contain funtion isAuthenticated and return false', () => {
@@ -34,7 +35,8 @@ describe('AuthStores  :', () => {
     expect(AuthStore.removeChangeListener(callback)).toEqual(undefined);
   });
   it('should call setUser', () => {
-    expect(setUser(mockData.googleProfile)).toEqual(undefined);
+    const token = 'faketoken';
+    expect(setUser(mockData.googleProfile, token)).toEqual(undefined);
   });
   it('should call removeUser', () => {
     expect(removeUser()).toEqual(undefined);

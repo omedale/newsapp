@@ -11,10 +11,9 @@ const CHANGE_EVENT = 'change';
    * @param {object} profile
    * @return {void} - set profile
    */
-export function setUser(profile) {
-  if (!localStorage.getItem('omedale_profile')) {
+export function setUser(profile, token) {
     localStorage.setItem('omedale_profile', JSON.stringify(profile));
-  }
+    localStorage.setItem('omedale_token', token);
 }
  /**
    * Remove user profile
@@ -23,6 +22,7 @@ export function setUser(profile) {
    */
 export function removeUser() {
   localStorage.removeItem('omedale_profile');
+  localStorage.removeItem('omedale_token');
 }
 
 /**
@@ -90,6 +90,18 @@ class AuthStoreClass extends EventEmitter {
       return userEmail.email;
     }
     return 'Unknown';
+  }
+
+  /**
+   * Get current token
+   * @method getToken
+   * @return {string} - user token
+   */
+  getToken() {
+    if (localStorage.getItem('omedale_token')) {
+      return (localStorage.getItem('omedale_token'));
+    }
+    return '';
   }
 }
 

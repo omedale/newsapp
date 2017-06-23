@@ -24,10 +24,6 @@ export default class NopageFound extends React.Component {
                   className="collapse navbar-collapse"
                   id="bs-example-navbar-collapse-1"
                 >
-                  <ul className="nav navbar-nav">
-                    <li><a href="/">Sources</a></li>
-                    <li><a href="/favorite">Favorite</a></li>
-                  </ul>
                 </div>
               </div>
             </div>

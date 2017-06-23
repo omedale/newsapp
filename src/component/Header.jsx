@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';
+import NewsAPI from '../utils/NewsAPI';
 
 /**
  * Create a react component
@@ -19,8 +21,12 @@ export default class Header extends React.Component {
       userName: AuthStore.getUserName(),
       userEmail: AuthStore.getUserEmail(),
     };
+    NewsAPI.verifyUser(AuthStore.getToken(), (res) => {
+      if (res === false) {
+        this.signOut();
+      }
+    });
   }
-
   /**
    * Sign Out user
    * @method filterFavorites

@@ -3,8 +3,9 @@ import AuthConstants from '../constants/AppConstants';
 
 const AuthActions = {
 // logUserIn action dispatches user profile to the store
-  logUserIn: (profile) => {
+  logUserIn: (profile, token) => {
     AppDispatcher.dispatch({
+      token,
       profile,
       actionType: AuthConstants.LOGIN_USER,
     });
@@ -20,3 +21,4 @@ const AuthActions = {
 };
 
 export default AuthActions;
+

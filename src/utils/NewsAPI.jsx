@@ -20,11 +20,11 @@ export default {
   },
 /**
    * Fetches articles from base on the url supplied
-   * @method getFilterNewsSource
+   * @method getFilterNewsArticle
    * @param {string} url
    * @return {object} - articles
    */
-  getFilterNewsSource(url) {
+  getFilterNewsArticle(url) {
     return new Promise((resolve, reject) => {
       axios.get(url)
       .then((res) => {
@@ -34,5 +34,21 @@ export default {
         reject(error.response);
       });
     });
+  },
+/**
+   * Verifies users with token and return callback
+   * @method verifyUser
+   * @param {string} tokenID
+   * @param {function} callback
+   * @return {void} - a boolean
+   */
+  verifyUser(tokenID, callback) {
+    axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokenID}`)
+       .then(() => {
+         callback(true);
+       })
+       .catch(() => {
+         callback(false);
+       });
   },
 };

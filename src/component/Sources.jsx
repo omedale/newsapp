@@ -31,9 +31,9 @@ export default class Sources extends React.Component {
     };
     this.searchSource = this.searchSource.bind(this);
     this.onChange = this.onChange.bind(this);
-    if (this.state.authenticated === false) {
-      this.props.history.push('/login');
-    }
+    // if (this.state.authenticated === false) {
+    //   this.props.history.push('/login');
+    // }
   }
   /**
    * executes when the component is mounting

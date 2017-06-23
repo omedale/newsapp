@@ -42,8 +42,8 @@ describe('AuthActions  :', () => {
     })
   ));
 
-  it('calls axios when getFilterNewsSource is called', () => (
-    NewsAction.getFilterNewsSource().then(() => {
+  it('calls axios when getFilterNewsArticle is called', () => (
+    NewsAction.getFilterNewsArticle().then(() => {
       expect(axiosMock.calledOnce).toBeTruthy();
       expect(dispatcherSpy.calledOnce).toEqual(true);
       dispatcher.dispatch({

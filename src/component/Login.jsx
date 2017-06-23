@@ -30,9 +30,9 @@ export default class Login extends React.Component {
    * @return {void} - redirect
    */
   componentWillMount() {
-    if (this.state.authenticated === true) {
-      this.props.history.push('/');
-    }
+    // if (this.state.authenticated === true) {
+    //   this.props.history.push('/');
+    // }
   }
   /**
    * On successful login
@@ -42,7 +42,7 @@ export default class Login extends React.Component {
    */
   onSuccess(response) {
     this.setState({ auth2: gapi.auth2.getAuthInstance() });
-    AuthActions.logUserIn(response.profileObj);
+    AuthActions.logUserIn(response.profileObj, response.tokenId);
     this.state.auth2.disconnect().then(() => {
 
     });

@@ -47,7 +47,7 @@ export default class Articles extends React.Component {
    * @return {void} - trigger saxious to fetch article
    */
   componentWillMount() {
-    NewsActions.getFilterNewsSource(this.props.match.params.id, '');
+    NewsActions.getFilterNewsArticle(this.props.match.params.id, '');
   }
 
   /**
@@ -69,7 +69,7 @@ export default class Articles extends React.Component {
   componentWillReceiveProps(nextProps) {
     const getPath = nextProps.location.pathname.split('/');
     const sort = getPath[3];
-    NewsActions.getFilterNewsSource(this.props.match.params.id, sort);
+    NewsActions.getFilterNewsArticle(this.props.match.params.id, sort);
   }
 
   /**
