@@ -34,26 +34,15 @@ export default class FavoriteNews extends React.Component {
     this.filterFavorites = this.filterFavorites.bind(this);
   }
   /**
-   * executes when the component is mounting
-   * Trigger action to fetch articles
+   * Executes when the component is mounting
+   * Trigger action to fetch articles and set state
    * @method componentWillMount
-   * @return {void} - trigger axious to fetch article
+   * @return {state} - set state
    */
   componentWillMount() {
     this.setState({
       favoritenews: NewsStore.getFavoriteNews(),
     });
-  }
-  /**
-   * Redirect user to login page
-   * executes when the component is fully mounted
-   * @method componentDidMount
-   * @return {void} - redirect
-   */
-  componentDidMount() {
-    if (this.state.authenticated === false) {
-      this.props.history.push('/login');
-    }
   }
   /**
     * Delete set news
@@ -64,10 +53,9 @@ export default class FavoriteNews extends React.Component {
     const article = JSON.parse(localStorage.getItem('omedale_confirm_delete'));
     let newFavorite = [];
     let temp = [];
-    //const favorite = NewsStore.getFavoriteNews();
     const favorites = NewsStore.getFavoriteNews();
     favorites.forEach((favorite) => {
-      if (article.title != favorite.title) {
+      if (article.title !== favorite.title) {
         temp.push(favorite);
         favorite = '';
       }

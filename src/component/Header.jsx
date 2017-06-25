@@ -28,7 +28,7 @@ export default class Header extends React.Component {
   }
   /**
    * Sign Out user
-   * @method filterFavorites
+   * @method signOut
    * @return {void} - sign out user
    */
   signOut() {
@@ -45,7 +45,7 @@ export default class Header extends React.Component {
   }
 /**
    * Navigate to favorite page
-   * @method showSources
+   * @method showFavorite
    * @return {void} - navigate
    */
   showFavorite() {

@@ -8,6 +8,7 @@ import mockData from './mock/mock';
 
 require('./mock/test_helper.js');
 
+localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
 localStorage.setItem('omedale_profile_email', 'omedale@gmail.com');
 localStorage.setItem('omedale_confirm_delete',
 JSON.stringify(mockData.singleNews));
@@ -37,20 +38,12 @@ describe('FavoriteNews Component :', () => {
   });
   it('contains a deleteAll method', () => {
     const wrapper = mount(<FavoriteNews {...props} />);
-    expect(wrapper.instance().deleteAll(0)).toEqual(undefined);
+    expect(wrapper.instance().deleteAll()).toEqual(undefined);
   });
   it('contains a removeNews method', () => {
     const wrapper = mount(<FavoriteNews {...props} />);
-    expect(wrapper.instance().removeNews(0)).toEqual(true);
+    expect(wrapper.instance().removeNews()).toEqual(true);
   });
-  // it('contains a deleteFavorite method', () => {
-  //   const wrapper = shallow(
-  //     <FavoriteNews
-  //       {...props}
-  //       favorites={mockData.articles} 
-  //     />);
-  //   expect(wrapper.instance().deleteFavorite(0)).toEqual(undefined);
-  // });
   it('contains a setDeleteItem method', () => {
     const wrapper = mount(
       <FavoriteNews
@@ -58,5 +51,13 @@ describe('FavoriteNews Component :', () => {
         favorite={mockData.articles} 
       />);
     expect(wrapper.instance().setDeleteItem(0)).toEqual(undefined);
+  });
+  it('contains a deleteFavorite method', () => {
+    localStorage.setItem('omedale@gmail.co', JSON.stringify(mockData.articles));
+    const wrapper = shallow(
+      <FavoriteNews
+        {...props}
+      />);
+    expect(wrapper.instance().deleteFavorite()).toEqual(undefined);
   });
 });

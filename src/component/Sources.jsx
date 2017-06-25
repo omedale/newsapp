@@ -6,7 +6,6 @@ import NewsStore from '../stores/NewsStore';
 import AuthStore from '../stores/AuthStore';
 import Header from './Header';
 import Footer from './Footer';
-import AuthActions from '../actions/AuthActions';
 import SearchBar from './SearchBar';
 import Loading from './LoadingComponent';
 
@@ -31,15 +30,12 @@ export default class Sources extends React.Component {
     };
     this.searchSource = this.searchSource.bind(this);
     this.onChange = this.onChange.bind(this);
-    // if (this.state.authenticated === false) {
-    //   this.props.history.push('/login');
-    // }
   }
   /**
    * executes when the component is mounting
    * Trigger action to fetch source
    * @method componentWillMount
-   * @return {void} - trigger axious to fetch sources
+   * @return {void} - triggers axios to fetch sources
    */
   componentWillMount() {
     NewsActions.recieveSources();
@@ -62,7 +58,7 @@ export default class Sources extends React.Component {
     NewsStore.removeChangeListener(this.onChange);
   }
   /**
-   * gets filter sources and set the state
+   * Get  news sources and set the state
    * @method onChange
    * @return {state} - Set source to the state
    */

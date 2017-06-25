@@ -24,18 +24,7 @@ export default class Login extends React.Component {
     };
   }
   /**
-   * redirect user to home
-   * Trigger action to fetch articles
-   * @method componentWillMount
-   * @return {void} - redirect
-   */
-  componentWillMount() {
-    // if (this.state.authenticated === true) {
-    //   this.props.history.push('/');
-    // }
-  }
-  /**
-   * On successful login
+   * Triggers on successful google login
    * @method onSuccess
    * @param {object} response
    * @return {void} -signs user in
