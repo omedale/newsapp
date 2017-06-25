@@ -26,7 +26,7 @@ NewsApp is an open source application that enables users view news by selecting 
 *  **[React](https://facebook.github.io/react/)** - A JavaScript library for building user interfaces
 *  **[Express](https://expressjs.com/)** - Express is Node.js web application framework
 *  **[JQuery](https://jquery.com/)** - This a javascript library
-*  **[enzyme](https://www.npmjs.com/package/enzyme)** - Enzyme is used together with mocha, chai and expect.js to test this application
+*  **[Enzyme](https://www.npmjs.com/package/enzyme)** - Enzyme is used together with mocha, chai and expect.js to test this application
 *  **[axios](https://www.npmjs.com/package/axios)** - Used to make GET requests to external API's
 *  **[webpack](https://www.npmjs.com/package/react-router-dom)** - Used to bundle the app's js and scss files for usage in the browser
 *  **[react-google-login](https://www.npmjs.com/package/react-google-login)** - Enables authentication with Google
