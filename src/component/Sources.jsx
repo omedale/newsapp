@@ -78,16 +78,6 @@ export default class Sources extends React.Component {
       filterText: filterSource,
     });
   }
- /**
-   * set sort type available
-   * @method setSortAvailable
-   * @param {array} sort
-   * @return {void} - Set sort type
-   */
-  setSortAvailable(sort) {
-    const articleData = { name: sort.name, sortAvailable: sort.sortBysAvailable };
-    localStorage.setItem('omedale_sort_value', JSON.stringify(articleData));
-  }
 /**
    * Render react component
    * @method render
@@ -104,9 +94,10 @@ export default class Sources extends React.Component {
         return '';
       }
       return (
-        <li onClick={() => this.setSortAvailable(source)} key={source.name}>
+        <li key={source.name}>
           <Link
             key={source.name}
+            // to={{ pathname: `/articles/${source.id}`, articledata: { articleName: source.name, sortAvailable: source.sortBysAvailable } }}
             to={`/articles/${source.id}/${source.name}`}
           >
             <h3 className="newshead">{source.name.substr(0, 50)}</h3>

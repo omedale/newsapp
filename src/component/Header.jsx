@@ -17,6 +17,7 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      sources: [],
       userName: AuthStore.getUserName(),
       userEmail: AuthStore.getUserEmail(),
     };

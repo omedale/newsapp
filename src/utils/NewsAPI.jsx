@@ -51,4 +51,16 @@ export default {
          callback(false);
        });
   },
+
+  getAllSources(){
+    return new Promise((resolve, reject) => {
+      axios.get('https://newsapi.org/v1/sources?language=en')
+      .then((res) => {
+        resolve((res));
+      })
+      .catch((error) => {
+        if (error) reject(error);
+      });
+    });
+  },
 };

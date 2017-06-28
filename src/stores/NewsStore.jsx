@@ -2,6 +2,7 @@ import EventEmitter from 'events';
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
 import AppConstants from '../constants/AppConstants';
 import AuthStore from '../stores/AuthStore';
+import NewsAPI from '../utils/NewsAPI';
 
 const CHANGE_EVENT = 'change';
 
@@ -102,6 +103,14 @@ class NewsStoreClass extends EventEmitter {
     }
     localStorage.setItem(AuthStore.getUserEmail(), '');
     return localStorage.getItem(AuthStore.getUserEmail());
+  }
+/**
+   * Get news sources
+   * @method getAllSources
+   * @return {object} - sources
+   */
+  getAllSources() {
+    return NewsAPI.getAllSources();
   }
 
 }
