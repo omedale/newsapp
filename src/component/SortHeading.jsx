@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import NewsStore from '../stores/NewsStore';
 /**
  * Create a react component
  * @class SortHeading
@@ -14,8 +15,21 @@ export default class SortHeading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: JSON.parse(localStorage.getItem('omedale_sort_value')),
+      sortBysAvailable: [],
     };
+  }
+  /**
+   * executes when the component is mounting
+   * Trigger getAllSource method from store to fetch source
+   * @method componentWillMount
+   * @return {state} - set state
+   */
+  componentWillMount() {
+    NewsStore.getAllSources().then((res) => {
+      this.setState({
+        sortBysAvailable: res.data.sources.filter(omedale => (omedale.id === this.props.filterurl)),
+      });
+    });
   }
 /**
    * Render react component
@@ -23,9 +37,11 @@ export default class SortHeading extends React.Component {
    * @return {function} react-component
    */
   render() {
+    let sortBysAvailable = [];
     let sortNews = [];
-    if (this.state.sortType.sortAvailable !== '') {
-      sortNews = this.state.sortType.sortAvailable.map((sort) => {
+    if (this.state.sortBysAvailable[0]) {
+      sortBysAvailable = this.state.sortBysAvailable[0].sortBysAvailable;
+      sortNews = sortBysAvailable.map((sort) => {
         return (
           <li
             key={sort}

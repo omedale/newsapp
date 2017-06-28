@@ -37,10 +37,4 @@ describe('Sources Component :', () => {
     sources.setState({ sources: mockData.sources });
     expect(sources.find('li').length).toEqual(2);
   });
-  it('should call setSortAvailable', () => {
-    const sort = { sortBysAvailable: ['latest', 'top'] };
-    const article = mount(<Sources{...props} />);
-    const setSortAvailable = article.instance().setSortAvailable(sort);
-    expect(setSortAvailable).toEqual(undefined);
-  });
 });

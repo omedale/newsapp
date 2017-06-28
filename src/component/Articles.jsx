@@ -31,7 +31,6 @@ export default class Articles extends React.Component {
     super(props);
     this.state = {
       authenticated: AuthStore.isAuthenticated(),
-      sortType: localStorage.getItem('omedale_sort_value'),
       sortedArticle: [],
       filterText: '',
       sourceID: this.props.location.pathname.split('/')[2],
