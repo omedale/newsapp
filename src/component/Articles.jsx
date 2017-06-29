@@ -132,11 +132,13 @@ export default class Articles extends React.Component {
       }
       return (
         <li key={`${source.title}${source.publishedAt}`}>
-          <img
-            className="dashboard-avatar avata articleImage"
-            alt="Article"
-            src={source.urlToImage}
-          />
+          <div className="imageLayer">
+            <img
+              className="dashboard-avatar avata articleImage"
+              alt="Article"
+              src={source.urlToImage}
+            />
+          </div>
           <Link
             key={source.title}
             to={source.url}

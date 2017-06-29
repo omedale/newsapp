@@ -21,7 +21,12 @@
       width: 455px !important;
           margin-left: 10% !important;
 }
-
+.imageLayer{
+   overflow: hidden;
+    vertical-align: middle;
+    float: left;
+    margin: 0 10px 0 0;
+}
 .twitterclass{
     padding-right: 10px !important;
 }
