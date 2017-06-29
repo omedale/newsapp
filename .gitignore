@@ -5,3 +5,7 @@ coverage/
 package.lock.json
 npm-debug.log
 public/bundle.js
+.DS_Store
+test/.DS_Store
+public/.DS_Store
+src/.DS_Store
