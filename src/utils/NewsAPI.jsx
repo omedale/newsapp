@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
 /**
-   * Fetches articles from base on the url supplied
+   * Fetches sources from base on the url supplied
    * @method getSources
    * @param {string} url
    * @return {object} - sources
@@ -51,7 +51,11 @@ export default {
          callback(false);
        });
   },
-
+/**
+   * Fetches sources with url supplied
+   * @method getAllSources
+   * @return {object} - sources
+   */
   getAllSources(){
     return new Promise((resolve, reject) => {
       axios.get('https://newsapi.org/v1/sources?language=en')
