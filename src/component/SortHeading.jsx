@@ -27,7 +27,7 @@ export default class SortHeading extends React.Component {
   componentWillMount() {
     NewsStore.getAllSources().then((res) => {
       this.setState({
-        sortBysAvailable: res.data.sources.filter(omedale => (omedale.id === this.props.filterurl)),
+        sortBysAvailable: res.data.sources.filter(source => (source.id === this.props.filterurl)),
       });
     });
   }
