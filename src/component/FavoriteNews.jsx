@@ -145,7 +145,9 @@ export default class FavoriteNews extends React.Component {
         }
         return (
           <li key={`${fav.title}${fav.description}`}>
-            <img className="dashboard-avatar avata articleImage" alt="Article " src={fav.urlToImage} />
+            <div className="imagelayer">
+              <img className="dashboard-avatar avata articleImage" alt="Article " src={fav.urlToImage} />
+            </div>
             <Link
               key={fav.title}
               to={fav.url}
