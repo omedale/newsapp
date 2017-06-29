@@ -1,9 +1,9 @@
 
 import expect from 'expect';
 
-import AuthActions from '../src/actions/AuthActions';
+import AuthActions from '../../src/actions/AuthActions';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper');
 
 describe('AuthActions  :', () => {
   it('contain funtion logUserIn', () => {

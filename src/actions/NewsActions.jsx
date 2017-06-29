@@ -1,7 +1,7 @@
 import AppDispatcher from '../AppDispatcher/AppDispatcher';
 import AppConstants from '../constants/AppConstants';
 import NewsAPI from '../utils/NewsAPI';
-
+const commonUrl = 'https://newsapi.org/v1/';
 export default {
 // addFavorite action dispatches favorite news to store
   addFavorite(news) {
@@ -13,7 +13,7 @@ export default {
 // recieveSources action get sources from axios and dispatch to store
   recieveSources() {
     return NewsAPI
-    .getSources('https://newsapi.org/v1/sources?language=en')
+    .getSources(`${commonUrl}sources?language=en`)
     .then((src) => {
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_SOURCES,
@@ -31,7 +31,7 @@ export default {
 // source id and sortype from axios and dispatch to store
   getFilterNewsArticle(id, filter) {
     return NewsAPI
-    .getFilterNewsArticle(`https://newsapi.org/v1/articles?source=${id}&sortBy=${filter}&apiKey=213327409d384371851777e7c7f78dfe`)
+    .getFilterNewsArticle(`${commonUrl}articles?source=${id}&sortBy=${filter}&apiKey=${process.env.NEWS_API}`)
     .then((articles) => {
       AppDispatcher.dispatch({
         actionType: AppConstants.RECIEVE_SORT_SOURCE,

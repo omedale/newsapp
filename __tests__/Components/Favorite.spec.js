@@ -3,10 +3,10 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import expect from 'expect';
 import sinon from 'sinon';
-import FavoriteNews from '../src/component/FavoriteNews';
-import mockData from './mock/mock';
+import FavoriteNews from '../../src/component/FavoriteNews';
+import mockData from '../../mock/mock';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
 localStorage.setItem('omedale_profile_email', 'omedale@gmail.com');
@@ -41,11 +41,11 @@ describe('FavoriteNews Component :', () => {
     expect(wrapper.instance().deleteAll()).toEqual(undefined);
   });
   it('contains a removeNews method', () => {
-    const wrapper = mount(<FavoriteNews {...props} />);
+    const wrapper = shallow(<FavoriteNews {...props} />);
     expect(wrapper.instance().removeNews()).toEqual(true);
   });
   it('contains a setDeleteItem method', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <FavoriteNews
         {...props}
         favorite={mockData.articles} 

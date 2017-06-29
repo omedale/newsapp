@@ -1,11 +1,11 @@
 
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Login from '../src/component/Login';
+import Login from '../../src/component/Login';
 
-import mockData from './mock/mock';
+import mockData from '../../mock/mock';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
  localStorage.removeItem('omedale_profile');
  localStorage.removeItem('omedale_id_token');
@@ -27,10 +27,6 @@ describe('Login Component :', () => {
   it('will render Welcome to NewsApp ', () => {
     const login = shallow(<Login{...props} />);
     expect(login.find('span').text()).toEqual('Login with Google');
-  });
-  it('should have state.authenticated = false', () => {
-    const login = shallow(<Login{...props} />);
-    expect(login.state('authenticated')).toEqual(false);
   });
   it('renders two row', () => {
     const login = shallow(<Login{...props} />);

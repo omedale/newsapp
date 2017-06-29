@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
-import SearchBar from '../src/component/SearchBar';
+import SearchBar from '../../src/component/SearchBar';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 function option() {
   const props = {

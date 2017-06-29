@@ -27,7 +27,8 @@ export default class SortHeading extends React.Component {
   componentWillMount() {
     NewsStore.getAllSources().then((res) => {
       this.setState({
-        sortBysAvailable: res.data.sources.filter(source => (source.id === this.props.filterurl)),
+        sortBysAvailable: res.data.sources
+        .filter(source => (source.id === this.props.filterurl)),
       });
     });
   }
@@ -47,7 +48,8 @@ export default class SortHeading extends React.Component {
             key={sort}
           >
             <Link
-              to={`/articles/${this.props.filterurl}/${this.props.sourceName}/${sort}`}
+              to={`/articles/${this.props
+                .filterurl}/${this.props.sourceName}/${sort}`}
             >{sort.toUpperCase()} NEWS</Link></li>
         );
       });

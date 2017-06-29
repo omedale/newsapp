@@ -1,13 +1,13 @@
 import expect from 'expect';
 import axios from 'axios';
 import sinon from 'sinon';
-import NewsAction from '../src/actions/NewsActions';
-import dispatcher from '../src/AppDispatcher/AppDispatcher';
-import articles from './mock/article.json';
-import sources from './mock/sources.json';
-import mockData from './mock/mock';
+import NewsAction from '../../src/actions/NewsActions';
+import dispatcher from '../../src/AppDispatcher/AppDispatcher';
+import articles from '../../mock/article.json';
+import sources from '../../mock/sources.json';
+import mockData from '../../mock/mock';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 describe('AuthActions  :', () => {
   let axiosMock;

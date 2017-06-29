@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import expect from 'expect';
-import SortHeading from '../src/component/SortHeading';
+import SortHeading from '../../src/component/SortHeading';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 localStorage.setItem('omedale_sort_value', JSON.stringify({ name: 'ABC', sortAvailable: ['top', 'latest'] }));
 

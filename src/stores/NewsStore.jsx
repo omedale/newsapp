@@ -24,6 +24,7 @@ export function setFavorite(news) {
   }
   localStorage.removeItem(AuthStore.getUserEmail());
   localStorage.setItem(AuthStore.getUserEmail(), JSON.stringify(favNews));
+  return true;
 }
 /**
    * Set news sources

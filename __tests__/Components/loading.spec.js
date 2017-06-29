@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import LoadingComponent from '../src/component/LoadingComponent';
+import Loader from '../../src/component/Loader';
 
 describe('Loading Component :', () => {
   it('renders without crashing', () => {
-    mount(<LoadingComponent />);
+    mount(<Loader />);
   });
 });

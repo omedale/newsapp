@@ -8,7 +8,7 @@
     "watch": "webpack -d --watch",
     "build": "webpack -p",
     "serve": "nodemon server.js",
-    "test": "jest ./test/ mocks-local-storage --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "oluwafemi medalem <oluwafemi.medale@andela.com>",
   "license": "ISC",

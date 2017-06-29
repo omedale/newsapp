@@ -3,10 +3,10 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import expect from 'expect';
 import sinon from 'sinon';
-import Sources from '../src/component/Sources';
-import mockData from './mock/mock';
+import Sources from '../../src/component/Sources';
+import mockData from '../../mock/mock';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 describe('Sources Component :', () => {
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import expect from 'expect';
-import Header from '../src/component/Header';
+import Header from '../../src/component/Header';
 
-require('./mock/test_helper.js');
+require('../../mock/test_helper.js');
 
 function option() {
   const props = {

@@ -16,13 +16,13 @@ const JSONData = {
       "email": "test@test.com"
 };
 
-const singleNews = {
+const singleNews = [
   "author": null,
   "title": "My First E3: Exploring the Show Floor - IGN Video",
   "description": "The bright lights, ground-shaking sound and bags of swag are a bit too much for our boy Rory.",
   "url": "http://ca.ign.com/videos/2017/06/15/my-first-e3-exploring-the-show-floor",
   "urlToImage": "http://assets1.ignimgs.com/thumbs/userUploaded/2017/6/15/showfloor-1497521314768_1280w.jpg",
-  "publishedAt": "2017-06-15T11:00:00Z"}
+  "publishedAt": "2017-06-15T11:00:00Z"]
 
 const googleProfile = 
         { 'googleId': '116879242746092089539',
