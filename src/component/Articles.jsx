@@ -10,7 +10,7 @@ import Header from './Header';
 import SortHeading from './SortHeading';
 import SearchBar from './SearchBar';
 import Footer from './Footer';
-import Loading from './LoadingComponent';
+import Loader from './Loader';
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
@@ -122,7 +122,8 @@ export default class Articles extends React.Component {
   render() {
     let count = 0;
     const newsNode = this.state.sortedArticle.map((source) => {
-      if (source.title.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
+      if (source.title.toString().toLowerCase()
+      .indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
         count += 1;
         if (count === this.state.sortedArticle.length){
           return (<h3 key={`${source.title}${source.publishedAt}`}>
@@ -186,14 +187,19 @@ export default class Articles extends React.Component {
             </div>
             <div className="box-inner">
               <div className=" ">
-                <SortHeading sourceName={this.state.sourceName} filterurl={this.state.sourceID} />
+                <SortHeading
+                  sourceName={this.state.sourceName}
+                  filterurl={this.state.sourceID} 
+                />
               </div>
               <div className="tab-content">
-                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+                <AlertContainer
+                  ref={a => this.msg = a} {...this.alertOptions}
+                />
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad listcontainer">
-                      { newsNode.length > 0 ? newsNode : <Loading /> }
+                      { newsNode.length > 0 ? newsNode : <Loader /> }
                     </ul>
                   </div>
                 </div>

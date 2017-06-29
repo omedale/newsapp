@@ -14,8 +14,6 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
-  // devtool: process.env.NODE_ENV === 'production' ?
-  //   'eval-source-map' : 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
   },
@@ -42,7 +40,8 @@ const config = {
     new webpack.DefinePlugin({
       'process': {
         'env': {
-          'CLIENT_ID': JSON.stringify(process.env.CLIENT_ID)
+          'CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
+          'NEWS_API': JSON.stringify(process.env.NEWS_API)
         }
       }
     })

@@ -68,8 +68,15 @@ export default class Header extends React.Component {
               </div>
               <div className="">
                 <ul className="nav navbar-nav">
-                  <li><button className="navbtn" onClick={() => this.showSources()} >Sources</button></li>
-                  <li><button className="navbtn" onClick={() => this.showFavorite()}>Favorite</button></li>
+                  <li>
+                    <button
+                      className="navbtn"
+                      onClick={() => this.showSources()} >
+                  Sources</button></li>
+                  <li>
+                    <button
+                      className="navbtn"
+                      onClick={() => this.showFavorite()}>Favorite</button></li>
                 </ul>
                 <div className="btn-group pull-right">
                   <button

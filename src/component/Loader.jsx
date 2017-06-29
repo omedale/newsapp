@@ -5,8 +5,8 @@ const color = '#1995dc';
 const type = 'spinningBubbles';
 // Loading component
 // Display while loading article and sources
-const LoadingComponent = () => (
+const Loader = () => (
   <Loading type={type} color={color} className="loading" />
 );
 
-export default LoadingComponent;
+export default Loader;

@@ -136,17 +136,23 @@ export default class FavoriteNews extends React.Component {
     let count = 0;
     if (this.state.favoritenews !== '') {
       newsNode = this.state.favoritenews.map((fav) => {
-        if (fav.title.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
+        if (fav.title.toString().toLowerCase()
+        .indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
           count += 1;
           if (count === this.state.favoritenews.length) {
-            return <h3 key={`${fav.title}${fav.description}`}>Ooops!!.... article not found</h3>;
+            return <h3 key={`${fav.title}${fav.description}`}>
+            Ooops!!.... article not found</h3>;
           }
           return '';
         }
         return (
           <li key={`${fav.title}${fav.description}`}>
             <div className="imagelayer">
-              <img className="dashboard-avatar avata articleImage" alt="Article " src={fav.urlToImage} />
+              <img
+                className="dashboard-avatar avata articleImage"
+                alt="Article "
+                src={fav.urlToImage}
+              />
             </div>
             <Link
               key={fav.title}
@@ -155,14 +161,26 @@ export default class FavoriteNews extends React.Component {
               target="_blank"
             >
               <h3 className="newshead">{fav.title.substr(0, 60)}...</h3>
-              <div className="newsdesc">{fav.description.substr(0, 100)}...</div>
+              <div className="newsdesc">{fav.description.substr(0, 100)}
+              ...</div>
             </Link>
-            <div className="row rowbtn"><button onClick={() => this.setDeleteItem(fav)} className="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteFavorite">Delete </button><span className="pull-right "> <FacebookShareButton url={fav.url}><FacebookIcon size={32} round={true} /> </FacebookShareButton> </span> <span className="pull-right "> <TwitterShareButton className="twitterclass" url={fav.url}><TwitterIcon size={32} round={true} /> </TwitterShareButton> </span></div>
+            <div className="row rowbtn">
+              <button onClick={() => this.setDeleteItem(fav)}
+                className="btn btn-primary btn-sm"
+                data-toggle="modal"
+                data-target="#deleteFavorite"
+              >Delete </button><span className="pull-right "> 
+                <FacebookShareButton url={fav.url}>
+                  <FacebookIcon size={32} round={true} /> 
+                </FacebookShareButton> </span> <span className="pull-right ">
+                  <TwitterShareButton className="twitterclass" url={fav.url}>
+                    <TwitterIcon size={32} round={true} /> 
+                  </TwitterShareButton> </span></div>
           </li>
         );
       });
     } else {
-      newsNode = 'No favorite news';
+      newsNode = <h3>No favorite</h3>;
     }
 
     return (
@@ -171,7 +189,10 @@ export default class FavoriteNews extends React.Component {
         <div className="ch-container outercontainer">
           <div className="">
             <div className="row">
-              <button className="btn pull-left clearbtn" onClick={() => this.deleteAll()} >clear all</button>
+              <button
+                className="btn pull-left clearbtn"
+                onClick={() => this.deleteAll()} >
+                clear all</button>
               <SearchBar
                 filterText={this.state.filterText}
                 onFilterTextInput={this.filterFavorites}
@@ -183,7 +204,7 @@ export default class FavoriteNews extends React.Component {
                 <div className="">
                   <div className="">
                     <ul className="dashboard-list listpad listcontainer">
-                      {newsNode.length > 0 ? newsNode : 'No favorite news'}
+                      {newsNode.length > 0 ? newsNode : <h3>No favorite</h3>}
                     </ul>
                   </div>
                 </div>
@@ -196,14 +217,22 @@ export default class FavoriteNews extends React.Component {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                <button type="button"
+                  className="close"
+                  data-dismiss="modal">&times;</button>
               </div>
               <div className="modal-body">
                 <p>Are you sure you want to delete</p>
               </div>
               <div className="modal-footer">
-                <button onClick={() => this.deleteFavorite()} className="btn btn-primary btn-sm" data-dismiss="modal">Yes </button>
-                <button type="button" className="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                <button
+                  onClick={() => this.deleteFavorite()}
+                  className="btn btn-primary btn-sm"
+                  data-dismiss="modal">Yes </button>
+                <button
+                  type="button"
+                  className="btn btn-default btn-sm"
+                  data-dismiss="modal">Cancel</button>
               </div>
             </div>
 

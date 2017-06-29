@@ -7,7 +7,7 @@ import AuthStore from '../stores/AuthStore';
 import Header from './Header';
 import Footer from './Footer';
 import SearchBar from './SearchBar';
-import Loading from './LoadingComponent';
+import Loader from './Loader';
 
 /**
  * Create a react component
@@ -86,7 +86,8 @@ export default class Sources extends React.Component {
   render() { 
     let count = 0;
     const newsNode = this.state.sources.map((source) => {
-      if (source.name.toString().toLowerCase().indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
+      if (source.name.toString().toLowerCase()
+      .indexOf(this.state.filterText.toString().toLowerCase()) === -1) {
         count +=1;
         if (count === this.state.sources.length){
           return <h3 key={source.name}>Ooops!!.... source not found</h3>;
@@ -97,11 +98,12 @@ export default class Sources extends React.Component {
         <li key={source.name}>
           <Link
             key={source.name}
-            // to={{ pathname: `/articles/${source.id}`, articledata: { articleName: source.name, sortAvailable: source.sortBysAvailable } }}
             to={`/articles/${source.id}/${source.name}`}
           >
-            <h3 className="newshead">{source.name.substr(0, 50)}</h3>
-            <span className="newsdesc">{source.description.substr(0, 160)}...</span>
+            <h3 className="newshead">
+            {source.name.substr(0, 50)}</h3>
+            <span className="newsdesc">{
+              source.description.substr(0, 160)}...</span>
           </Link>
         </li>
       );
@@ -124,7 +126,7 @@ export default class Sources extends React.Component {
             <div className="">
               <div className="box-inner">
                 <ul className="dashboard-list listpad listcontainer">
-                  { newsNode.length > 0 ? newsNode : <Loading /> }
+                  { newsNode.length > 0 ? newsNode : <Loader /> }
                 </ul>
               </div>
             </div>
