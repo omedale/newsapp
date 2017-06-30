@@ -14,14 +14,15 @@ localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
 localStorage.setItem('omedale_profile_email', 'omedale@gmail.com');
 localStorage.setItem('omedale_token', 'zzzzzzggggtttttqqqqqq');
 const token = localStorage.getItem('omedale_token');
-const authAction = {
-  token,
-  profile: mockData.googleProfile,
-  type: 'LOGIN_USER',
-};
+
 describe('AuthStores  :', () => {
+  let authAction;
   beforeEach(() => {
-    
+    authAction = {
+      token,
+      profile: mockData.googleProfile,
+      type: 'LOGIN_USER',
+    };
   });
 
   it('should register a callback with the dispatcher', () => {

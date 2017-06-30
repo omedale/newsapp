@@ -12,13 +12,19 @@ require('../../mock/test_helper.js');
 localStorage.setItem('omedale_sort_value', JSON.stringify(['top', 'latest']));
 
 describe('Article Component :', () => {
-  const props = {
-    location: { pathname: '/articles/abc-news-au/top' },
-    history: [{ action: 'POP', push: (path, state) => { return state; } }],
-    match: { params: { id: 'abc-news-au' }, isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
-    filterurl: '',
-    filterText: '',
-  };
+  let props;
+  beforeEach(() => {
+    props = {
+      location: { pathname: '/articles/abc-news-au/top' },
+      history: [{ action: 'POP', push: (path, state) => { return state; } }],
+      match: { params: { id: 'abc-news-au' },
+        isExact: true,
+        path: '/sortedNews/:id',
+        url: '/sortedNews/abc-news-au' },
+      filterurl: '',
+      filterText: '',
+    };
+  });
   it('should render 5 articles', () => {
     const article = shallow(<Articles{...props} />);
     article.setState({ sortedArticle: mockData.articles });
@@ -35,7 +41,7 @@ describe('Article Component :', () => {
   it('should call filterArticle', () => {
     const article = shallow(<Articles{...props} />);
     const filterArticle = article.instance().filterArticle('lets');
-    expect(filterArticle).toEqual(undefined);
+    expect(filterArticle).toEqual(true);
   });
 
   it('calls componentWillReceiveProps and update the state', () => {

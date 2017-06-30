@@ -26,12 +26,6 @@ describe('Search Component :', () => {
     const { header } = option();
     expect(header.find('div').length).toEqual(3);
   });
-
-  it('should have initial state.sortType = []', () => {
-    const { header } = option();
-    expect(header.state('sortedArticle')).toEqual(undefined);
-  });
-
   it('contain headerline class', () => {
     const { header } = option();
     expect(header.find('.headerline').length).toEqual(1);

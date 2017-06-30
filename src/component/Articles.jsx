@@ -99,6 +99,7 @@ export default class Articles extends React.Component {
     this.setState({
       filterText: filterNews,
     });
+    return true;
   }
  /**
    * gets favorite article and add to store

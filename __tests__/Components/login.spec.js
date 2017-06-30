@@ -13,13 +13,17 @@ require('../../mock/test_helper.js');
  localStorage.removeItem('omedale_profile_email');
 
 describe('Login Component :', () => {
-  const props = {
-    location: { pathname: '/articles/abc-news-au/top' },
-    history: [{ action: 'POP', push: (path, state) => { return state; } }],
-    match: { params: { id: 'abc-news-au' }, isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
-    filterurl: '',
-    filterText: '',
-  }
+  let props;
+  beforeEach(() => {
+    props = {
+      location: { pathname: '/articles/abc-news-au/top' },
+      history: { action: 'POP', push: (path, state) => { return state; } },
+      match: { params: { id: 'abc-news-au' },
+        isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
+      filterurl: '',
+      filterText: '',
+    };
+  });
   it('will render Welcome to NewsApp ', () => {
     const login = shallow(<Login{...props} />);
     expect(login.find('h2').text()).toEqual('Welcome to NewsApp');
