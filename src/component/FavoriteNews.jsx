@@ -88,7 +88,7 @@ export default class FavoriteNews extends React.Component {
   deleteAll() {
     if (NewsStore.getFavoriteNews() === '') {
       this.showAlert('Favorite List is Empty');
-      return;
+      return true;
     }
     localStorage.removeItem(AuthStore.getUserEmail());
     this.setState({

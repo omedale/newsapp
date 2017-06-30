@@ -10,20 +10,19 @@ require('../../mock/test_helper.js');
 
 describe('Sources Component :', () => {
 
-  const props = {
-    location: { pathname: '/articles/abc-news-au/top' },
-    history: [{ action: 'POP', push: (path, state) => { return state; } }],
-    match: { params: { id: 'abc-news-au' }, isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
-    filterurl: '',
-    filterText: '',
-  }
-
+  let props;
+  beforeEach(() => {
+    props = {
+      location: { pathname: '/articles/abc-news-au/top' },
+      history: { action: 'POP', push: (path, state) => { return state; } },
+      match: { params: { id: 'abc-news-au' },
+        isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
+      filterurl: '',
+      filterText: '',
+    };
+  });
   it('renders without crashing', () => {
     mount(<Sources {...props} />);
-  });
-  it('calls componentWillMount', () => {
-    const spy = sinon.spy(Sources.prototype, 'componentWillMount');
-    expect(spy.calledOnce).toEqual(false);
   });
   it('calls componentWillUnmount', () => {
     const wrapper = mount(<Sources{...props} />);

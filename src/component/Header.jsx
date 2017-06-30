@@ -35,6 +35,7 @@ export default class Header extends React.Component {
   signOut() {
     AuthActions.logUserOut();
     this.props.history.push('/login');
+    return true;
   }
 /**
    * Navigate to sources page

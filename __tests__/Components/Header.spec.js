@@ -28,19 +28,20 @@ describe('Search Component :', () => {
     const { header } = option();
     expect(header.find('a').length).toEqual(2);
   });
-  it('should have method signOut', () => {
-    const { header } = option();
+  it('should return user redirect to login page', () => {
+    const { header, props } = option();
     const headerInstance = header.instance().signOut();
-    expect(headerInstance).toEqual(undefined);
+    expect(headerInstance).toBeTruthy();
+    expect(props.history).toEqual('/login');
   });
-  it('should have method showSources', () => {
-    const { header } = option();
-    const headerInstance = header.instance().showSources();
-    expect(headerInstance).toEqual(undefined);
+  it('method showSources should redirect to sources page', () => {
+    const { header, props } = option();
+    header.instance().showSources();
+    expect(props.history).toEqual('/');
   });
-  it('should have method showFavorite', () => {
-    const { header } = option();
-    const headerInstance = header.instance().showFavorite();
-    expect(headerInstance).toEqual(undefined);
+  it('method showFavorite should redirect user to favorite page', () => {
+    const { header, props } = option();
+    header.instance().showFavorite();
+    expect(props.history).toEqual('/favorite');
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import expect from 'expect';
 import SearchBar from '../../src/component/SearchBar';
 
@@ -18,7 +18,11 @@ function option() {
 }
 
 describe('Search Component :', () => {
-  it('will contain input ', () => {
+  it('renders without crashing', () => {
+    const { props } = option();
+    mount(<SearchBar {...props} />);
+  });
+  it('will contain empty initial input value', () => {
     const { searchBar } = option();
     expect(searchBar.find('input').text()).toEqual('');
   });

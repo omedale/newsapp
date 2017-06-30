@@ -10,20 +10,20 @@ require('../../mock/test_helper.js');
 
 localStorage.setItem('omedale_profile', JSON.stringify(mockData.googleProfile));
 localStorage.setItem('omedale_profile_email', 'omedale@gmail.com');
-localStorage.setItem('omedale_confirm_delete',
-JSON.stringify(mockData.singleNews));
 localStorage.getItem('omedale@gmail.com');
 
 describe('FavoriteNews Component :', () => { 
-  const props = {
-    location: { pathname: '/articles/abc-news-au/top' },
-    history: { action: 'POP', push: (path, state) => { return state; } },
-    match: { params: { id: 'abc-news-au' },
-      isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
-    filterurl: '',
-    filterText: '',
-  };
- 
+  let props;
+  beforeEach(() => {
+    props = {
+      location: { pathname: '/articles/abc-news-au/top' },
+      history: { action: 'POP', push: (path, state) => { return state; } },
+      match: { params: { id: 'abc-news-au' },
+        isExact: true, path: '/sortedNews/:id', url: '/sortedNews/abc-news-au' },
+      filterurl: '',
+      filterText: '',
+    };
+  });
   it('renders without crashing', () => {
     mount(<FavoriteNews {...props} />);
   });
@@ -32,15 +32,13 @@ describe('FavoriteNews Component :', () => {
     favorite.setState({ favoritenews: mockData.articles });
     expect(favorite.find('li').length).toEqual(5);
   });
-  it('calls componentWillMount', () => {
-    const spy = sinon.spy(FavoriteNews.prototype, 'componentWillMount');
-    expect(spy.calledOnce).toEqual(false);
-  });
-  it('contains a deleteAll method', () => {
+  it('method deleteAll returns true', () => {
     const wrapper = mount(<FavoriteNews {...props} />);
-    expect(wrapper.instance().deleteAll()).toEqual(undefined);
+    expect(wrapper.instance().deleteAll()).toBeTruthy();
   });
   it('contains a removeNews method', () => {
+    localStorage.setItem('omedale@gmail.co',
+    JSON.stringify(mockData.articles));
     const wrapper = shallow(<FavoriteNews {...props} />);
     expect(wrapper.instance().removeNews()).toEqual(true);
   });
@@ -50,14 +48,21 @@ describe('FavoriteNews Component :', () => {
         {...props}
         favorite={mockData.articles} 
       />);
-    expect(wrapper.instance().setDeleteItem(0)).toEqual(undefined);
+    wrapper.instance().setDeleteItem(mockData.singleNews);
+    expect(localStorage.getItem('omedale_confirm_delete'))
+    .toEqual(JSON.stringify(mockData.singleNews));
   });
-  it('contains a deleteFavorite method', () => {
-    localStorage.setItem('omedale@gmail.co', JSON.stringify(mockData.articles));
+  it('should return new favorite list after delete', () => {
+    localStorage.setItem('omedale@gmail.co', JSON
+    .stringify(mockData.singleNewsObject));
+    localStorage
+    .setItem('omedale_confirm_delete', JSON.stringify(mockData.setNews));
     const wrapper = shallow(
       <FavoriteNews
         {...props}
       />);
-    expect(wrapper.instance().deleteFavorite()).toEqual(undefined);
+    wrapper.instance().deleteFavorite();
+    expect(JSON.parse(localStorage.getItem('omedale@gmail.co')))
+    .toEqual(mockData.afterDelete);
   });
 });
